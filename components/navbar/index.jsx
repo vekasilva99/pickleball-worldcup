@@ -38,7 +38,7 @@ router.push('/')
           <img src="./logo.png" />
         </div>
         <div className={styles.navlinksContainer}>
-          <h2 className={styles.active}>HISTORIA</h2>
+          {/* <h2 className={styles.active}>HISTORIA</h2>
           <h2>NOSOTROS</h2>
           <h2>NOTICIAS</h2>
           <h2>EVENTOS</h2>
@@ -48,7 +48,7 @@ router.push('/')
           <h2
           >
             MIEMBROS
-          </h2>
+          </h2> */}
           {user && !loading &&  <h2 onClick={()=>{handleLogOut()}}
           >
             LOG OUT
