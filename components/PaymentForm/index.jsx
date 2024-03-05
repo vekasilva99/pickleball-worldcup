@@ -1,17 +1,19 @@
 // PaymentForm.js
 import { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import useAuth from "@/hooks/useAuth";
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js';
 import {db,auth} from '@/firebase/firebase'
 import { collection, getDocs, doc, getDoc,where, collectionGroup,set,addDoc,updateDoc,arrayUnion,setDoc } from "firebase/firestore";
-
+import { useRouter } from "next/navigation";
 const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY);
 
-function PaymentForm({teamRef,setOpen,team}) {
+function PaymentForm({teamRef,setOpen,team,setuser2}) {
+  const { user, loading, getInfo } = useAuth();
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
-
+const router=useRouter()
   useEffect(() => {
     console.log('TEAMMM',teamRef)
     // Fetch the client secret from the server
@@ -24,6 +26,7 @@ function PaymentForm({teamRef,setOpen,team}) {
       }else{
         await updateDoc(teamRef,{payment_intent_id:cs});
       }
+      
    
     };
 
@@ -34,7 +37,7 @@ function PaymentForm({teamRef,setOpen,team}) {
   }, []);
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+  
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded
@@ -56,7 +59,10 @@ function PaymentForm({teamRef,setOpen,team}) {
       }else{
         await updateDoc(teamRef,{payment_status:true});
       }
-     
+
+ 
+      let auxUser=await getInfo(user)
+      setuser2(auxUser)
       setOpen()
       console.log('Payment succeeded:', result.paymentIntent);
     }
@@ -99,10 +105,10 @@ const CARD_ELEMENT_OPTIONS = {
   },
 };
 
-function PaymentFormWrapper({teamRef,setOpen,team}) {
+function PaymentFormWrapper({teamRef,setOpen,team,setuser2}) {
   return (
     <Elements stripe={stripePromise}>
-      <PaymentForm teamRef={teamRef} setOpen={setOpen} team={team}/>
+      <PaymentForm teamRef={teamRef} setOpen={setOpen} team={team} setuser2={(user)=>{setuser2(user)}}/>
     </Elements>
   );
 }

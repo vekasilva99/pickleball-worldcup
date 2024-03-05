@@ -10,7 +10,7 @@ import axios from "axios";
 import { Datepicker } from 'flowbite-react';
 import {format} from 'date-fns'
 import PaymentFormWrapper from "../PaymentForm";
-
+import { useRouter } from "next/navigation";
 
 
 
@@ -22,8 +22,9 @@ const generateRandomPassword = () => {
   };
 
 
-export default function Register({open,setOpen,team}) {
-  const { user, loading } = useAuth();
+export default function Register({open,setOpen,team,setuser2}) {
+  const { user, loading, getInfo } = useAuth();
+  const router=useRouter()
   const [selectedDate, setSelectedDate] = useState(null);
   const [teamRef, setTeamRef] = useState(team ? team :null);
   const [showPayment, setShowPayment] = useState(team ? true : false);
@@ -204,8 +205,9 @@ const saveTeamToFirebase = async (e) => {
      const captainData = await registerTeamMember(newTeamRef, teamData.captain,'hmUMi4XcozY2qQx9DudP',countryRef);
      await updateDoc(newTeamRef,{ captain: captainData });
      await updateTeamMembers(newTeamRef, teamData.pairs, 'pnUrrBdDSsZEXX4tjjDd',countryRef);
+     let auxUser=await getInfo(user)
+     setuser2(auxUser)
     
-
      setShowPayment(true)
      
     return newTeamRef.key;
@@ -1037,13 +1039,13 @@ const options = {
       <div className="form-container">
       {!payNow &&<h3>Total: $350.00</h3>}
 {payNow &&
-<PaymentFormWrapper teamRef={teamRef} setOpen={()=>{setOpen(false)}} team={team}/>}
+<PaymentFormWrapper setuser2={(user)=>{setuser2(user)}} teamRef={teamRef} setOpen={()=>{setOpen(false)}} team={team}/>}
 {!payNow &&
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <button
           type="button"
           className="secondary-button"
-          onClick={()=>{setOpen()}}
+          onClick={()=>{setOpen();    router.refresh()}}
         >
           Pay Later
         </button>

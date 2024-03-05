@@ -201,11 +201,35 @@ const useAuth = () => {
       }
 
       setLoading(false);
+   
     });
 
     // Clean up subscription on unmount
     return () => unsubscribe();
   }, []);
+
+  const getInfo=async(user)=>{
+    console.log('LLLEGUEEE')
+setLoading(true)
+    const userDataFromFirestore = await getUserDataFromFirestore(
+      user.uid
+    );
+
+    console.log("jncjkedcnjebrbeghtegtek", userDataFromFirestore);
+    setUser({
+      uid: user.uid,
+      email:user.email,
+      ...userDataFromFirestore, // Include additional data from Firestore
+    });
+  
+
+  setLoading(false)
+  return {
+    uid: user.uid,
+    email:user.email,
+    ...userDataFromFirestore, // Include additional data from Firestore
+  }
+  }
 
   const signIn = async (email, password) => {
     try {
@@ -226,7 +250,7 @@ const useAuth = () => {
     }
   };
 
-  return { user, loading, signIn, signOutUser };
+  return { user, loading, signIn, signOutUser,getUserDataFromFirestore,getInfo};
 };
 
 export default useAuth;

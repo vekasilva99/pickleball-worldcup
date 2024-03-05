@@ -12,7 +12,7 @@ import {
   faChevronRight,
   faPlus,
   faPlusCircle,
-  faUser,
+  fauser2,
 } from "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css"; // Import the styles
 import { Datepicker } from "flowbite-react";
@@ -30,7 +30,7 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createuser2WithEmailAndPassword } from "firebase/auth";
 import Navbar from "@/components/navbar";
 import { Loader } from "@/components/Loader";
 import Register from "@/components/register";
@@ -98,6 +98,7 @@ const ProtectedPage = () => {
   });
   const [edit, setEdit] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [user2, setuser2] = useState(null);
   const [register, setRegister] = useState(false);
   const [showCoach, setShowCoach] = useState(false);
   const [showCaptain, setShowCaptain] = useState(false);
@@ -109,27 +110,27 @@ const ProtectedPage = () => {
     setTeamData((prevTeamData) => {
       const updatedData = { ...prevTeamData };
 
-      updatedData.coach = user.team.coach;
+      updatedData.coach = user2.team.coach;
 
-      if(typeof user.team.coach.date_of_arrival == 'object' && user.team.coach.date_of_arrival !=null && user.team.coach.date_of_arrival !=undefined){
-        let prueba=format(user.team.coach.date_of_arrival.toDate(),'MM/dd/yyyy')
+      if(typeof user2.team.coach.date_of_arrival == 'object' && user2.team.coach.date_of_arrival !=null && user2.team.coach.date_of_arrival !=undefined){
+        let prueba=format(user2.team.coach.date_of_arrival.toDate(),'MM/dd/yyyy')
         updatedData.coach.date_of_arrival=prueba
       }
 
-      updatedData.captain = user.team.captain;
-      if(typeof user.team.captain.date_of_arrival == 'object' && user.team.captain.date_of_arrival !=null && user.team.captain.date_of_arrival !=undefined){
-        let prueba=format(user.team.captain.date_of_arrival.toDate(),'MM/dd/yyyy')
+      updatedData.captain = user2.team.captain;
+      if(typeof user2.team.captain.date_of_arrival == 'object' && user2.team.captain.date_of_arrival !=null && user2.team.captain.date_of_arrival !=undefined){
+        let prueba=format(user2.team.captain.date_of_arrival.toDate(),'MM/dd/yyyy')
         updatedData.captain.date_of_arrival=prueba
       }
-      updatedData.coordinator = user.team.coordinator;
-      if(typeof user.team.coordinator.date_of_arrival == 'object' && user.team.coordinator.date_of_arrival !=null  && user.team.coordinator.date_of_arrival !=undefined){
-        let prueba=format(user.team.coordinator.date_of_arrival.toDate(),'MM/dd/yyyy')
+      updatedData.coordinator = user2.team.coordinator;
+      if(typeof user2.team.coordinator.date_of_arrival == 'object' && user2.team.coordinator.date_of_arrival !=null  && user2.team.coordinator.date_of_arrival !=undefined){
+        let prueba=format(user2.team.coordinator.date_of_arrival.toDate(),'MM/dd/yyyy')
         updatedData.coordinator.date_of_arrival=prueba
       }
-      for (let i = 0; i < user.team.team_members.length; i++) {
-        updatedData.pairs[i] = user.team.team_members[i];
-        if(typeof user.team.team_members[i].date_of_arrival == 'object' && user.team.team_members[i].date_of_arrival !=null && user.team.team_members[i].date_of_arrival !=undefined){
-          let prueba=format(user.team.team_members[i].date_of_arrival.toDate(),'MM/dd/yyyy')
+      for (let i = 0; i < user2.team.team_members.length; i++) {
+        updatedData.pairs[i] = user2.team.team_members[i];
+        if(typeof user2.team.team_members[i].date_of_arrival == 'object' && user2.team.team_members[i].date_of_arrival !=null && user2.team.team_members[i].date_of_arrival !=undefined){
+          let prueba=format(user2.team.team_members[i].date_of_arrival.toDate(),'MM/dd/yyyy')
           updatedData.pairs[i].date_of_arrival=prueba
         }
       }
@@ -167,7 +168,7 @@ const ProtectedPage = () => {
         email: teamData.coordinator.email,  // Fix: Use the correct email field instead of last_name
         phone: teamData.coordinator.phone,
         dupr:Number(teamData.coordinator.dupr),
-        role: teamData.coordinator.role,     // Assign the user role
+        role: teamData.coordinator.role,     // Assign the user2 role
         country:teamData.coordinator.country,
         passport:teamData.coordinator.passport,
         date_of_arrival:new Date(teamData.coordinator.date_of_arrival),
@@ -188,7 +189,7 @@ const ProtectedPage = () => {
           email: teamData.coach.email,  // Fix: Use the correct email field instead of last_name
           phone: teamData.coach.phone,
           dupr:Number(teamData.coach.dupr),
-          role: teamData.coach.role,     // Assign the user role
+          role: teamData.coach.role,     // Assign the user2 role
           country:teamData.coach.country,
           passport:teamData.coach.passport,
           date_of_arrival:new Date(teamData.coach.date_of_arrival),
@@ -209,7 +210,7 @@ console.log(teamData.captain.date_of_arrival)
           email: teamData.captain.email,  // Fix: Use the correct email field instead of last_name
           phone: teamData.captain.phone,
           dupr:Number(teamData.captain.dupr),
-          role: teamData.captain.role,     // Assign the user role
+          role: teamData.captain.role,     // Assign the user2 role
           country:teamData.captain.country,
           passport:teamData.captain.passport,
           date_of_arrival:new Date(teamData.captain.date_of_arrival),
@@ -228,7 +229,7 @@ console.log(teamData.captain.date_of_arrival)
           email: teamData.pairs[i].email,  // Fix: Use the correct email field instead of last_name
           phone: teamData.pairs[i].phone,
           dupr:Number(teamData.pairs[i].dupr),
-          role: teamData.pairs[i].role,     // Assign the user role
+          role: teamData.pairs[i].role,     // Assign the user2 role
           country:teamData.pairs[i].country,
           passport:teamData.pairs[i].passport,
           date_of_arrival:new Date(teamData.pairs[i].date_of_arrival),
@@ -238,6 +239,7 @@ console.log(teamData.captain.date_of_arrival)
         });
       }
       setEdit(false);
+
       setSuccessMessage("Your team has been updated succesfully!");
       //  location.reload()
     } catch (error) {
@@ -339,21 +341,21 @@ console.log(teamData.captain.date_of_arrival)
 
   const registerTeamMember = async (newTeamRef, memberData, role) => {
     try {
-      // Create user account in Firebase Authentication
+      // Create user2 account in Firebase Authentication
       const { email } = memberData;
       const password = generateRandomPassword();
-      const userCredential = await createUserWithEmailAndPassword(
+      const user2Credential = await createuser2WithEmailAndPassword(
         auth,
         email,
         password
       );
 
-      // Get the newly created user's UID
-      const userId = userCredential.user.uid;
-      console.log(userId);
+      // Get the newly created user2's UID
+      const user2Id = user2Credential.user2.uid;
+      console.log(user2Id);
       const roleReference = await doc(db, "roles", role);
       // Save additional information to the database
-      const newUserRef = await addDoc(
+      const newuser2Ref = await addDoc(
         collection(db, "users"),
         {
           name: memberData.name,
@@ -361,7 +363,7 @@ console.log(teamData.captain.date_of_arrival)
         email: memberData.email,  // Fix: Use the correct email field instead of last_name
         phone: memberData.phone,
         dupr:Number(memberData.dupr),
-        role: roleReference,     // Assign the user role
+        role: roleReference,     // Assign the user2 role
         country:countryRef,
         passport:memberData.passport,
         date_of_arrival:new Date(memberData.date_of_arrival),
@@ -369,11 +371,11 @@ console.log(teamData.captain.date_of_arrival)
         flight_number:memberData.flight_number,
         shirt_size:memberData.shirt_size 
         },
-        userId
+        user2Id
       );
 
       console.log(memberData);
-      return newUserRef;
+      return newuser2Ref;
     } catch (error) {
       throw error;
     }
@@ -388,9 +390,9 @@ console.log(teamData.captain.date_of_arrival)
       const updatePromises = [];
 
       for (const pair of pairs) {
-        const newUserRef = await registerTeamMember(newTeamRef, pair, role);
+        const newuser2Ref = await registerTeamMember(newTeamRef, pair, role);
         updatePromises.push(
-          updateDoc(newTeamRef, { team_members: arrayUnion(newUserRef) })
+          updateDoc(newTeamRef, { team_members: arrayUnion(newuser2Ref) })
         );
       }
 
@@ -414,16 +416,24 @@ console.log(teamData.captain.date_of_arrival)
     }
   };
 
-  const { user, loading } = useAuth();
+  useEffect(() => {
+ 
+    if (user2 && user2?.team) {
+     fillData()
+  
+    }
+  }, [user2]);
+  const { user, loading, getInfo } = useAuth();
   const router = useRouter();
 
-  console.log("mjnbhvgcfvhbjnk", user, loading);
+
   useEffect(() => {
     if (!loading && !user) {
-      router.replace("/"); // Redirect to the login page if the user is not authenticated
+      router.replace("/"); // Redirect to the login page if the user2 is not authenticated
     }
-    if (user && user?.team) {
-      fillData();
+    if (user) {
+      setuser2(user)
+  
     }
   }, [user, loading, router]);
 
@@ -436,7 +446,7 @@ console.log(teamData.captain.date_of_arrival)
     const teamRef = await doc(
       db,
       "teams",
-      user.team.id
+      user2.team.id
     );
 
     setTeamRef(teamRef)
@@ -451,6 +461,7 @@ console.log(teamData.captain.date_of_arrival)
         setOpen={() => {
           setRegister(!register);
         }}
+        setuser2={(user)=>{setuser2(user)}}
       />
       <SuccessMessage
         message={successMessage}
@@ -459,21 +470,21 @@ console.log(teamData.captain.date_of_arrival)
         }}
       />
       <Navbar />
-      {user && (
+      {user2 && (
         <div className="dashboard">
-          {user.team && user.role.name=='Coordinator' && !user.team?.payment_status
+          {user2.team && user2.role.name=='Coordinator' && !user2.team?.payment_status
           &&<div className="inscription-banner"><h2>You have not paid the inscription fee. Please complete the payment before September 1st to participate.</h2><button onClick={()=>{payNow()}}>Pay Now</button></div>}
           <div className="header-dashboard">
             <div class="gradient-circle">
-              <img src={user.country.image} />
+              <img src={user2.country.image} />
             </div>
             <h2>
-              Welcome, {user.name} {user.last_name}
+              Welcome, {user2.name} {user2.last_name}
             </h2>
-            <h3>{user.role.name}</h3>
+            <h3>{user2.role.name}</h3>
           </div>
 
-          {user.team ? (
+          {user2.team ? (
             <div className="row">
               <div className="column-55-2">
                 <div className="row-title">
@@ -493,8 +504,8 @@ console.log(teamData.captain.date_of_arrival)
                       ) : (
                         <div className="accordion-button-container">
                           <h2 className="text-base font-semibold leading-7 text-gray-900 form-title">
-                            Coordinator - {user.team.coordinator.name}{" "}
-                            {user.team.coordinator.last_name}
+                            Coordinator - {user2.team.coordinator.name}{" "}
+                            {user2.team.coordinator.last_name}
                           </h2>
                           <div
                             className="accordion-button"
@@ -990,8 +1001,8 @@ console.log(teamData.captain.date_of_arrival)
                       ) : (
                         <div className="accordion-button-container">
                           <h2 className="text-base font-semibold leading-7 text-gray-900 form-title">
-                            Coach - {user.team.coach.name}{" "}
-                            {user.team.coach.last_name}
+                            Coach - {user2.team.coach.name}{" "}
+                            {user2.team.coach.last_name}
                           </h2>
                           <div
                             className="accordion-button"
@@ -1487,8 +1498,8 @@ console.log(teamData.captain.date_of_arrival)
                       ) : (
                         <div className="accordion-button-container">
                           <h2 className="text-base font-semibold leading-7 text-gray-900 form-title">
-                            Captain - {user.team.captain.name}{" "}
-                            {user.team.captain.last_name}
+                            Captain - {user2.team.captain.name}{" "}
+                            {user2.team.captain.last_name}
                           </h2>
                           <div
                             className="accordion-button"
@@ -1983,8 +1994,8 @@ console.log(teamData.captain.date_of_arrival)
                         </h2>
                       ) : (
                         <h2 className="text-base font-semibold leading-7 text-gray-900 form-title">
-                          Team - {user.team.team_members.length}{" "}
-                          {user.team.team_members.length > 1
+                          Team - {user2.team.team_members.length}{" "}
+                          {user2.team.team_members.length > 1
                             ? "Players"
                             : "Player"}
                         </h2>
@@ -2307,8 +2318,8 @@ console.log(teamData.captain.date_of_arrival)
                                   style={{ opacity: 0.8 }}
                                 >
                                   Player {index + 1} -{" "}
-                                  {user.team.team_members[index].first_name}
-                                  {user.team.team_members[index].last_name}
+                                  {user2.team.team_members[index].first_name}
+                                  {user2.team.team_members[index].last_name}
                                 </h2>
                                 <div
                                   className="accordion-button"
@@ -2596,7 +2607,7 @@ console.log(teamData.captain.date_of_arrival)
                     </div>
                   </div>
 
-                  {edit && user.role.name == "Coordinator" && 
+                  {edit && user2.role.name == "Coordinator" && 
                     <div className="mt-6 flex items-center justify-end gap-x-6">
                       <button type="button" className="secondary-button" onClick={()=>{setEdit(false)}}>
                         Cancel
@@ -2611,7 +2622,7 @@ console.log(teamData.captain.date_of_arrival)
                       </button>
                     </div>
 }
-{!edit && user.role.name == "Coordinator" &&
+{!edit && user2.role.name == "Coordinator" &&
                     <div className="mt-6 flex items-center justify-end gap-x-6">
                       <button
                         onClick={(e) => {
