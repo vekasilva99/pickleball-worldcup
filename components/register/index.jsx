@@ -81,7 +81,7 @@ export default function Register({open,setOpen,team,setuser2}) {
   
   const handleInputChange = (category, index, fieldName, value) => {
 
-    console.log('jnkhbgvbjnkml,',value)
+    //console.log('jnkhbgvbjnkml,',value)
     setTeamData((prevTeamData) => {
       const updatedData = { ...prevTeamData };
 
@@ -122,10 +122,10 @@ const registerTeamMember = async (newTeamRef, memberData, role,countryRef) => {
   
       // // Get the newly created user's UID
       // const userId = userCredential.user.uid;
-      // console.log(userId)
+      // //console.log(userId)
       const roleReference = await doc(db, 'roles', role);
       // Save additional information to the database
-console.log('mewjkcwm',memberData)
+//console.log('mewjkcwm',memberData)
       const newUserRef = await addDoc(collection(db, 'users'),{
         name: memberData.name,
         last_name: memberData.last_name,
@@ -151,7 +151,7 @@ console.log('mewjkcwm',memberData)
       //   // Other user details
       // }); 
      
-    console.log(newUserRef.id)
+    //console.log(newUserRef.id)
     sendEmail(memberData.email,password,user.name+" "+user.last_name,user.country.name,`http://localhost:3000/${newUserRef.id}/${newTeamRef.id}`)
       return newUserRef;
     } catch (error) {
@@ -174,7 +174,7 @@ const updateTeamMembers = async (newTeamRef, pairs, role,countryRef) => {
   
       await Promise.all(updatePromises);
   
-      console.log("Team members updated successfully.");
+      //console.log("Team members updated successfully.");
     } catch (error) {
       console.error("Error updating team members:", error);
       throw error;
@@ -237,7 +237,7 @@ const sendEmail = async (email,password,coordinator,country,link) => {
       country:country,
       link:link
     });
-    console.log('Email sent successfully');
+    //console.log('Email sent successfully');
   } catch (error) {
     console.error('Error sending email: ', error);
   }

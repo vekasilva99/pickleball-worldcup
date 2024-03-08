@@ -34,7 +34,7 @@ export default async function handler(req, res) {
     });
 
     // Log success and send a response
-    console.log('Email sent: ', info.messageId);
+    //console.log('Email sent: ', info.messageId);
     res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
     // Log error and send an error response

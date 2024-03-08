@@ -9,7 +9,7 @@ import Navbar from "@/components/navbar";
 export default function Home() {
   const router = useRouter();
   const params=useParams()
-console.log('mkjnhbgvbjnkml',params )
+//console.log('mkjnhbgvbjnkml',params )
   return (
     <main className="flex min-h-screen main">
       <Navbar />

@@ -6,7 +6,7 @@ export default function DatePicker({showLogin,setShowLogin}) {
 const [selectedDate,setSelectedDate]=useState('')
 
 const handleInputChange=(date)=>{
-  console.log('njhbgvhbjnkm,lnb ')
+  //console.log('njhbgvhbjnkm,lnb ')
 setSelectedDate(date)
 }
   return (

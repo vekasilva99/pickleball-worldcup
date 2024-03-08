@@ -8,24 +8,28 @@ import { collection, getDocs, doc, getDoc,where, collectionGroup,set,addDoc,upda
 import { useRouter } from "next/navigation";
 const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY);
 
-function PaymentForm({teamRef,setOpen,team,setuser2}) {
+function PaymentForm({teamRef,setOpen,team,setuser2,reservationRef, total}) {
   const { user, loading, getInfo } = useAuth();
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
 const router=useRouter()
   useEffect(() => {
-    //console.log('TEAMMM',teamRef)
+    //console.log('TEAMdddMM',reservationRef)
     // Fetch the client secret from the server
     const fetchClientSecret = async () => {
-      const response = await fetch('/api/payments', { method: 'POST' });
+      const response = await fetch('/api/reservation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ total: total }),
+      });
       const { clientSecret: cs } = await response.json();
       setClientSecret(cs);
-      if(team){
-        await updateDoc(team,{payment_intent_id:cs});
-      }else{
-        await updateDoc(teamRef,{payment_intent_id:cs});
-      }
+ 
+        await updateDoc(reservationRef,{payment_intent:cs});
+   
       
    
     };
@@ -53,12 +57,9 @@ const router=useRouter()
     if (result.error) {
       console.error(result.error.message);
     } else {
-      // Payment succeeded
-      if(team){
-        await updateDoc(team,{payment_status:true});
-      }else{
-        await updateDoc(teamRef,{payment_status:true});
-      }
+   
+        await updateDoc(reservationRef,{payment_status:true});
+
 
  
       let auxUser=await getInfo(user)
@@ -83,7 +84,7 @@ const router=useRouter()
        disabled={!stripe}
           className="gold-button"
         >
-         Pay $350.00
+         Pay ${total}.00
         </button>
       </div>
     </form>
@@ -105,10 +106,10 @@ const CARD_ELEMENT_OPTIONS = {
   },
 };
 
-function PaymentFormWrapper({teamRef,setOpen,team,setuser2}) {
+function PaymentFormWrapper({teamRef,setOpen,team,setuser2,reservationRef, total}) {
   return (
     <Elements stripe={stripePromise}>
-      <PaymentForm teamRef={teamRef} setOpen={setOpen} team={team} setuser2={(user)=>{setuser2(user)}}/>
+      <PaymentForm teamRef={teamRef} setOpen={setOpen} team={team} setuser2={(user)=>{setuser2(user)}} reservationRef={reservationRef} total={total}/>
     </Elements>
   );
 }

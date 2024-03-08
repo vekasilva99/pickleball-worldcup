@@ -26,7 +26,7 @@ const useAuth = () => {
         const userRole = userRoleDocSnapshot.data();
         const countryDocSnapshot = await getDoc(userData.country);
         const country = countryDocSnapshot.data();
-        console.log('ROL',userRole)
+        //console.log('ROL',userRole)
         country.id=countryDocSnapshot.id;
         if (userRole.name === "Coordinator") {
           // Fetch team data based on the Coordinator or coach role
@@ -40,7 +40,16 @@ const useAuth = () => {
               id: teamDocSnapshot.id,
               ...teamData,
             };
-          
+            const reservationQuerySnapshot= await getReservation(teamsQuerySnapshot)
+            console.log('jnhubgyvftcdrxesdrfcgvhbjnk',reservationQuerySnapshot)
+            if (!reservationQuerySnapshot.empty) {
+              const reservationDocSnapshot = reservationQuerySnapshot.docs[0];
+              const reservationData = reservationDocSnapshot.data();
+              userData.team.reservation = {
+                id: reservationDocSnapshot.id,
+                ...reservationData,
+              };
+            }
           } else {
             userData.team = null; // User is not a Coordinator or coach of any team
           }
@@ -56,7 +65,16 @@ const useAuth = () => {
               id: teamDocSnapshot.id,
               ...teamData,
             };
-         
+            const reservationQuerySnapshot= await getReservation(teamsQuerySnapshot)
+            console.log('jnhubgyvftcdrxesdrfcgvhbjnk',reservationQuerySnapshot)
+            if (!reservationQuerySnapshot.empty) {
+              const reservationDocSnapshot = reservationQuerySnapshot.docs[0];
+              const reservationData = reservationDocSnapshot.data();
+              userData.team.reservation = {
+                id: reservationDocSnapshot.id,
+                ...reservationData,
+              };
+            }
           } else {
             userData.team = null; // User is not a Coordinator or coach of any team
           }
@@ -65,7 +83,7 @@ const useAuth = () => {
           // Fetch team data based on the Coordinator or coach role
           // Assuming 'CoordinatorId' is a reference to the user table
           const teamsQuerySnapshot = await getTeamsByCaptain(userDocRef);
-          console.log('entre')
+          //console.log('entre')
           if (!teamsQuerySnapshot.empty) {
             const teamDocSnapshot = teamsQuerySnapshot.docs[0];
             const teamData = teamDocSnapshot.data();
@@ -73,7 +91,16 @@ const useAuth = () => {
               id: teamDocSnapshot.id,
               ...teamData,
             };
-         
+            const reservationQuerySnapshot= await getReservation(teamsQuerySnapshot)
+            console.log('jnhubgyvftcdrxesdrfcgvhbjnk',reservationQuerySnapshot)
+            if (!reservationQuerySnapshot.empty) {
+              const reservationDocSnapshot = reservationQuerySnapshot.docs[0];
+              const reservationData = reservationDocSnapshot.data();
+              userData.team.reservation = {
+                id: reservationDocSnapshot.id,
+                ...reservationData,
+              };
+            }
           } else {
             userData.team = null; // User is not a Coordinator or coach of any team
           }
@@ -88,6 +115,16 @@ const useAuth = () => {
          id: teamDocSnapshot.id,
          ...teamData,
        };
+       const reservationQuerySnapshot= await getReservation(teamsQuerySnapshot)
+       console.log('jnhubgyvftcdrxesdrfcgvhbjnk',reservationQuerySnapshot)
+       if (!reservationQuerySnapshot.empty) {
+         const reservationDocSnapshot = reservationQuerySnapshot.docs[0];
+         const reservationData = reservationDocSnapshot.data();
+         userData.team.reservation = {
+           id: reservationDocSnapshot.id,
+           ...reservationData,
+         };
+       }
      } else {
        userData.team = null; // User is not a team member
      }
@@ -98,7 +135,7 @@ const useAuth = () => {
         if(userData.team !=null){
           userData.team.coordinator=await getTeamInformation(userData.team.coordinator)
           userData.team.coach=await getTeamInformation(userData.team.coach)
-          console.log('CAPTAIN',userData.team.captain)
+          //console.log('CAPTAIN',userData.team.captain)
           userData.team.captain=await getTeamInformation(userData.team.captain)
           for (let i = 0; i < userData.team.team_members.length; i++) {
             userData.team.team_members[i] = await getTeamInformation(userData.team.team_members[i]);
@@ -107,8 +144,8 @@ const useAuth = () => {
         userData.country=country
 
         userData.role=userRole
-        console.log('kmkrmkvmr',userRole)
-        console.log(userData)
+        //console.log('kmkrmkvmr',userRole)
+        //console.log(userData)
         return userData;
       } else {
         console.error("User document does not exist.");
@@ -122,7 +159,7 @@ const useAuth = () => {
 
   const getTeamInformation = async (userDocRef) => {
     try {
-      console.log('UNUNN',userDocRef)
+      //console.log('UNUNN',userDocRef)
       const userDocSnapshot = await getDoc(userDocRef);
       if (userDocSnapshot.exists()) {
         const userData = await userDocSnapshot.data();
@@ -168,6 +205,16 @@ const useAuth = () => {
     return teamsQuerySnapshot;
   };
 
+  const getReservation = async (teamDocRef) => {
+    // Implement your Firestore query to get teams by coordinator or coach
+    const teamsQuerySnapshot = await getDocs(
+      collection(db, "hotel"),
+      where("team", "==", teamDocRef)
+    );
+
+    return teamsQuerySnapshot;
+  };
+
   // Helper function to get teams by member
   const getTeamsByMember = async (memberUid) => {
     // Implement your Firestore query to get teams by member UID
@@ -189,7 +236,7 @@ const useAuth = () => {
           authUser.uid
         );
 
-        console.log("jncjkedcnjek", userDataFromFirestore);
+        //console.log("jncjkedcnjek", userDataFromFirestore);
         setUser({
           uid: authUser.uid,
           email: authUser.email,
@@ -209,13 +256,13 @@ const useAuth = () => {
   }, []);
 
   const getInfo=async(user)=>{
-    console.log('LLLEGUEEE')
+    //console.log('LLLEGUEEE')
 setLoading(true)
     const userDataFromFirestore = await getUserDataFromFirestore(
       user.uid
     );
 
-    console.log("jncjkedcnjebrbeghtegtek", userDataFromFirestore);
+    //console.log("jncjkedcnjebrbeghtegtek", userDataFromFirestore);
     setUser({
       uid: user.uid,
       email:user.email,

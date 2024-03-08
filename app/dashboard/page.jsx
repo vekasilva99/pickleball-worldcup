@@ -30,12 +30,13 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
-import { createuser2WithEmailAndPassword } from "firebase/auth";
+import { createuserWithEmailAndPassword } from "firebase/auth";
 import Navbar from "@/components/navbar";
 import { Loader } from "@/components/Loader";
 import Register from "@/components/register";
 import axios from "axios";
 import { SuccessMessage } from "@/components/SuccessMessage";
+import Hotel from "@/components/hotel";
 
 const generateRandomPassword = () => {
   // Implement your logic to generate a random password
@@ -97,6 +98,7 @@ const ProtectedPage = () => {
     ],
   });
   const [edit, setEdit] = useState(false);
+  const [hotel, setHotel] = useState(true);
   const [successMessage, setSuccessMessage] = useState(null);
   const [user2, setuser2] = useState(null);
   const [register, setRegister] = useState(false);
@@ -135,7 +137,7 @@ const ProtectedPage = () => {
         }
       }
 
-      console.log("freregre", updatedData);
+      //console.log("freregre", updatedData);
 
       return updatedData;
     });
@@ -152,7 +154,7 @@ const ProtectedPage = () => {
 
 //       const dateStringCoordinator=teamData.coordinator.date_of_arrival ? teamData.coordinator.date_of_arrival : null
 //       let month,day,year;
-// console.log('mkjnhbnjmk',dateStringCoordinator)
+// //console.log('mkjnhbnjmk',dateStringCoordinator)
 //       let dateCoordinator=null
       // if(dateStringCoordinator){
       //   month=dateStringCoordinator.split("/")[0]
@@ -201,7 +203,7 @@ const ProtectedPage = () => {
 
       const captainReference = await doc(db, "users", teamData.captain.id);
       const captainDocSnapshot = await getDoc(captainReference);
-console.log(teamData.captain.date_of_arrival)
+//console.log(teamData.captain.date_of_arrival)
       if (captainDocSnapshot.exists()) {
         const captainData = captainDocSnapshot.data();
         await setDoc(captainReference, {
@@ -344,15 +346,15 @@ console.log(teamData.captain.date_of_arrival)
       // Create user2 account in Firebase Authentication
       const { email } = memberData;
       const password = generateRandomPassword();
-      const user2Credential = await createuser2WithEmailAndPassword(
+      const userCredential = await createuserWithEmailAndPassword(
         auth,
         email,
         password
       );
 
       // Get the newly created user2's UID
-      const user2Id = user2Credential.user2.uid;
-      console.log(user2Id);
+      const userId = userCredential.user2.uid;
+      //console.log(userId);
       const roleReference = await doc(db, "roles", role);
       // Save additional information to the database
       const newuser2Ref = await addDoc(
@@ -371,10 +373,10 @@ console.log(teamData.captain.date_of_arrival)
         flight_number:memberData.flight_number,
         shirt_size:memberData.shirt_size 
         },
-        user2Id
+        userId
       );
 
-      console.log(memberData);
+      //console.log(memberData);
       return newuser2Ref;
     } catch (error) {
       throw error;
@@ -398,7 +400,7 @@ console.log(teamData.captain.date_of_arrival)
 
       await Promise.all(updatePromises);
 
-      console.log("Team members updated successfully.");
+      //console.log("Team members updated successfully.");
     } catch (error) {
       console.error("Error updating team members:", error);
       throw error;
@@ -419,6 +421,7 @@ console.log(teamData.captain.date_of_arrival)
   useEffect(() => {
  
     if (user2 && user2?.team) {
+      console.log(user2)
      fillData()
   
     }
@@ -463,6 +466,13 @@ console.log(teamData.captain.date_of_arrival)
         }}
         setuser2={(user)=>{setuser2(user)}}
       />
+      <Hotel  team={teamRef}
+        open={hotel}
+        setOpen={() => {
+          setHotel(!hotel);
+        }}
+        setuser2={(user)=>{setuser2(user)}}
+      />
       <SuccessMessage
         message={successMessage}
         setMessage={(value) => {
@@ -485,7 +495,7 @@ console.log(teamData.captain.date_of_arrival)
           </div>
 
           {user2.team ? (
-            <div className="row">
+            <div className="row spacebetween">
               <div className="column-55-2">
                 <div className="row-title">
                   <h2>TEAM</h2>
@@ -2636,6 +2646,45 @@ console.log(teamData.captain.date_of_arrival)
                
                 </div>
               </div>
+              <div className="column-45-2">
+                <div className="option-dashboard">
+                  <div className="gradient-circle2">
+                    <img src="/hotel.png" />
+                 
+                  </div>
+                  <div className="content">
+       
+                      {user2.team?.reservation ?
+                         <h2>         Albergue Villa Deportiva Nacional (VIDENA)</h2>
+             
+                      :   <h2>Hotel</h2>}
+                      {user2.team?.reservation &&
+                      <h3>{user2.team?.reservation.rooms} {user2.team?.reservation.rooms ==2 ? "rooms" :"room"} ({user2.team?.reservation.rooms*4} people)</h3>}
+                      {user2.team?.reservation &&
+                      <h3>{format(new Date(user2.team?.reservation.start_date.seconds*1000),'MM/dd/yyyy')} - {format(new Date(user2.team?.reservation.end_date.seconds*1000),'MM/dd/yyyy')}</h3>}
+                      <div className="button-container">
+                        {!user2.team?.reservation && user2.role.name == "Coordinator" &&
+                        <button   onClick={() => {
+          setHotel(true);
+        }}>Book</button>}
+
+                      </div>
+                      </div>
+                </div>
+                       <div className="option-dashboard">
+                       <div className="gradient-circle2">
+                    <img src="/tour.png" />
+                  </div>
+                  <div className="content">
+                      <h2>Tour de Confraternidad</h2>
+                      <h3></h3>
+                      <div className="button-container">
+                        <button disabled>Coming Soon</button>
+
+                      </div>
+                      </div>
+                       </div>
+                </div>
             </div>
           ) : (
             <div className="row">

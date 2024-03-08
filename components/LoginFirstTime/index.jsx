@@ -32,7 +32,7 @@ export default function Login({ showLogin, setShowLogin }) {
 
   const router = useRouter();
   const params = useParams();
-  console.log("params", params);
+  //console.log("params", params);
 
   const changeUserInTeam = async (newUserRef) => {
     try {
@@ -40,13 +40,13 @@ export default function Login({ showLogin, setShowLogin }) {
       const teamDocSnapshot = await getDoc(teamReference);
       if (teamDocSnapshot.exists()) {
         const teamData = teamDocSnapshot.data();
-        console.log("TEAM", teamData);
+        //console.log("TEAM", teamData);
 
         if (user.role.name == "Team Member") {
           for (let i = 0; i < teamData.team_members.length; i++) {
-            console.log("Holaaa", teamData.team_members[i].id);
+            //console.log("Holaaa", teamData.team_members[i].id);
             if (teamData.team_members[i].id == params.userId) {
-              console.log("IGUAL");
+              //console.log("IGUAL");
               teamData.team_members[i] = newUserRef;
             }
           }
@@ -57,7 +57,7 @@ export default function Login({ showLogin, setShowLogin }) {
         }
         await setDoc(teamReference, teamData);
 
-        console.log("TEAM NUEVO", teamData);
+        //console.log("TEAM NUEVO", teamData);
       }
     } catch (error) {
       console.error("Login error:", error.message);
@@ -84,13 +84,13 @@ export default function Login({ showLogin, setShowLogin }) {
 
       // Get the newly created user's UID
       const userId = userCredential.user.uid;
-      console.log("judiwjidwkd", userId);
+      //console.log("judiwjidwkd", userId);
       const userReference = await doc(db, "users", params.userId);
       const userDocSnapshot = await getDoc(userReference);
 
       if (userDocSnapshot.exists()) {
         const userData = userDocSnapshot.data();
-        console.log(userData);
+        //console.log(userData);
 
         const newUserRef = doc(db, "users", userId);
         await setDoc(newUserRef, {
@@ -109,7 +109,7 @@ export default function Login({ showLogin, setShowLogin }) {
         } else {
           changeUserInTeam(newUserRef);
           await deleteDoc(doc(db, "users", params.userId));
-          console.log("User document created successfully:", newUserRef);
+          //console.log("User document created successfully:", newUserRef);
           router.push('/dashboard')
         }
 
@@ -213,7 +213,7 @@ export default function Login({ showLogin, setShowLogin }) {
         userData.role = userRole;
         userData.country=country;
 
-        console.log(userData);
+        //console.log(userData);
         setLoading(false);
         return userData;
       } else {
@@ -283,7 +283,7 @@ export default function Login({ showLogin, setShowLogin }) {
 
   const getInfo = async () => {
     const userDataFromFirestore = await getUserDataFromFirestore(params.userId);
-    console.log(userDataFromFirestore);
+    //console.log(userDataFromFirestore);
     setUser({
       uid: params.userId,
       ...userDataFromFirestore, // Include additional data from Firestore
