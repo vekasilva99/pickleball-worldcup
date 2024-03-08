@@ -236,12 +236,18 @@ const useAuth = () => {
           authUser.uid
         );
 
+        console.log('lkmjnhbgvhbjnkmldckwmenkv',userDataFromFirestore)
         //console.log("jncjkedcnjek", userDataFromFirestore);
-        setUser({
-          uid: authUser.uid,
-          email: authUser.email,
-          ...userDataFromFirestore, // Include additional data from Firestore
-        });
+        if(userDataFromFirestore){
+          setUser({
+            uid: authUser.uid,
+            email: authUser.email,
+            ...userDataFromFirestore, // Include additional data from Firestore
+          });
+        }else{
+          setUser(null);
+        }
+      
       } else {
         // User is signed out
         setUser(null);

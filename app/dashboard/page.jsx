@@ -29,6 +29,7 @@ import {
   setDoc,
   updateDoc,
   arrayUnion,
+  deleteDoc
 } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Navbar from "@/components/navbar";
@@ -143,6 +144,21 @@ const ProtectedPage = () => {
     });
   };
 
+  const sendEmail = async (email,password,coordinator,country,link) => {
+    try {
+      await axios.post('/api/send-email', {
+        email: email,
+        password: password,
+        coordinator:coordinator,
+        country:country,
+        link:link
+      });
+      //console.log('Email sent successfully');
+    } catch (error) {
+      console.error('Error sending email: ', error);
+    }
+  };
+
   const saveData = async () => {
     try {
       const coordinatorReference = await doc(
@@ -150,6 +166,20 @@ const ProtectedPage = () => {
         "users",
         teamData.coordinator.id
       );
+
+      const newTeamRef = await doc(
+        db,
+        "teams",
+        user.team.id
+      );
+
+      const countryRef = await doc(
+        db,
+        "countries",
+        user.country.id
+      );
+
+      console.log('kjinbhgvcfvhbjnkml,;',countryRef)
       const coordinatorDocSnapshot = await getDoc(coordinatorReference);
 
 //       const dateStringCoordinator=teamData.coordinator.date_of_arrival ? teamData.coordinator.date_of_arrival : null
@@ -162,8 +192,13 @@ const ProtectedPage = () => {
       //   year=dateStringCoordinator.split("/")[2]
       //   dateCoordinator=new Date(year,month-1,day)
       // }
+
+    
       if (coordinatorDocSnapshot.exists()) {
         const coordinatorData = coordinatorDocSnapshot.data();
+      
+
+      
         await setDoc(coordinatorReference, {
                 name: teamData.coordinator.name,
         last_name: teamData.coordinator.last_name,
@@ -172,12 +207,14 @@ const ProtectedPage = () => {
         dupr:Number(teamData.coordinator.dupr),
         role: teamData.coordinator.role,     // Assign the user2 role
         country:teamData.coordinator.country,
-        passport:teamData.coordinator.passport,
-        date_of_arrival:new Date(teamData.coordinator.date_of_arrival),
-        airline:teamData.coordinator.airline,
-        flight_number:teamData.coordinator.flight_number,
-        shirt_size:teamData.coordinator.shirt_size 
+        passport:teamData.coordinator.passport ? teamData.coordinator.passport : null,
+        date_of_arrival:teamData.coordinator.date_of_arrival ? new Date(teamData.coordinator.date_of_arrival) :null,
+        airline:teamData.coordinator.airline ? teamData.coordinator.airline:null,
+        flight_number:teamData.coordinator.flight_number ? teamData.coordinator.flight_number:null,
+        shirt_size:teamData.coordinator.shirt_size ? teamData.coordinator.shirt_size :null
         });
+
+     
       }
 
       const coachReference = await doc(db, "users", teamData.coach.id);
@@ -185,6 +222,16 @@ const ProtectedPage = () => {
 
       if (coachDocSnapshot.exists()) {
         const coachData = coachDocSnapshot.data();
+        
+
+   
+      if(coachData.email !=teamData.coach.email){
+
+        console.log('COACH',teamData.coach)
+        const coachData = await registerTeamMember(newTeamRef, teamData.coach,'8l9gFgT0smIiDSyCOzx6',countryRef);
+        await updateDoc(newTeamRef,{ coach: coachData });
+        await deleteDoc(doc(db, "users", teamData.coach.id));
+      }else{
         await setDoc(coachReference, {
           name: teamData.coach.name,
           last_name: teamData.coach.last_name,
@@ -193,19 +240,25 @@ const ProtectedPage = () => {
           dupr:Number(teamData.coach.dupr),
           role: teamData.coach.role,     // Assign the user2 role
           country:teamData.coach.country,
-          passport:teamData.coach.passport,
-          date_of_arrival:new Date(teamData.coach.date_of_arrival),
-          airline:teamData.coach.airline,
-          flight_number:teamData.coach.flight_number,
-          shirt_size:teamData.coach.shirt_size 
+          passport:teamData.coach.passport ? teamData.coach.passport : null,
+          date_of_arrival:teamData.coach.date_of_arrival ? new Date(teamData.coach.date_of_arrival):null,
+          airline:teamData.coach.airline ? teamData.coach.airline : null,
+          flight_number:teamData.coach.flight_number ? teamData.coach.flight_number : null,
+          shirt_size:teamData.coach.shirt_size ? teamData.coach.shirt_size : null
         });
       }
-
+      }
       const captainReference = await doc(db, "users", teamData.captain.id);
       const captainDocSnapshot = await getDoc(captainReference);
 //console.log(teamData.captain.date_of_arrival)
       if (captainDocSnapshot.exists()) {
         const captainData = captainDocSnapshot.data();
+        if(captainData.email !=teamData.captain.email){
+          console.log('CAPTAIN',teamData.captain)
+          const captainData = await registerTeamMember(newTeamRef, teamData.captain,'hmUMi4XcozY2qQx9DudP',countryRef);
+          await updateDoc(newTeamRef,{ captain: captainData });
+          await deleteDoc(doc(db, "users", teamData.captain.id));
+      }else{
         await setDoc(captainReference, {
           name: teamData.captain.name,
           last_name: teamData.captain.last_name,
@@ -214,33 +267,52 @@ const ProtectedPage = () => {
           dupr:Number(teamData.captain.dupr),
           role: teamData.captain.role,     // Assign the user2 role
           country:teamData.captain.country,
-          passport:teamData.captain.passport,
-          date_of_arrival:new Date(teamData.captain.date_of_arrival),
-          airline:teamData.captain.airline,
-          flight_number:teamData.captain.flight_number,
-          shirt_size:teamData.captain.shirt_size 
+          passport:teamData.captain.passport ? teamData.captain.passport : null,
+          date_of_arrival: teamData.captain.date_of_arrival ? new Date(teamData.captain.date_of_arrival) : null,
+          airline:teamData.captain.airline ? teamData.captain.airline :null,
+          flight_number:teamData.captain.flight_number ? teamData.captain.flight_number: null,
+          shirt_size:teamData.captain.shirt_size ? teamData.captain.shirt_size : null
         });
       }
+    }
 
-      for (let i = 0; i < teamData.pairs.length; i++) {
+    let aux = [];
+    for (let i = 0; i < teamData.pairs.length; i++) {
+      if (teamData.pairs[i].id) {
         let memberReference = await doc(db, "users", teamData.pairs[i].id);
         let memberDocSnapshot = await getDoc(memberReference);
-        await setDoc(memberReference, {
-          name: teamData.pairs[i].name,
-          last_name: teamData.pairs[i].last_name,
-          email: teamData.pairs[i].email,  // Fix: Use the correct email field instead of last_name
-          phone: teamData.pairs[i].phone,
-          dupr:Number(teamData.pairs[i].dupr),
-          role: teamData.pairs[i].role,     // Assign the user2 role
-          country:teamData.pairs[i].country,
-          passport:teamData.pairs[i].passport,
-          date_of_arrival:new Date(teamData.pairs[i].date_of_arrival),
-          airline:teamData.pairs[i].airline,
-          flight_number:teamData.pairs[i].flight_number,
-          shirt_size:teamData.pairs[i].shirt_size 
-        });
+        if (memberDocSnapshot.exists()) {
+          const memberData = memberDocSnapshot.data();
+          if (memberData.email != teamData.pairs[i].email) {
+            const newMemberData = await registerTeamMember(newTeamRef, teamData.pairs[i], 'pnUrrBdDSsZEXX4tjjDd', countryRef);
+            aux.push(newMemberData);
+            await deleteDoc(doc(db, "users", teamData.pairs[i].id));
+          } else {
+            await setDoc(memberReference, {
+              name: teamData.pairs[i].name,
+              last_name: teamData.pairs[i].last_name,
+              email: teamData.pairs[i].email,
+              phone: teamData.pairs[i].phone,
+              dupr: Number(teamData.pairs[i].dupr),
+              role: teamData.pairs[i].role,
+              country: teamData.pairs[i].country,
+              passport: teamData.pairs[i].passport ? teamData.pairs[i].passport : null,
+              date_of_arrival: teamData.pairs[i].date_of_arrival ? new Date(teamData.pairs[i].date_of_arrival) : null,
+              airline: teamData.pairs[i].airline ? teamData.pairs[i].airline : null,
+              flight_number: teamData.pairs[i].flight_number ? teamData.pairs[i].flight_number : null,
+              shirt_size: teamData.pairs[i].shirt_size ? teamData.pairs[i].shirt_size : null
+            });
+            aux.push(memberReference);
+          }
+        }
+      } else {
+        const memberData = await registerTeamMember(newTeamRef, teamData.pairs[i], 'pnUrrBdDSsZEXX4tjjDd', countryRef);
+        aux.push(memberData);
       }
-      setEdit(false);
+    }
+    
+    await updateDoc(newTeamRef, { team_members: aux });
+    setEdit(false);
 
       setSuccessMessage("Your team has been updated succesfully!");
       //  location.reload()
@@ -341,43 +413,49 @@ const ProtectedPage = () => {
 
   // components/RegistrationForm.js
 
-  const registerTeamMember = async (newTeamRef, memberData, role) => {
+  const registerTeamMember = async (newTeamRef, memberData, role,countryRef) => {
+    
     try {
-      // Create user2 account in Firebase Authentication
+      // Create user account in Firebase Authentication
       const { email } = memberData;
-      const password = generateRandomPassword();
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-      // Get the newly created user2's UID
-      const userId = userCredential.user2.uid;
-      //console.log(userId);
-      const roleReference = await doc(db, "roles", role);
+      const password=generateRandomPassword()
+      // const userCredential = await createUserWithEmailAndPassword(auth,email, password);
+  
+      // // Get the newly created user's UID
+      // const userId = userCredential.user.uid;
+      // //console.log(userId)
+      const roleReference = await doc(db, 'roles', role);
       // Save additional information to the database
-      const newuser2Ref = await addDoc(
-        collection(db, "users"),
-        {
-          name: memberData.name,
+//console.log('mewjkcwm',memberData)
+      const newUserRef = await addDoc(collection(db, 'users'),{
+        name: memberData.name,
         last_name: memberData.last_name,
         email: memberData.email,  // Fix: Use the correct email field instead of last_name
         phone: memberData.phone,
         dupr:Number(memberData.dupr),
-        role: roleReference,     // Assign the user2 role
+        role: roleReference,     // Assign the user role
         country:countryRef,
-        passport:memberData.passport,
-        date_of_arrival:new Date(memberData.date_of_arrival),
-        airline:memberData.airline,
-        flight_number:memberData.flight_number,
-        shirt_size:memberData.shirt_size 
-        },
-        userId
-      );
-
-      //console.log(memberData);
-      return newuser2Ref;
+        passport:memberData.passport ? memberData.passport : "",
+        date_of_arrival:memberData.date_of_arrival ? new Date(memberData.date_of_arrival) : null,
+        airline:memberData.airline ? memberData.airline : "",
+        flight_number:memberData.flight_number ? memberData.flight_number : '',
+        shirt_size:memberData.shirt_size ? memberData.shirt_size : ""
+        // Other user details
+      });
+      // const newUserRef = await setDoc(doc(db, "users", userId), {
+      //   name: memberData.name,
+      //   last_name: memberData.last_name,
+      //   email: memberData.email,  // Fix: Use the correct email field instead of last_name
+      //   phone: memberData.phone,
+      //   dupr:Number(memberData.dupr),
+      //   role: roleReference,     // Assign the user role
+      //   // Other user details
+      // }); 
+     
+    //console.log(newUserRef.id)
+    sendEmail(memberData.email,password,user.name+" "+user.last_name,user.country.name,`https://www.copamundialdepickleball.com/${newUserRef.id}/${newTeamRef.id}`)
+    // sendEmail(memberData.email,password,user.name+" "+user.last_name,user.country.name,`http://localhost:3000/${newUserRef.id}/${newTeamRef.id}`)
+      return newUserRef;
     } catch (error) {
       throw error;
     }
@@ -409,7 +487,7 @@ const ProtectedPage = () => {
 
 
   const handleRemovePair = (index) => {
-    if (teamData.pairs.length > 2) {
+    if (teamData.pairs.length > 1) {
       setTeamData((prevTeamData) => {
         const updatedPairs = [...prevTeamData.pairs];
         updatedPairs.splice(index, 1); // Remove the pair and the corresponding second member
@@ -421,7 +499,7 @@ const ProtectedPage = () => {
   useEffect(() => {
  
     if (user2 && user2?.team) {
-      console.log(user2)
+      console.log('mjkinvihenrvijernuvnreverjvk',user2)
      fillData()
   
     }
@@ -605,6 +683,7 @@ const ProtectedPage = () => {
                                 type="email"
                                 autoComplete="email"
                                 value={teamData.coordinator.email}
+                                disabled={true}
                                 onChange={(e) =>
                                   handleInputChange(
                                     "coordinator",
@@ -2024,7 +2103,7 @@ const ProtectedPage = () => {
                               <h2 className="text-base font-semibold leading-7 text-gray-900 sm:col-span-5 form-title">
                                 Player {index + 1}
                               </h2>
-                              {teamData.pairs.length > 2 && (
+                              {teamData.pairs.length > 1 && (
                                 <h2
                                   onClick={() => {
                                     handleRemovePair(index);
@@ -2034,10 +2113,11 @@ const ProtectedPage = () => {
                                     color: "#da9645",
                                     cursor: "pointer",
                                     borderColor: "#da9645",
+                                    minWidth:'fit-content'
                                   }}
                                   className="text-xs font-semibold leading-7 text-gray-900 sm:col-span-1 form-title border border-da9645 border-2 rounded-md p-2 transition-opacity duration-500 ease-in-out hover:opacity-100 opacity-80"
                                 >
-                                  Remove Player
+                                  Remove
                                 </h2>
                               )}
 
@@ -2328,8 +2408,8 @@ const ProtectedPage = () => {
                                   style={{ opacity: 0.8 }}
                                 >
                                   Player {index + 1} -{" "}
-                                  {user2.team.team_members[index].first_name}
-                                  {user2.team.team_members[index].last_name}
+                                  {teamData.pairs[index].name} {teamData.pairs[index].last_name}
+                          
                                 </h2>
                                 <div
                                   className="accordion-button"
