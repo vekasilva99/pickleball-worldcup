@@ -297,7 +297,7 @@ setLoading(true)
     }
   };
 
-  return { user, loading, signIn, signOutUser,getUserDataFromFirestore,getInfo};
+  return { user, loading, signIn, signOutUser,getUserDataFromFirestore,getInfo,setLoading};
 };
 
 export default useAuth;

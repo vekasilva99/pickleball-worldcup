@@ -312,21 +312,21 @@ try {
 <div className={styles.imageContainer}>
   <div className={styles.rowBig}>
 <div className={styles.column}>
-  <img src="hotel/2.jpg"/>
-  <img src="hotel/3.jpg"/>
-  <img src="hotel/4.jpg"/>
+  <img src="hotel/2.webp"/>
+  <img src="hotel/3.webp"/>
+  <img src="hotel/4.webp"/>
 
 </div>
 <div className={styles.columnBig}>
-<img src="hotel/1.jpg"/>
+<img src="hotel/1.webp"/>
 </div>
   </div>
   <div className={styles.row}>
-  <img src="hotel/6.jpg"/>
-  <img src="hotel/7.jpg"/>
-  <img src="hotel/5.jpg"/>
-  <img src="hotel/8.jpg"/>
-  <img src="hotel/9.jpg"/>
+  <img src="hotel/6.webp"/>
+  <img src="hotel/7.webp"/>
+  <img src="hotel/5.webp"/>
+  <img src="hotel/8.webp"/>
+  <img src="hotel/9.webp"/>
   </div>
 </div>
 <h2 className="text-base font-semibold leading-7 text-gray-900 form-title" >

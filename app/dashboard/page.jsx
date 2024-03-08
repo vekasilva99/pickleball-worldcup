@@ -30,7 +30,7 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
-import { createuserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import Navbar from "@/components/navbar";
 import { Loader } from "@/components/Loader";
 import Register from "@/components/register";
@@ -98,7 +98,7 @@ const ProtectedPage = () => {
     ],
   });
   const [edit, setEdit] = useState(false);
-  const [hotel, setHotel] = useState(true);
+  const [hotel, setHotel] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
   const [user2, setuser2] = useState(null);
   const [register, setRegister] = useState(false);
@@ -346,7 +346,7 @@ const ProtectedPage = () => {
       // Create user2 account in Firebase Authentication
       const { email } = memberData;
       const password = generateRandomPassword();
-      const userCredential = await createuserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
@@ -2318,7 +2318,7 @@ const ProtectedPage = () => {
                           !edit && ( // Remove the curly braces here
                             <div
                               key={index}
-                              className={`grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 mt-10" ${
+                              className={`grid grid-cols-1 gap-x-6 sm:grid-cols-6 mt-10" ${
                                 edit ? "" : "accordion"
                               }`}
                             >
@@ -2649,7 +2649,7 @@ const ProtectedPage = () => {
               <div className="column-45-2">
                 <div className="option-dashboard">
                   <div className="gradient-circle2">
-                    <img src="/hotel.png" />
+                    <img src="/hotel.webp" />
                  
                   </div>
                   <div className="content">
@@ -2673,7 +2673,7 @@ const ProtectedPage = () => {
                 </div>
                        <div className="option-dashboard">
                        <div className="gradient-circle2">
-                    <img src="/tour.png" />
+                    <img src="/tour.webp" />
                   </div>
                   <div className="content">
                       <h2>Tour de Confraternidad</h2>

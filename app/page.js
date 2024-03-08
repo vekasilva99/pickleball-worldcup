@@ -23,14 +23,14 @@ export default function Home() {
         </div>
         <div className="column-45">
           <div className="row">
-            <img src="/peru/SANG1631.JPG"/>
+            <img src="/peru/SANG1631.webp"/>
             <div>
             <h2>Perú campeón en casa</h2>
             <h3>Perú gana la copa en el 1er mundial de pickleball de la historia.</h3>
             </div>
           </div>
           <div className="row">
-            <img src="/DSC_3206.JPG" />
+            <img src="/DSC_3206.webp" />
             <div>
             <h4>Así se vivio la conferencia de prensa</h4>
             </div>

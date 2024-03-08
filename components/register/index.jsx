@@ -152,7 +152,8 @@ const registerTeamMember = async (newTeamRef, memberData, role,countryRef) => {
       // }); 
      
     //console.log(newUserRef.id)
-    sendEmail(memberData.email,password,user.name+" "+user.last_name,user.country.name,`http://localhost:3000/${newUserRef.id}/${newTeamRef.id}`)
+    sendEmail(memberData.email,password,user.name+" "+user.last_name,user.country.name,`https://www.copamundialdepickleball.com/${newUserRef.id}/${newTeamRef.id}`)
+    // sendEmail(memberData.email,password,user.name+" "+user.last_name,user.country.name,`http://localhost:3000/${newUserRef.id}/${newTeamRef.id}`)
       return newUserRef;
     } catch (error) {
       throw error;

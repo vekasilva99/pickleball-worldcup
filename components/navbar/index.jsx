@@ -10,10 +10,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMultiply
 } from "@fortawesome/free-solid-svg-icons";
+import { Loader } from "../Loader";
 
 export default function Navbar() {
 
-  const { user, loading } = useAuth();
+  const { user, loading,setLoading } = useAuth();
   const router = useRouter();
   const [showLogin,setShowLogin]=useState(false)
   const [showMenu, setShowMenu]=useState(false)
@@ -22,8 +23,10 @@ export default function Navbar() {
 
 
   const handleLogOut = async () => {
+    setLoading(true)
     signOut(auth).then(() => {
 router.push('/')
+setLoading(false)
       // Sign-out successful.
     }).catch((error) => {
       // An error happened.
@@ -33,9 +36,10 @@ router.push('/')
 
   return (
     <>
+    <Loader  loading={loading}/>
     <div className={styles.navbar}>
         <div className={styles.logoContainer}>
-          <img src="./logo.png" />
+          <img src="./logo.webp" />
         </div>
         <div className={styles.navlinksContainer}>
           {/* <h2 className={styles.active}>HISTORIA</h2>
