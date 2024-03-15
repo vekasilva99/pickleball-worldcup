@@ -43,7 +43,7 @@ const prev=()=>{
         <div className="column-55">
    
         <video autoPlay muted controls={false}>
-        <source src="https://firebasestorage.googleapis.com/v0/b/pickleball-worldcup.appspot.com/o/IMG_2678.MOV?alt=media&token=9872fa82-65bc-410d-bd08-a5a5cca41db3" type="video/mp4" />
+        <source src="https://firebasestorage.googleapis.com/v0/b/pickleball-worldcup.appspot.com/o/0df273b1-dfb0-461f-a824-d570325da937.mp4?alt=media&token=5ef66d74-1428-417b-9988-7ea9759f0e7c" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
         </div>

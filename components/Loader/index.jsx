@@ -2,13 +2,16 @@
 import React, { useContext } from "react";
 import styles from './loader.module.css'
 import { Oval } from 'react-loader-spinner'
+import LazyImage from "../LazyLoad";
 
 export const Loader = ({ loading }) => {
 
   return (
     <div className={loading ? styles.loaderContainer : `${styles.loaderContainer} ${styles.notLoading}`}>
       <div className={styles.loader}>
-        <img src="/loading page/2403 World Cup - Web LOG IN-11.webp"/>
+      <LazyImage  src="/loading page/2403-World-Cup-Web-LOG-IN-11.webp"  width={200} height={200} />
+
+   
       <Oval
         height="100"
         width="100"
