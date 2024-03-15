@@ -11,6 +11,7 @@ import {
   faMultiply
 } from "@fortawesome/free-solid-svg-icons";
 import { Loader } from "../Loader";
+import LazyImage from "../LazyLoad";
 
 export default function Footer() {
 
@@ -41,15 +42,17 @@ setLoading(false)
   
   
   <div className={styles.content1}>
-    <img src="/footer2/2403 World Cup - Web LOG IN-14.webp"/>
+  <LazyImage src="/footer2/2403-World-Cup-Web-LOG-IN-14.webp" width={300} height={300}  />
+ 
     <h4>© Pickleball World Cup<br/>Lima - Perú<br/>All Rights Reserved
 <br/>Privacy Policy</h4>
   </div>
   <div className={styles.content3}>
-    <img src="/footer2/2403 World Cup - Web LOG IN-18.webp"/>
-    <img src="/footer2/2403 World Cup - Web LOG IN-16.webp"/>
-    <img src="/footer2/2403 World Cup - Web LOG IN-15.webp"/>
-    <img src="/footer2/2403 World Cup - Web LOG IN-17.webp"/>
+  <LazyImage src="/footer2/2403-World-Cup-Web-LOG-IN-18.webp" width={100} height={100}  />
+  <LazyImage src="/footer2/2403-World-Cup-Web-LOG-IN-16.webp" width={100} height={100}   />
+  <LazyImage src="/footer2/2403-World-Cup-Web-LOG-IN-15.webp" width={100} height={100}   />
+  <LazyImage src="/footer2/2403-World-Cup-Web-LOG-IN-17.webp" width={100} height={100}   />
+
   </div>
       </div>
 

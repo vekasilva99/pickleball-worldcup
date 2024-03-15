@@ -5,6 +5,7 @@ import { Oval } from "react-loader-spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck,faMultiply } from "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import LazyImage from "../LazyLoad";
 export const SuccessMessage = ({ message,setMessage }) => {
   return (
     <div
@@ -15,11 +16,13 @@ export const SuccessMessage = ({ message,setMessage }) => {
       }
     >
       <div className={styles.messageContainer}>
-        
-      <img className={styles.closeIcon}      onClick={()=>{setMessage(null)}} src="/LOG IN/2403 World Cup - Web LOG IN-10.webp" />
+      <LazyImage className={styles.closeIcon}      onClick={()=>{setMessage(null)}} src="/LOG IN/2403-World-Cup-Web-LOG-IN-10.webp"  width={200} height={200} />
+
+
         <div class="gradient-circle">
-          <img style={{objectFit:'contain'}}src="/check.webp"/>
-        
+       
+          <LazyImage style={{objectFit:'contain'}}src="/check.webp"    width={200} height={200} />
+
         </div>
         <h2>{message}</h2>
       </div>

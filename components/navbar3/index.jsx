@@ -11,6 +11,7 @@ import {
   faMultiply
 } from "@fortawesome/free-solid-svg-icons";
 import { Loader } from "../Loader";
+import LazyImage from "../LazyLoad";
 
 export default function Navbar() {
 
@@ -39,7 +40,8 @@ setLoading(false)
     <Loader  loading={loading}/>
     <div className={styles.navbar}>
         <div className={styles.logoContainer}>
-          <img src="./logo.webp" />
+        <LazyImage src="/logo.webp" width={300} height={300}  />
+        
         </div>
 
           <div className={styles.login}>
@@ -55,7 +57,8 @@ setLoading(false)
 
       <div className={styles.navbarSmall}>
         <div className={styles.logoContainer}>
-        <img src="./logo.webp" />
+        <LazyImage src="/logo.webp" width={100} height={100}  />
+        
         </div>
         <div className={styles.navlinksContainer}>
          

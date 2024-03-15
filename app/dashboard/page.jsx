@@ -4,16 +4,6 @@ import React, { useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { db, auth } from "@/firebase/firebase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronDown,
-  faChevronUp,
-  faChevronLeft,
-  faChevronRight,
-  faPlus,
-  faPlusCircle,
-  fauser2,
-} from "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css"; // Import the styles
 import { Datepicker } from "flowbite-react";
 import { format } from "date-fns";
@@ -39,6 +29,7 @@ import axios from "axios";
 import { SuccessMessage } from "@/components/SuccessMessage";
 import Hotel from "@/components/hotel";
 import Footer from "@/components/footer2";
+import LazyImage from "@/components/LazyLoad";
 
 const generateRandomPassword = () => {
   // Implement your logic to generate a random password
@@ -152,7 +143,8 @@ const ProtectedPage = () => {
         password: password,
         coordinator:coordinator,
         country:country,
-        link:link
+        link:link,
+        countryImage:user.country.image
       });
       //console.log('Email sent successfully');
     } catch (error) {
@@ -538,7 +530,9 @@ const ProtectedPage = () => {
   return (
     <>
     <main className="flex min-h-screen main">
-      <img src="/background photos/2403 World Cup - Web LOG IN -08.webp" className="background-overlay" />
+    <LazyImage  src="/background photos/2403 World Cup - Web LOG IN -08.webp"  width={1800} height={1800} className="background-overlay" />
+
+
       <Register
       team={teamRef}
         open={register}
@@ -566,8 +560,11 @@ const ProtectedPage = () => {
           {user2.team && user2.role.name=='Coordinator' && !user2.team?.payment_status
           &&<div className="inscription-banner"><h2>You have not paid the inscription fee. Please complete the payment before September 1st to participate.</h2><button onClick={()=>{payNow()}}>Pay Now</button></div>}
           <div className="header-dashboard">
-            <div class="gradient-circle">
-              <img src={user2.country.image} />
+            <div class="gradient-circle" style={{backgroundColor:'transparent'}}>
+            
+
+              <LazyImage src={user2.country.image}  width={300} height={300}  />
+
             </div>
             <div style={{display:'flex',flexDirection:'column'}}>
             <h2>
@@ -608,8 +605,8 @@ const ProtectedPage = () => {
                             }}
                           >
                         
-
-                            <img  src="/dashboard/2403 World Cup - Web LOG IN-19.webp"  className="accordion-icon"/>
+                        <LazyImage src="/dashboard/2403 World Cup - Web LOG IN-19.webp"  width={100} height={100} className="accordion-icon" />
+                         
                           </div>
                         </div>
                       )}
@@ -1102,7 +1099,8 @@ const ProtectedPage = () => {
                               setShowCoach(!showCoach);
                             }}
                           >
-                                                    <img  src="/dashboard/2403 World Cup - Web LOG IN-19.webp"  className="accordion-icon"/>
+                        <LazyImage src="/dashboard/2403 World Cup - Web LOG IN-19.webp"  width={100} height={100} className="accordion-icon" />
+                         
                           </div>
                         </div>
                       )}
@@ -1596,7 +1594,8 @@ const ProtectedPage = () => {
                               setShowCaptain(!showCaptain);
                             }}
                           >
-                            <img  src="/dashboard/2403 World Cup - Web LOG IN-19.webp"  className="accordion-icon"/>
+                                                <LazyImage src="/dashboard/2403 World Cup - Web LOG IN-19.webp"  width={100} height={100} className="accordion-icon" />
+                         
                           </div>
                         </div>
                       )}
@@ -2420,7 +2419,8 @@ const ProtectedPage = () => {
                                     });
                                   }}
                                 >
-                                                        <img  src="/dashboard/2403 World Cup - Web LOG IN-19.webp"  className="accordion-icon"/>
+                        <LazyImage src="/dashboard/2403 World Cup - Web LOG IN-19.webp"  width={100} height={100} className="accordion-icon" />
+                         
                                 </div>
                               </div>
 
@@ -2719,7 +2719,10 @@ const ProtectedPage = () => {
               <div className="column-45-2">
                 <div className="option-dashboard">
                   <div className="gradient-circle2">
-                    <img src="/dashboard/2403 World Cup - Web LOG IN-21.webp" />
+
+                  <LazyImage src="/dashboard/2403 World Cup - Web LOG IN-21.webp" width={200} height={200} />
+                         
+     
                  
                   </div>
                   <div className="content">
@@ -2743,7 +2746,11 @@ const ProtectedPage = () => {
                 </div>
                        <div className="option-dashboard">
                        <div className="gradient-circle2">
-                    <img src="/dashboard/2403 World Cup - Web LOG IN-23.webp" />
+                       <LazyImage src="/dashboard/2403-World-Cup-Web-LOG-IN-23.webp"  width={200} height={200}  />
+                         
+     
+                 
+         
                   </div>
                   <div className="content">
                       <h2>Fellowship Tour</h2>

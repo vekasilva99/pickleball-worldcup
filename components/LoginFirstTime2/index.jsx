@@ -18,8 +18,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase"; // Replace with your actual Firebase import path
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMultiply } from "@fortawesome/free-solid-svg-icons";
+
 
 import { Loader } from "../Loader";
 

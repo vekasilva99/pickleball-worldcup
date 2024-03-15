@@ -8,7 +8,7 @@ export default function LazyImage ({ src, alt, ...props }) {
   });
 
   return (
-    <div ref={ref}>
+    <div ref={ref} >
       {inView && (
         <Image src={src} alt={alt} {...props} />
       )}
