@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMultiply
 } from "@fortawesome/free-solid-svg-icons";
+import LazyImage from "../LazyLoad";
 
 export default function Login({showLogin,setShowLogin}) {
 
@@ -41,8 +42,8 @@ export default function Login({showLogin,setShowLogin}) {
 
       <div className={showLogin ? styles.loginOverlay : `${styles.loginOverlay} ${styles.hidden}`}>
         <div className={styles.loginContainer}>
-      
-                        <img      onClick={()=>{setShowLogin(false)}} src="/LOG IN/2403 World Cup - Web LOG IN-10.webp"      className={styles.closeIcon}/>
+        <LazyImage  onClick={()=>{setShowLogin(false)}} src="/LOG IN/2403-World-Cup-Web-LOG-IN-10.webp"      className={styles.closeIcon} width={100} height={100} />
+
           <h1>Log In</h1>
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1 w-full">
             

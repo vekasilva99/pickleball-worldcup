@@ -28,6 +28,7 @@
     "nodemailer": "^6.9.9",
     "react": "^18",
     "react-dom": "^18",
+    "react-intersection-observer": "^9.8.1",
     "react-loader-spinner": "^6.1.6",
     "stripe": "^14.19.0"
   },
