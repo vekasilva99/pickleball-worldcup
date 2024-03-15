@@ -39,4 +39,13 @@
     font-weight: 900; /* Black */
     src: url('/fonts/Poppins/Poppins-Black.ttf') format('truetype');
   }
+
+  @font-face {
+    font-family: 'Anton';
+    src: url('/fonts/Anton/Anton-Regular.ttf') format('truetype');
+  }
   
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+  }

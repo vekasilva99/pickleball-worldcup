@@ -15,13 +15,11 @@ export const SuccessMessage = ({ message,setMessage }) => {
       }
     >
       <div className={styles.messageContainer}>
-      <FontAwesomeIcon
-        onClick={()=>{setMessage(null)}}
-                          icon={faMultiply}
-                          className={styles.closeIcon}
-                        />
+        
+      <img className={styles.closeIcon}      onClick={()=>{setMessage(null)}} src="/LOG IN/2403 World Cup - Web LOG IN-10.webp" />
         <div class="gradient-circle">
-          <FontAwesomeIcon icon={faCheck} className="icon-success" />
+          <img style={{objectFit:'contain'}}src="/check.webp"/>
+        
         </div>
         <h2>{message}</h2>
       </div>

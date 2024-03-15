@@ -23,6 +23,7 @@ import { faMultiply } from "@fortawesome/free-solid-svg-icons";
 
 import { Loader } from "../Loader";
 
+
 export default function Login({ showLogin, setShowLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -310,6 +311,8 @@ export default function Login({ showLogin, setShowLogin }) {
   return (
     <>
       {user && (
+        <>
+             <img src="/background photos/2403 World Cup - Web LOG IN -08.webp" className={styles.overlay}/>
         <div
           className={
             showLogin
@@ -318,9 +321,9 @@ export default function Login({ showLogin, setShowLogin }) {
           }
         >
           <div className={styles.loginContainer}>
-            <div class="gradient-circle">
+         
               <img src={user.country.image} />
-            </div>
+        
             <h1>Welcome to the Pickleball World Cup!</h1>
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1 w-full">
               <div className="sm:col-span-5">
@@ -379,14 +382,17 @@ export default function Login({ showLogin, setShowLogin }) {
                 onClick={() => {
                   handleLogin();
                 }}
-                className="gold-button"
+                className="gold-button3"
                 // disabled={isLoginDisabled}
               >
                 Log In
               </button>
             </div>
           </div>
+     
         </div>
+     
+        </>
       )}
     </>
   );

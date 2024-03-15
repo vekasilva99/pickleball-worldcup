@@ -6,21 +6,44 @@
 .main{
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
-  background: linear-gradient(135deg, #4f2c14 30%, #200d04);
+
+  background: #0e0e0a;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.background-overlay{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  object-fit: cover;
 }
 
 .dark{
   background: #200d04;
 }
 
-
+.home-button{
+  font-family: 'Anton';
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #a77c13, #a77c13, #f8da5b, #efb810, #a77c13);
+  padding: 0.3rem 3rem;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  z-index: 20;
+  bottom:2rem
+}
 .option-dashboard{
   width: 100%;
-  background-color: #200d04;
-  min-height: 14vh;
-  height: 14vh;
+  background-color: transparent;
+  border: 1.8pt solid #EFB810;
+ height: fit-content;
   margin-bottom: 1rem;
   border-radius: 2rem;
   display: flex;
@@ -39,9 +62,20 @@ justify-content: space-around;
 }
 
 .option-dashboard .content h2{
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: white;
   font-weight: 600;
+  font-family: 'Anton';
+  text-transform: uppercase;
+}
+
+.option-dashboard .content h4{
+  font-size: 1rem;
+  color: #EFB810;
+  font-weight: 600;
+  font-family: 'Montserrat';
+  margin-bottom: 0.5rem;
+
 }
 
 .option-dashboard .content h3{
@@ -58,12 +92,14 @@ justify-content: space-around;
 }
 
 .option-dashboard .content button{
-  background-color: #f4b94a;
+  background-color: #EFB810;
   padding: 0.3rem 0.8rem;
   font-size: 1rem;
-  border-radius: 0.5rem;
-  color: #200d04;
+  color: #000;
+  font-family: 'Anton';
+  text-transform: uppercase;
   transition: all 0.5s;
+  
 }
 
 .option-dashboard .content button:disabled{
@@ -71,8 +107,9 @@ justify-content: space-around;
   padding: 0.3rem 0.8rem;
   font-size: 1rem;
   border-radius: 0.5rem;
-  color: #f4b94a;
+  color: #EFB810;
 font-style: italic;
+font-family: 'Montserrat';
   transition: all 0.5s;
   opacity: 0.8;
 }
@@ -88,6 +125,7 @@ font-style: italic;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+
 }
 
 .empty-team h2{
@@ -105,20 +143,32 @@ html{
 }
 
 body{
-  font-family: 'Poppins' !important;
+  font-family: 'Montserrat' !important;
 }
 
 .home{
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
   padding: 5rem;
-  padding-top: 8rem;
+  padding-top: 10rem;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   position: relative;
-  
+
+ 
+}
+
+.home-background{
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+
 }
 
 .register-form.payment-form{
@@ -127,18 +177,85 @@ transition: all 0.5s;
  
 }
 
+.gallery-section{
+  width: 100vw;
+  min-height: 40vh;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.gallery-section .title{
+  width: 24vw;
+  background-color: #EFB810;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: 20;
+  
+}
+
+.gallery{
+  width: 75vw;
+  display: flex;
+  flex-direction: row;
+  margin-left: 1vw;
+  overflow: hidden;
+  position: relative;
+  
+}
+
+.gallery img{
+  width: 24vw;
+  margin: 0 0.5vw;
+  transition: all 1s;
+}
+
+.gallery-section .title h2{
+  font-size: 4rem;
+  font-family: 'Anton';
+  text-transform: uppercase;
+}
+
+.gallery-section .title img{
+  width: 3rem;
+ opacity: 0.6;
+ cursor: pointer;
+ transition: all 0.5s;
+}
+
+.gallery-section .title img:hover{
+opacity: 1;
+width: 3.5rem;
+}
+
+.arrow-gallery{
+  width: 3rem !important;
+  object-fit: contain;
+  position: absolute;
+  right: 1rem;
+  top: calc(20vh - 3rem);
+ opacity: 0.6;
+ cursor: pointer;
+ transition: all 0.5s;
+}
+
+.arrow-gallery:hover{
+opacity: 1;
+width: 3.5rem !important;
+}
 .ElementsApp input{
-  color: pink;
+
 }
 
 /* PaymentForm.css */
 .ElementsApp {
-  color: pink; /* Change the color of the icons */
+  /* Change the color of the icons */
 }
 .card-element-container{
   font-family: 'Poppins' !important;
-  height: 100%;
-  color: pink !important;
+
+
 }
 .register-form.payment-form .form-container{
   display: flex;
@@ -149,24 +266,59 @@ transition: all 0.5s;
 .register-form.payment-form .form-container h3{
 font-size: 2rem;
 color: white;
+margin-top:2rem;
+}
+
+.register-form.payment-form .gold-button{
+  margin-bottom: 2rem;
 }
 .gold-button{
-  padding: 1rem 3rem;
-  height: fit-content;
-  border-radius: 0.4rem;
-  background: linear-gradient(to right, #f4b94a, #fef7be, #a5501d);
+  font-family: 'Anton';
+  font-size: 1.5rem;
   text-transform: uppercase;
-  font-weight: bold;
-  box-shadow: rgba(244, 185, 75, 0.3) 0px 7px 29px 0px;
+  background: linear-gradient(to right, #a77c13, #a77c13, #f8da5b, #efb810, #a77c13);
+  padding: 0.3rem 3rem;
+  cursor: pointer;
   transition: all 0.5s;
-  font-size: 1.2rem;
-  width: fit-content;
-  color: #200d04;
+
 }
 
 .gold-button:hover{
-  box-shadow: rgba(244, 185, 75, 0.4) 0px 7px 29px 0px;
-  font-size: 1.22rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+  font-size: 1.55rem;
+}
+
+.gold-button3{
+  font-family: 'Anton';
+  font-size: 2rem;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #a77c13, #a77c13, #f8da5b, #efb810, #a77c13);
+  padding: 0.3rem 3rem;
+  cursor: pointer;
+  transition: all 0.5s;
+  margin-top: 0.5rem;
+
+}
+
+.gold-button3:hover{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+  font-size: 2.1rem;
+}
+
+.gold-button2{
+  font-family: 'Anton';
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  background: #EFB810;
+  padding: 0.2rem 3rem;
+  cursor: pointer;
+  transition: all 0.5s;
+
+}
+
+.gold-button2:hover{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+  font-size: 1.55rem;
 }
 
 .secondary-button{
@@ -209,21 +361,22 @@ h1 {
 }
 
 .input{
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: white;
   padding: 0.8rem 0.5rem;
   outline: none !important;
   border: none !important;
-  color: white;
+  color: #0E0E0A;
+  border-radius: 0;
+  font-family: 'Montserrat';
 }
 
 
 
 .inscription-banner{
-  background-color: #f4b94a;
+  background-color: #EFB810;
   width: 80vw;
   margin-bottom: 1rem;
   padding: 0.5rem 0.8rem ;
-  border-radius: 0.5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -232,18 +385,19 @@ h1 {
 
 .inscription-banner h2{
   font-size: 0.8rem;
-  color: #4f2c14;
+  color: #000;
   max-width: 70%;
   
 }
 
 .inscription-banner button{
-  background-color: #200d04;
-  color: #f4b94a;
+  background-color: #000;
+  color: #EFB810;
   padding: 0.8rem;
   font-size: 0.8rem;
-  border-radius: 0.5rem;
 transition: all 0.5s;
+font-family: 'Anton';
+text-transform: uppercase;
 }
 
 .inscription-banner button:hover{
@@ -251,24 +405,25 @@ transition: all 0.5s;
   color: #f4b94a;
   padding: 0.8rem;
   font-size: 0.8rem;
-  border-radius: 0.5rem;
+
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .datepicker input{
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: white!important;
   padding: 0.8rem 0.5rem;
   padding-left: 2.5rem;
   outline: none !important;
   border: none !important;
-  color: white !important;
+  color: #CBC6C6 !important;
 }
 .datepicker input::placeholder{
-  color: rgba(255, 255, 255, 0.3);;
+  color: #CBC6C6
 }
 
 .input::placeholder{
-  color: rgba(255, 255, 255, 0.3);;
+  color: #CBC6C6
+  
 }
 
 .datepicker > .relative > .absolute > div{
@@ -307,7 +462,7 @@ color: white !important;
   
 .register-form-container{
   width: 100vw;
-  background-color: rgba(32, 13, 2, 0.6);
+  background-color: rgba(14, 14, 10, 0.8);
   position: fixed;
   z-index: 100000;
   display:flex ;
@@ -328,7 +483,7 @@ color: white !important;
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  background: linear-gradient(to bottom, #f4b94a, #fef7be, #9e4f1d);
+background-color: transparent;
 
 }
 
@@ -340,14 +495,15 @@ display: flex;
 align-items: center;
 justify-content: center;
 height: 100%;
+background-color: #EFB810;
 
 
 }
 
 .form-title-container h2{
-font-size: 2rem;
-color:#9e4f1d;
-font-weight: 600;
+font-size: 3rem;
+color:#000;
+font-family: 'Anton';
 text-align: center;
 line-height: 1;
 text-transform: uppercase;
@@ -357,8 +513,11 @@ text-transform: uppercase;
 .form-container{
   padding: 2rem;
   border-radius: 2rem;
-  background-color: #200d04;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: transparent;
   overflow-y: scroll;
+  border: 1.8pt solid #EFB810;
   width: 100%;
 
 }
@@ -374,15 +533,14 @@ text-transform: uppercase;
 .column-55{
   width: 60%;
   height: 100%;
-  background-color:  #200d04;
-  border-radius: 2rem;
+  background-color:  #0e0e0a;
   overflow: hidden;
+  z-index: 10;
   
 }
 .column-55-2{
   width: 60%;
   height: 100%;
-  background-color:  #200d04;
   border-radius: 2rem;
   overflow: hidden;
   
@@ -392,16 +550,19 @@ text-transform: uppercase;
 width: 100%;
 height: 100%;
 object-fit: cover;
+z-index: 100;
 }
 
 .column-45{
   width: 38%;
   height: 100%;
-  border-radius: 2rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 10;
+  padding: 2rem;
+  background-color: rgba(56,56,56,0.65);
 }
 
 .column-45-2{
@@ -411,7 +572,7 @@ object-fit: cover;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
 }
 
 .spacebetween{
@@ -419,23 +580,71 @@ object-fit: cover;
 }
 
 .column-45 .row{
-  background-color: #200d04;
+
   width: 100%;
   height: 48%;
-  border-radius: 2rem;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
+.tour-section{
+  width: 100vw;
+  min-height: 35vh;
+  background-color: #0E0E0A;
+  background-image: url('/World Cup - Web HOME_tour section background.webp');
+  background-size: cover;
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+
+}
+
+.tour-section .tour-content{
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.tour-section h2{
+  color: #EFB810;
+  font-size: 3rem;
+  font-family: 'Anton';
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.tour-section button{
+  font-family: 'Anton';
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #a77c13, #a77c13, #f8da5b, #efb810, #a77c13);
+  padding: 0.3rem 3rem;
+  cursor: pointer;
+ margin-top: 1rem;
+}
+
+.tour-section h3{
+  color: white;
+  font-size: 1rem;
+  font-family: 'Montserrat';
+  text-align: right;
+}
 .column-45 .row div{
-  position: absolute;
+
   bottom:0;
   left:0;
   color: white;
-  background-color: rgba(32, 13, 4, 0.5);
   width: 100%;
   height: 100%;
-  padding: 1rem;
+
+  
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -446,20 +655,23 @@ object-fit: cover;
   bottom:0;
   left:0;
   color: white;
-  background-color: rgba(32, 13, 4, 0.5);
+  /* background-color: rgba(32, 13, 4, 0.5); */
   width: 100%;
   height: 100%;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  margin-top: 0.5rem;
 
 }
 
 .column-45 .row div h2,h4{
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.2;
+  font-family: 'Anton';
+  text-transform: uppercase;
 }
 
 .column-45 .row div h4{
@@ -468,24 +680,24 @@ text-align: right;
 
 .column-45 .row div h3{
   font-size: 1rem;
+  font-family: 'Montserrat';
 }
 
 .column-45 .row img{
   width: 100%;
-  height: 100%;
+  height: 70%;
   object-fit: cover;
 
 }
 .header-dashboard{
-  background-color: #200d04;
+  background-color: transparent;
   width: 80vw;
-  height: 30vh;
-  border-radius: 1.5rem;
-  padding: 2rem;
+  min-height: fit-content;
   display: flex;
-  flex-direction: column;
+  padding: 1rem 0;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .dashboard{
@@ -494,11 +706,12 @@ text-align: right;
   height: fit-content;
   display: flex;
   flex-direction: column;
-  padding: 5rem;
-  padding-top: 8rem;
+
+  margin-top: 8rem;
   justify-content: flex-start;
   align-items: center;
   position: relative;
+ 
   
 }
 
@@ -507,17 +720,20 @@ text-align: right;
   -webkit-background-clip: text; 
   color: transparent; */
   color: white;
-  font-size: 1.5rem;
-  text-align: center;
+  font-size: 2.5rem;
+  text-align: left;
+  font-family: 'Anton';
+  text-transform: uppercase;
 }
 
 .header-dashboard h3{
   /* background: linear-gradient(to left, #f4b94a, #fef7be, #9e4f1d);
   -webkit-background-clip: text; 
   color: transparent; */
-  color: white;
-  opacity: 0.6;
+  color: #EFB810;
   font-size: 1rem;
+  text-transform: uppercase;
+  font-style: italic;
 }
 
 .gradient-circle {
@@ -526,8 +742,7 @@ text-align: right;
   height: 8rem;
   min-height: 8rem;
   border-radius: 8rem;
-  background: linear-gradient(#200d04, #200d04) padding-box,
-  linear-gradient(135deg, #f4b94a, #fef7be,transparent, transparent) border-box;
+  background-color: #EFB810;
 border-radius: 50em;
 border: 4px solid transparent;
 margin-bottom: 2rem;
@@ -535,6 +750,7 @@ overflow: hidden;
 display: flex;
 justify-content: center;
 align-items: center;
+
 }
 
 
@@ -554,9 +770,7 @@ align-items: center;
   min-width: 4rem;
   height: 4rem;
   min-height: 4rem;
-  border-radius: 4rem;
-  background: linear-gradient(#200d04, #200d04) padding-box,
-  linear-gradient(135deg, #f4b94a, #fef7be,transparent, transparent) border-box;
+
 border-radius: 50em;
 border: 4px solid transparent;
 overflow: hidden;
@@ -568,10 +782,10 @@ align-items: center;
 
 
 .gradient-circle2 img{
-  width: 2rem;
-  min-width: 2rem;
-  height: 2rem;
-  min-height: 2rem;
+  width: 4rem;
+  min-width: 4rem;
+  height: 4rem;
+  min-height: 4rem;
 
   object-fit: contain;
 }
@@ -596,15 +810,18 @@ align-items: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #f4b94a, #fef7be, #9e4f1d);
+  background: #EFB810;
   font-size: 2rem;
-  color: #9e4f1d;
+  color: #000;
+  font-family: 'Anton';
   font-weight: 500;
 }
 
 .dashboard .row{
   width: 80vw;
   margin-top: 1rem;
+
+
 }
 .dashboard .row .column-55{
   min-height: 30vh;
@@ -622,6 +839,7 @@ align-items: center;
   height: fit-content;
   display: flex;
   flex-direction: row;
+  border: 1.5pt solid #EFB810;
 }
 
 .no-show {
@@ -660,7 +878,6 @@ align-items: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid white;
   cursor: pointer;
   opacity: 0.8;
   transition: all 0.5s;
@@ -681,16 +898,43 @@ align-items: center;
   margin-top: 1rem !important;
 }
 
+.tour-section img{
+  width: 45%;
+  object-fit: cover;
+  height: 100%;
+}
 @media (max-width: 480px) {
   .home{
-    padding: 2rem;
-    padding-top: 4rem;
+    padding: 1rem;
+    padding-top: 8rem;
     flex-direction: column;
+    height: fit-content;
+    min-height: 100vh;
+  }
+  .header-dashboard{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
+  .dashboard{
+    margin-top: 5rem;
+    min-height: calc(100vh + 8rem);
+  }
+
+  .header-dashboard h2{
+    text-align: center;
+  }
+  .gradient-circle{
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  .header-dashboard h3{
+    text-align: center;
+  }
   .column-55{
     width: 100%;
-    height: 68%;
+    height: 48vh;
   }
 
   .column-55-2{
@@ -701,8 +945,13 @@ align-items: center;
   .column-45{
     flex-direction: row;
     width: 100%;
-    height: 30%;
-background-color: pink;
+    height: fit-content;
+    margin-top: 1rem;
+    padding: 1rem;
+
+  }
+  .column-45 .row img{
+    height: 50%;
   }
 
 
@@ -729,21 +978,20 @@ background-color: pink;
     min-height: 20vh;
   }
   .column-45 .row div{
-    position: absolute;
     bottom:0;
     left:0;
     color: white;
     width: 100%;
     height: 100%;
-    padding: 10px;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
   
   }
   .dashboard .row .column-55-2{
     width: 100%;
-    height: 68%;
+    height: fit-content;
 
   }
   .form-container{
@@ -772,6 +1020,55 @@ background-color: pink;
     margin-top: 1rem;
   }
 
+  .gallery-section{
+    justify-content: space-between;
+  }
+  .gallery-section .title{
+    width: 48vw;
+  }
+
+  .gallery{
+    width: 48vw;
+ 
+  }
+
+  .gallery img{
+    width: 100%;
+  }
+
+  .gallery-section .title h2{
+    font-size: 2rem;
+  }
+
+  .gallery-section .title img{
+    width: 2rem;
+  }
+  .gallery-section .title img:hover{
+    width: 2.5rem;
+  }
+
+  .arrow-gallery{
+    width: 2rem !important;
+  }
+  .arrow-gallery:hover{
+    width:  2.5rem !important;
+  }
+.home-button{
+  display: none;
+}
+
+.tour-section h2{
+  font-size: 1.8rem;
+}
+
+.tour-section h3{
+  font-size: 0.8rem;
+}
+
+.tour-section button{
+  font-size: 1.5rem;
+  padding: 0.3rem 1rem;
+}
 }
 
 

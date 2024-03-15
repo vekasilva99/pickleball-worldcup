@@ -9,7 +9,7 @@
   z-index: 1000000;
   top: 0;
   left: 0;
-  background-color: rgba(244, 185, 74, 0.3);
+  background-color: rgba(14, 14, 10, 0.8);
   visibility: visible;
   opacity: 1;
   transition: all 0.5s;
@@ -19,12 +19,26 @@
   opacity: 0;
   visibility: hidden;
 }
+.closeIcon{
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.5s;
 
+}
+
+.closeIcon:hover{
+  opacity: 1;
+}
 .messageContainer{
   width: 35vw;
-  height: 20vw;
-  background-color: rgba(32, 13, 4, 1);
-  border-radius: 2rem;
+  height: 25vw;
+  background-color: #CBC6C6;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -34,8 +48,8 @@
 }
 
 .messageContainer h2{
-  color: white;
-  opacity: 0.5;
+  color: #000;
+
   font-size: 1.2rem;
 }
 

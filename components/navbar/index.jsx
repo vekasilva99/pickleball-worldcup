@@ -41,31 +41,37 @@ setLoading(false)
         <div className={styles.logoContainer}>
           <img src="./logo.webp" />
         </div>
-        <div className={styles.navlinksContainer}>
-          {/* <h2 className={styles.active}>HISTORIA</h2>
-          <h2>NOSOTROS</h2>
-          <h2>NOTICIAS</h2>
-          <h2>EVENTOS</h2>
-          <h2>TOUR CONFRATERNIDAD</h2>
-          <h2>ENTRADAS</h2>
-          <h2>FOTOS</h2>
-          <h2
-          >
-            MIEMBROS
-          </h2> */}
+        <div className={styles.right}>
+          <div className={styles.login}>
           {user && !loading &&  <h2 onClick={()=>{handleLogOut()}}
           >
-            LOG OUT
+            Log Out
           </h2>}
           {!user && !loading && <h2 onClick={()=>{setShowLogin(true)}}
           >
-            LOG IN
+            Log In
           </h2 >}
+          </div>
+        <div className={styles.navlinksContainer}>
+        <h2>Fellowship Tour</h2>
+          <h2 className={styles.active}>About Us</h2>
+          <h2>Teams</h2>
+          <h2>Events</h2>
+          <h2>News</h2>
+       
+       
+          <h2>Tickets</h2>
+          <h2>Gallery</h2>
+       
+      
+        </div>
         </div>
       </div>
 
       <div className={styles.navbarSmall}>
-        <div className={styles.logoContainer}></div>
+        <div className={styles.logoContainer}>
+        <img src="./logo.webp" />
+        </div>
         <div className={styles.navlinksContainer}>
          
      
@@ -91,17 +97,15 @@ setLoading(false)
                           className={styles.closeIcon}
                         />
         <div className={styles.navlinksContainer}>
-          <h2 className={styles.active}>HISTORIA</h2>
-          <h2>NOSOTROS</h2>
-          <h2>NOTICIAS</h2>
-          <h2>EVENTOS</h2>
-          <h2>TOUR CONFRATERNIDAD</h2>
-          <h2>ENTRADAS</h2>
-          <h2>FOTOS</h2>
-          <h2
-          >
-            MIEMBROS
-          </h2>
+        <h2>Fellowship Tour</h2>
+          <h2 className={styles.active}>About Us</h2>
+          <h2>Teams</h2>
+          <h2>Events</h2>
+          <h2>News</h2>
+       
+       
+          <h2>Tickets</h2>
+          <h2>Gallery</h2>
       
         </div>
       </div>

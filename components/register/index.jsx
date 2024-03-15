@@ -47,7 +47,7 @@ export default function Register({open,setOpen,team,setuser2}) {
   }, [team]);
   const validateInput = () => {
     // Validate coach information
-    if (!teamData.coach.name || !teamData.coach.last_name || !teamData.coach.email || !teamData.coach.phone || teamData.coach.dupr === null) {
+    if (!teamData.coach.name || !teamData.coach.last_name || !teamData.coach.email || !teamData.coach.phone) {
       alert("Coach information is incomplete. Please fill in all fields.");
       return false;
     }
@@ -55,8 +55,8 @@ export default function Register({open,setOpen,team,setuser2}) {
     // Validate pairs information
     for (let i = 0; i < teamData.pairs.length; i++) {
       const pair = teamData.pairs[i];
-      if (!pair.name || !pair.last_name || !pair.email || !pair.phone || pair.dupr === null) {
-        alert(`Pair ${i + 1} information is incomplete. Please fill in all fields.`);
+      if (!pair.name || !pair.last_name || !pair.email || !pair.phone ) {
+        alert(`Player ${i + 1} information is incomplete. Please fill in all fields.`);
         return false;
       }
     }
@@ -70,7 +70,7 @@ export default function Register({open,setOpen,team,setuser2}) {
   
     for (let i = 0; i < teamData.pairs.length; i++) {
       if (!emailRegex.test(teamData.pairs[i].email)) {
-        alert(`Pair ${i + 1} email is not in a valid format.`);
+        alert(`Player ${i + 1} email is not in a valid format.`);
         return false;
       }
     }
@@ -218,7 +218,7 @@ const saveTeamToFirebase = async (e) => {
 };
 
 const handleRemovePair = (index) => {
-  if (teamData.pairs.length >2){
+  if (teamData.pairs.length >1){
 
 
   setTeamData((prevTeamData) => {
@@ -780,8 +780,8 @@ const options = {
     <h2 className="text-base font-semibold leading-7 text-gray-900 sm:col-span-5 form-title">
               Player {index+1}
             </h2>
-            {teamData.pairs.length > 2 &&
-            <h2  onClick={()=>{handleRemovePair(index)}} style={{textAlign:'center', color:"#da9645",cursor:"pointer",borderColor:'#da9645'}}  className="text-xs font-semibold leading-7 text-gray-900 sm:col-span-1 form-title border border-da9645 border-2 rounded-md p-2 transition-opacity duration-500 ease-in-out hover:opacity-100 opacity-80">
+            {teamData.pairs.length > 1 &&
+            <h2  onClick={()=>{handleRemovePair(index)}} style={{textAlign:'center', color:"#EFB810",cursor:"pointer",borderColor:'#EFB810',    width: 'max-content'}}  className="text-xs font-semibold leading-7 text-gray-900 sm:col-span-1 form-title border border-da9645 border-2 rounded-md p-2 transition-opacity duration-500 ease-in-out hover:opacity-100 opacity-80">
               Remove Player
             </h2>}
     
@@ -1006,7 +1006,7 @@ const options = {
           +  Add Pair
         </button> */}
 
-        <h2    onClick={(e)=>{addPair(e)}} style={{textAlign:'center', color:"#200d04",cursor:"pointer",borderColor:'#da9645',backgroundColor:'#da9645'}}  className="text-sm font-semibold leading-7 text-gray-900 sm:col-span-1 form-title border border-da9645 border-2 rounded-md p-2 transition-opacity duration-500 ease-in-out hover:opacity-80 opacity-100">
+        <h2    onClick={(e)=>{addPair(e)}} style={{textAlign:'center', color:"#000",cursor:"pointer",borderColor:'#EFB810',backgroundColor:'#EFB810'}}  className="text-sm font-semibold leading-7 text-gray-900 sm:col-span-1 form-title border border-da9645 border-2 rounded-md p-2 transition-opacity duration-500 ease-in-out hover:opacity-80 opacity-100">
         +  Add Player
             </h2>
       </div>}

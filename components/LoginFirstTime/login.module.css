@@ -5,24 +5,23 @@
 .loginOverlay {
   width: 100vw;
   height: 100vh;
-  background-color:#200d04;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100000;
+  min-height: 100vh;
+  max-height: 100vh;
+  background-color:transparent;
+position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 1;
   visibility: visible;
   transition: all 0.5s;
-  background-color:#200d04;
+
 }
 
 .loginContainer {
   width: 30vw;
   height: 35vw;
-  background-color: #200d04;
+  background-color: transparent;
   border-radius: 2rem;
   padding: 1.5rem;
   display: flex;
@@ -35,14 +34,30 @@
 }
 
 .loginContainer h1 {
-  background: linear-gradient(to left, #f4b94a, #fef7be, #9e4f1d);
-  -webkit-background-clip: text; /* For WebKit browsers like Chrome and Safari */
-  color: transparent;
-  font-weight: 600;
+ color: #EFB810;
   font-size: 3rem;
   text-align: center;
+  font-family: 'Anton';
+line-height: 1.2;
+  letter-spacing: 1.5pt;
 }
 
+.loginContainer img{
+  width: 10rem;
+  height: 10rem;
+  margin-bottom: 1rem;
+  object-fit: contain;
+}
+
+.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+}
 
 .closeIcon{
   font-size: 2rem;

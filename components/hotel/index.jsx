@@ -276,6 +276,7 @@ const makeReservation = async (e) => {
 try {
   // Create a new team in the database
 
+  console.log('jinfvuhbehjvbherk',user)
   const teamRef = await doc(db, 'teams', user.team.id);
   setTeamRef(teamRef)
 

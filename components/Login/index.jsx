@@ -41,11 +41,8 @@ export default function Login({showLogin,setShowLogin}) {
 
       <div className={showLogin ? styles.loginOverlay : `${styles.loginOverlay} ${styles.hidden}`}>
         <div className={styles.loginContainer}>
-        <FontAwesomeIcon
-        onClick={()=>{setShowLogin(false)}}
-                          icon={faMultiply}
-                          className={styles.closeIcon}
-                        />
+      
+                        <img      onClick={()=>{setShowLogin(false)}} src="/LOG IN/2403 World Cup - Web LOG IN-10.webp"      className={styles.closeIcon}/>
           <h1>Log In</h1>
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1 w-full">
             
@@ -93,6 +90,8 @@ export default function Login({showLogin,setShowLogin}) {
                 </button>
               </div>
         </div>
+
+
 
       </div>
     

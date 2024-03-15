@@ -97,11 +97,13 @@
 }
 
 .dates button{
-    background-color:#f4b94a ;
+    background-color:#EFB810 ;
     margin-left: 2rem;
-    color: #200d04;
+    color: #000;
+    font-family: 'Anton';
+    text-transform: uppercase;
     padding: 0.8rem;
-    font-size: 0.8rem;
+    font-size: 1rem;
     border-radius: 0.5rem;
   transition: all 0.5s;
   }

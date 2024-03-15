@@ -7,7 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { db } from "@/firebase/firebase"; // Replace with your actual Firebase import path
-import { doc, getDoc, getDocs, collection, where } from "firebase/firestore";
+import { doc, getDoc, getDocs, collection, where,query } from "firebase/firestore";
 const useAuth = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -34,13 +34,16 @@ const useAuth = () => {
           const teamsQuerySnapshot = await getTeamsByCoordinator(userDocRef);
 
           if (!teamsQuerySnapshot.empty) {
+           
             const teamDocSnapshot = teamsQuerySnapshot.docs[0];
             const teamData = teamDocSnapshot.data();
             userData.team = {
               id: teamDocSnapshot.id,
               ...teamData,
             };
-            const reservationQuerySnapshot= await getReservation(teamsQuerySnapshot)
+            const teamDoc = doc(db, "teams", teamDocSnapshot.id);
+            console.log('ENTREEEEEEE',userData)
+            const reservationQuerySnapshot= await getReservation(teamDoc)
             console.log('jnhubgyvftcdrxesdrfcgvhbjnk',reservationQuerySnapshot)
             if (!reservationQuerySnapshot.empty) {
               const reservationDocSnapshot = reservationQuerySnapshot.docs[0];
@@ -53,7 +56,8 @@ const useAuth = () => {
           } else {
             userData.team = null; // User is not a Coordinator or coach of any team
           }
-        } else if (userRole.name === "Coach") {
+        } 
+        else if (userRole.name === "Coach") {
           // Fetch team data based on the Coordinator or coach role
           // Assuming 'CoordinatorId' is a reference to the user table
           const teamsQuerySnapshot = await getTeamsByCoach(userDocRef);
@@ -65,7 +69,9 @@ const useAuth = () => {
               id: teamDocSnapshot.id,
               ...teamData,
             };
-            const reservationQuerySnapshot= await getReservation(teamsQuerySnapshot)
+            const teamDoc = doc(db, "teams", teamDocSnapshot.id);
+            console.log('ENTREEEEEEE',userData)
+            const reservationQuerySnapshot= await getReservation(teamDoc)
             console.log('jnhubgyvftcdrxesdrfcgvhbjnk',reservationQuerySnapshot)
             if (!reservationQuerySnapshot.empty) {
               const reservationDocSnapshot = reservationQuerySnapshot.docs[0];
@@ -91,7 +97,9 @@ const useAuth = () => {
               id: teamDocSnapshot.id,
               ...teamData,
             };
-            const reservationQuerySnapshot= await getReservation(teamsQuerySnapshot)
+            const teamDoc = doc(db, "teams", teamDocSnapshot.id);
+            console.log('ENTREEEEEEE',userData)
+            const reservationQuerySnapshot= await getReservation(teamDoc)
             console.log('jnhubgyvftcdrxesdrfcgvhbjnk',reservationQuerySnapshot)
             if (!reservationQuerySnapshot.empty) {
               const reservationDocSnapshot = reservationQuerySnapshot.docs[0];
@@ -115,7 +123,9 @@ const useAuth = () => {
          id: teamDocSnapshot.id,
          ...teamData,
        };
-       const reservationQuerySnapshot= await getReservation(teamsQuerySnapshot)
+       const teamDoc = doc(db, "teams", teamDocSnapshot.id);
+       console.log('ENTREEEEEEE',userData)
+       const reservationQuerySnapshot= await getReservation(teamDoc)
        console.log('jnhubgyvftcdrxesdrfcgvhbjnk',reservationQuerySnapshot)
        if (!reservationQuerySnapshot.empty) {
          const reservationDocSnapshot = reservationQuerySnapshot.docs[0];
@@ -179,17 +189,20 @@ const useAuth = () => {
   const getTeamsByCoordinator = async (userDocRef) => {
     // Implement your Firestore query to get teams by Coordinator or coach
     const teamsQuerySnapshot = await getDocs(
-      collection(db, "teams"),
-      where("coordinator", "==", userDocRef)
+      query(collection(db, "teams"), where("coordinator", "==", userDocRef))
     );
+
+  
+
+    console.log('kjhugyftghjkl;dddswfew',teamsQuerySnapshot,userDocRef)
 
     return teamsQuerySnapshot;
   };
   const getTeamsByCoach = async (userDocRef) => {
     // Implement your Firestore query to get teams by coordinator or coach
     const teamsQuerySnapshot = await getDocs(
-      collection(db, "teams"),
-      where("coach", "==", userDocRef)
+      query(collection(db, "teams"),
+      where("coach", "==", userDocRef))
     );
 
     return teamsQuerySnapshot;
@@ -198,18 +211,19 @@ const useAuth = () => {
   const getTeamsByCaptain = async (userDocRef) => {
     // Implement your Firestore query to get teams by coordinator or coach
     const teamsQuerySnapshot = await getDocs(
-      collection(db, "teams"),
-      where("captain", "==", userDocRef)
+      query(collection(db, "teams"),
+      where("captain", "==", userDocRef))
     );
 
     return teamsQuerySnapshot;
   };
 
   const getReservation = async (teamDocRef) => {
+    console.log('ferfrefer',teamDocRef)
     // Implement your Firestore query to get teams by coordinator or coach
     const teamsQuerySnapshot = await getDocs(
-      collection(db, "hotel"),
-      where("team", "==", teamDocRef)
+    query(collection(db, "hotel"),
+      where("team", "==", teamDocRef))
     );
 
     return teamsQuerySnapshot;
@@ -219,8 +233,8 @@ const useAuth = () => {
   const getTeamsByMember = async (memberUid) => {
     // Implement your Firestore query to get teams by member UID
     const teamsQuerySnapshot = await getDocs(
-      collection(db, 'teams'),
-      where('team_members', 'array-contains', memberUid)
+     query(collection(db, 'teams'),
+      where('team_members', 'array-contains', memberUid))
     );
   
     return teamsQuerySnapshot;

@@ -5,7 +5,6 @@
 .loginOverlay {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(32, 13, 4, 0.5);
   position: fixed;
   top: 0;
   left: 0;
@@ -16,15 +15,14 @@
   opacity: 1;
   visibility: visible;
   transition: all 0.5s;
-  background-color: rgba(244, 185, 74, 0.3);
+  background-color: rgba(0, 0, 8, 0.8);
 }
 
 .loginContainer {
-  width: 30vw;
+  width: 35vw;
   height: 35vw;
-  background-color: #200d04;
-  border-radius: 2rem;
-  padding: 1.5rem;
+  background-color: #CBC6C6;;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,17 +33,17 @@
 }
 
 .loginContainer h1 {
-  background: linear-gradient(to left, #f4b94a, #fef7be, #9e4f1d);
-  -webkit-background-clip: text; /* For WebKit browsers like Chrome and Safari */
-  color: transparent;
+ color: black;
+ font-family: 'Anton';
   font-weight: 600;
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 
 .closeIcon{
-  font-size: 2rem;
-  color: #f4b94a;
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;

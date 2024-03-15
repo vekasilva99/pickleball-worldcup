@@ -1,0 +1,237 @@
+.navbar {
+  width: calc(100vw );
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 0;
+  left: 0;
+  top: 0;
+  padding: 1rem 2rem;
+  justify-content: space-between;
+  z-index: 1000;
+  background-color: transparent;
+}
+
+.logoContainer {
+  width: 6rem;
+ display: flex;
+ align-items: center;
+
+}
+
+.logoContainer img{
+  width: 6rem;
+  object-fit: contain;
+
+}
+
+.right{
+
+  width: calc(100% - 8rem);
+}
+
+.login{
+  display: flex;
+  align-items:center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.login h2{
+  font-family: 'Anton';
+  font-size: 1.5rem;
+  text-transform: uppercase;
+color: #EFB810;
+  padding: 0.3rem 1.2rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: all 0.5s;
+}
+
+.login h2:hover{
+  opacity: 1;
+}
+.navlinksContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.navlinksContainer h2 {
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: white;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.5s;
+  font-family: 'Anton';
+  text-transform: uppercase;
+}
+
+.navlinksContainer h2.active {
+  background: linear-gradient(to right, #a77c13,#a77c13, #f8da5b, #efb810, #a77c13);
+  -webkit-background-clip: text; /* For WebKit browsers like Chrome and Safari */
+  color: transparent;
+  font-weight: 600;
+}
+
+.navlinksContainer h2::after {
+  content: "";
+  position: absolute;
+  bottom: -0.2rem;
+  left: 0;
+  width: 0;
+  height: 0rem; /* Adjust the height of the border */
+  background: linear-gradient(to right, #a77c13,#a77c13, #f8da5b, #efb810, #a77c13);
+  transition: all 0.5s;
+}
+.navlinksContainer h2.active::after {
+  content: "";
+  position: absolute;
+  bottom: -0.2rem;
+  left: 0;
+  width: 100%;
+  height: 0.2rem; /* Adjust the height of the border */
+  background: linear-gradient(to right, #a77c13,#a77c13, #f8da5b, #efb810, #a77c13);
+}
+
+.navlinksContainer h2:hover {
+  background: linear-gradient(to right, #a77c13,#a77c13, #f8da5b, #efb810, #a77c13);
+  -webkit-background-clip: text; /* For WebKit browsers like Chrome and Safari */
+  color: transparent;
+  font-weight: 600;
+}
+
+.navlinksContainer h2:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -0.2rem;
+  left: 0;
+  width: 100%;
+  height: 0.2rem; /* Adjust the height of the border */
+  background: linear-gradient(to right, #a77c13,#a77c13, #f8da5b, #efb810, #a77c13);
+}
+
+
+.navbarMobile{
+  display: none;
+}
+
+.navbarSmall{
+  display: none;
+}
+
+@media (max-width: 480px) {
+.navbar{
+  display: none;
+}
+
+
+.navbarMobile{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #0e0e0a;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  align-items: center;
+  justify-content: center;
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+.navbarMobile.hidden{
+  visibility: hidden;
+  opacity: 0;
+}
+
+.navlinksContainer {
+  flex-direction: column;
+  width: fit-content;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+ 
+}
+
+.logoContainer{
+  width: 4rem;
+}
+.navlinksContainer h2{
+font-size: 2rem;
+}
+.closeIcon{
+  font-size: 2rem;
+  color: #f4b94a;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.5s;
+
+}
+
+.closeIcon:hover{
+  opacity: 1;
+}
+
+.navbarSmall {
+  width: 100vw;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 0;
+  left: 0;
+  top: 0;
+  justify-content: space-between;
+  z-index: 1000;
+  background-color: transparent;
+
+}
+
+
+
+.navbarSmall .navlinksContainer h2{
+  font-size: 1.2rem;
+  color: #EFB810;
+  opacity: 0.8;
+  transition: all 0.5s;
+}
+
+.navbarSmall .navlinksContainer h2{
+  opacity: 1;
+}
+
+.navbarSmall .navlinksContainer{
+  flex-direction: row;
+
+  width: 30%;
+  justify-content:flex-end;
+}
+
+.menu{
+ 
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around
+}
+
+.menu .line{
+  width: 100%;
+  height: 2px;
+  border-radius: 100vw;
+  background-color: #f4b94a;
+}
+}

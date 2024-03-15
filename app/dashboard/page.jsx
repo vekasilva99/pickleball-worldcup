@@ -32,12 +32,13 @@ import {
   deleteDoc
 } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar3";
 import { Loader } from "@/components/Loader";
 import Register from "@/components/register";
 import axios from "axios";
 import { SuccessMessage } from "@/components/SuccessMessage";
 import Hotel from "@/components/hotel";
+import Footer from "@/components/footer2";
 
 const generateRandomPassword = () => {
   // Implement your logic to generate a random password
@@ -535,7 +536,9 @@ const ProtectedPage = () => {
     setRegister(true)
   }
   return (
+    <>
     <main className="flex min-h-screen main">
+      <img src="/background photos/2403 World Cup - Web LOG IN -08.webp" className="background-overlay" />
       <Register
       team={teamRef}
         open={register}
@@ -566,10 +569,13 @@ const ProtectedPage = () => {
             <div class="gradient-circle">
               <img src={user2.country.image} />
             </div>
+            <div style={{display:'flex',flexDirection:'column'}}>
             <h2>
-              Welcome, {user2.name} {user2.last_name}
+              Welcome, {user2.name}
             </h2>
             <h3>{user2.role.name}</h3>
+            </div>
+         
           </div>
 
           {user2.team ? (
@@ -592,8 +598,8 @@ const ProtectedPage = () => {
                       ) : (
                         <div className="accordion-button-container">
                           <h2 className="text-base font-semibold leading-7 text-gray-900 form-title">
-                            Coordinator - {user2.team.coordinator.name}{" "}
-                            {user2.team.coordinator.last_name}
+                            Coordinator - <span style={{color:"#EFB810", fontStyle:'italic'}}>{user2.team.coordinator.name}{" "}
+                            {user2.team.coordinator.last_name}</span>
                           </h2>
                           <div
                             className="accordion-button"
@@ -601,12 +607,9 @@ const ProtectedPage = () => {
                               setShowCoordinator(!showCoordinator);
                             }}
                           >
-                            <FontAwesomeIcon
-                              icon={
-                                !showCoordinator ? faChevronDown : faChevronUp
-                              }
-                              className="accordion-icon"
-                            />
+                        
+
+                            <img  src="/dashboard/2403 World Cup - Web LOG IN-19.webp"  className="accordion-icon"/>
                           </div>
                         </div>
                       )}
@@ -1090,8 +1093,8 @@ const ProtectedPage = () => {
                       ) : (
                         <div className="accordion-button-container">
                           <h2 className="text-base font-semibold leading-7 text-gray-900 form-title">
-                            Coach - {user2.team.coach.name}{" "}
-                            {user2.team.coach.last_name}
+                            Coach - <span style={{color:"#EFB810", fontStyle:'italic'}}>{user2.team.coach.name}{" "}
+                            {user2.team.coach.last_name}</span>
                           </h2>
                           <div
                             className="accordion-button"
@@ -1099,10 +1102,7 @@ const ProtectedPage = () => {
                               setShowCoach(!showCoach);
                             }}
                           >
-                            <FontAwesomeIcon
-                              icon={!showCoach ? faChevronDown : faChevronUp}
-                              className="accordion-icon"
-                            />
+                                                    <img  src="/dashboard/2403 World Cup - Web LOG IN-19.webp"  className="accordion-icon"/>
                           </div>
                         </div>
                       )}
@@ -1596,10 +1596,7 @@ const ProtectedPage = () => {
                               setShowCaptain(!showCaptain);
                             }}
                           >
-                            <FontAwesomeIcon
-                              icon={!showCaptain ? faChevronDown : faChevronUp}
-                              className="accordion-icon"
-                            />
+                            <img  src="/dashboard/2403 World Cup - Web LOG IN-19.webp"  className="accordion-icon"/>
                           </div>
                         </div>
                       )}
@@ -2083,10 +2080,10 @@ const ProtectedPage = () => {
                         </h2>
                       ) : (
                         <h2 className="text-base font-semibold leading-7 text-gray-900 form-title">
-                          Team - {user2.team.team_members.length}{" "}
+                         <span style={{color:"#EFB810", fontWeight:'bold',textTransform:'uppercase'}}> Team - {user2.team.team_members.length}{" "}
                           {user2.team.team_members.length > 1
                             ? "Players"
-                            : "Player"}
+                            : "Player"}</span>
                         </h2>
                       )}
 
@@ -2405,10 +2402,10 @@ const ProtectedPage = () => {
                               <div className="accordion-button-container sm:col-span-6">
                                 <h2
                                   className="text-base font-semibold leading-7 text-gray-900 sm:col-span-5 form-title"
-                                  style={{ opacity: 0.8 }}
+                               
                                 >
                                   Player {index + 1} -{" "}
-                                  {teamData.pairs[index].name} {teamData.pairs[index].last_name}
+                                  <span style={{color:"#EFB810", fontStyle:'italic'}}>{teamData.pairs[index].name} {teamData.pairs[index].last_name}</span>
                           
                                 </h2>
                                 <div
@@ -2423,14 +2420,7 @@ const ProtectedPage = () => {
                                     });
                                   }}
                                 >
-                                  <FontAwesomeIcon
-                                    icon={
-                                      !showPairs[index]
-                                        ? faChevronDown
-                                        : faChevronUp
-                                    }
-                                    className="accordion-icon"
-                                  />
+                                                        <img  src="/dashboard/2403 World Cup - Web LOG IN-19.webp"  className="accordion-icon"/>
                                 </div>
                               </div>
 
@@ -2683,10 +2673,10 @@ const ProtectedPage = () => {
                             }}
                             style={{
                               textAlign: "center",
-                              color: "#200d04",
+                              color: "#000",
                               cursor: "pointer",
-                              borderColor: "#da9645",
-                              backgroundColor: "#da9645",
+                              borderColor: "#EFB810",
+                              backgroundColor: "#EFB810",
                             }}
                             className="text-sm font-semibold leading-7 text-gray-900 sm:col-span-1 form-title border border-da9645 border-2 rounded-md p-2 transition-opacity duration-500 ease-in-out hover:opacity-80 opacity-100"
                           >
@@ -2706,7 +2696,7 @@ const ProtectedPage = () => {
                         onClick={(e) => {
                           saveData();
                         }}
-                        className="gold-button"
+                        className="gold-button2"
                       >
                         Save
                       </button>
@@ -2718,7 +2708,7 @@ const ProtectedPage = () => {
                         onClick={(e) => {
                           setEdit(true);
                         }}
-                        className="gold-button"
+                        className="gold-button2"
                       >
                         Edit
                       </button>
@@ -2729,15 +2719,15 @@ const ProtectedPage = () => {
               <div className="column-45-2">
                 <div className="option-dashboard">
                   <div className="gradient-circle2">
-                    <img src="/hotel.webp" />
+                    <img src="/dashboard/2403 World Cup - Web LOG IN-21.webp" />
                  
                   </div>
                   <div className="content">
-       
-                      {user2.team?.reservation ?
-                         <h2>         Albergue Villa Deportiva Nacional (VIDENA)</h2>
+                  <h2>Hotel</h2>
+                      {user2.team?.reservation &&
+                         <h4>         Albergue Villa Deportiva Nacional (VIDENA)</h4>}
              
-                      :   <h2>Hotel</h2>}
+                      
                       {user2.team?.reservation &&
                       <h3>{user2.team?.reservation.rooms} {user2.team?.reservation.rooms ==2 ? "rooms" :"room"} ({user2.team?.reservation.rooms*4} people)</h3>}
                       {user2.team?.reservation &&
@@ -2753,10 +2743,10 @@ const ProtectedPage = () => {
                 </div>
                        <div className="option-dashboard">
                        <div className="gradient-circle2">
-                    <img src="/tour.webp" />
+                    <img src="/dashboard/2403 World Cup - Web LOG IN-23.webp" />
                   </div>
                   <div className="content">
-                      <h2>Tour de Confraternidad</h2>
+                      <h2>Fellowship Tour</h2>
                       <h3></h3>
                       <div className="button-container">
                         <button disabled>Coming Soon</button>
@@ -2790,7 +2780,11 @@ const ProtectedPage = () => {
           )}
         </div>
       )}
+           <Footer/>
     </main>
+
+
+    </>
   );
 };
 
