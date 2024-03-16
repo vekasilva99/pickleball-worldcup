@@ -1043,13 +1043,13 @@ const options = {
 <PaymentFormWrapper setuser2={(user)=>{setuser2(user)}} teamRef={teamRef} setOpen={()=>{setOpen(false)}} team={team}/>}
 {!payNow &&
       <div className="mt-6 flex items-center justify-end gap-x-6">
-        <button
+        {/* <button
           type="button"
           className="secondary-button"
           onClick={()=>{setOpen();    router.refresh()}}
         >
           Pay Later
-        </button>
+        </button> */}
         <button
         
           onClick={(e)=>{e.preventDefault();setPayNow(true)}}

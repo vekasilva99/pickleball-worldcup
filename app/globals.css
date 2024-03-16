@@ -34,10 +34,10 @@
   background: linear-gradient(to right, #a77c13, #a77c13, #f8da5b, #efb810, #a77c13);
   padding: 0.3rem 3rem;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   right: 0;
   z-index: 20;
-  bottom:2rem
+  bottom:8rem
 }
 .option-dashboard{
   width: 100%;
@@ -199,7 +199,7 @@ transition: all 0.5s;
   width: 75vw;
   display: flex;
   flex-direction: row;
-  margin-left: 1vw;
+  margin-left: 0.25vw;
   overflow: hidden;
   position: relative;
   
@@ -207,7 +207,7 @@ transition: all 0.5s;
 
 .gallery img{
   width: 24vw;
-  margin: 0 0.5vw;
+  margin: 0 0.125vw;
   transition: all 1s;    
   object-fit: cover;
   height: 100%;
@@ -551,7 +551,9 @@ text-transform: uppercase;
   overflow: hidden;
   
 }
-
+.column-55-2 .form-container{
+  border: none !important;
+}
 .column-55 video{
 width: 100%;
 height: 100%;
@@ -597,7 +599,7 @@ z-index: 100;
 
 .tour-section{
   width: 100vw;
-  min-height: 35vh;
+  min-height: 40vh;
   background-color: #0E0E0A;
   background-image: url('/World Cup - Web HOME_tour section background.webp');
   background-size: cover;
@@ -648,12 +650,12 @@ z-index: 100;
   left:0;
   color: white;
   width: 100%;
-  height: 100%;
+  height: 65%;
 
   
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
 
 }
 .column-55 div{
@@ -678,6 +680,7 @@ z-index: 100;
   line-height: 1.2;
   font-family: 'Anton';
   text-transform: uppercase;
+  margin-top: 1rem;
 }
 
 .column-45 .row div h4{
@@ -956,10 +959,11 @@ align-items: center;
     height: fit-content;
     margin-top: 1rem;
     padding: 1rem;
+    height: 50vh;
 
   }
   .column-45 .row img{
-    height: 50%;
+    height: 100%;
   }
 
 
@@ -1032,11 +1036,11 @@ align-items: center;
     justify-content: space-between;
   }
   .gallery-section .title{
-    width: 48vw;
+    width: 49vw;
   }
 
   .gallery{
-    width: 48vw;
+    width: 49vw;
  
   }
 
@@ -1079,6 +1083,11 @@ align-items: center;
 }
 .dashboard .row{
   width: 90vw;
+}
+
+.tour-section > div:last-of-type{
+  height: 100%;
+  width: 46%;
 }
 }
 

@@ -313,54 +313,7 @@ const ProtectedPage = () => {
       console.error("Login error:", error.message);
     }
   };
-  const validateInput = () => {
-    // Validate coach information
-    if (
-      !teamData.coach.name ||
-      !teamData.coach.last_name ||
-      !teamData.coach.email ||
-      !teamData.coach.phone ||
-      teamData.coach.dupr === null
-    ) {
-      alert("Coach information is incomplete. Please fill in all fields.");
-      return false;
-    }
 
-    // Validate pairs information
-    for (let i = 0; i < teamData.pairs.length; i++) {
-      const pair = teamData.pairs[i];
-      if (
-        !pair.name ||
-        !pair.last_name ||
-        !pair.email ||
-        !pair.phone ||
-        pair.dupr === null
-      ) {
-        alert(
-          `Player ${
-            i + 1
-          } information is incomplete. Please fill in all fields.`
-        );
-        return false;
-      }
-    }
-
-    // Validate email format for coach and pairs
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(teamData.coach.email)) {
-      alert("Coach email is not in a valid format.");
-      return false;
-    }
-
-    for (let i = 0; i < teamData.pairs.length; i++) {
-      if (!emailRegex.test(teamData.pairs[i].email)) {
-        alert(`Player ${i + 1} email is not in a valid format.`);
-        return false;
-      }
-    }
-
-    return true;
-  };
 
   const handleInputChange = (category, index, fieldName, value) => {
     setTeamData((prevTeamData) => {

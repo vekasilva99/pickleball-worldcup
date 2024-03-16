@@ -2,14 +2,16 @@
 "use client"
 import React,{useState} from "react";
 import { useRouter,useParams } from "next/navigation";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar4";
 import Footer from "@/components/footer";
 import LazyImage from "@/components/LazyLoad";
 import Login from "@/components/Login";
+import useAuth from "@/hooks/useAuth";
 
 const images=['/peru/DSC_3509.webp','/peru/image00003.webp','/peru/image00020.webp','/peru/image00080.webp','/peru/image00128.webp','/peru/image00137.webp','/peru/IMG_1558-2.webp','/peru/SANG0664.webp','/peru/SANG0718.webp','/peru/SANG1600.webp','/peru/SANG1631.webp','/peru/SANG1665.webp']
 export default function Home() {
   const router = useRouter();
+  const { user, loading, getInfo } = useAuth();
   const [showLogin,setShowLogin]=useState(false)
   const [selected,setSelected]=useState(0)
   const params=useParams()
@@ -68,7 +70,8 @@ const prev=()=>{
        
           </div>
         </div>
-        <button className="home-button" onClick={()=>{setShowLogin(true)}}>Log In</button>
+        {!user &&
+        <button className="home-button" onClick={()=>{setShowLogin(true)}}>Log In</button>}
       </div>
 
       <div className="gallery-section">

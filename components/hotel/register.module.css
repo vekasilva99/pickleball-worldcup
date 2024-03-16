@@ -103,7 +103,7 @@
     font-family: 'Anton';
     text-transform: uppercase;
     padding: 0.8rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
     border-radius: 0.5rem;
   transition: all 0.5s;
   }
@@ -111,7 +111,7 @@
   .dates button:hover{
  
     padding: 0.8rem;
-    font-size: 0.8rem;
+    font-size: 1.25rem;
     border-radius: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
