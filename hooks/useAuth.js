@@ -189,20 +189,17 @@ const useAuth = () => {
   const getTeamsByCoordinator = async (userDocRef) => {
     // Implement your Firestore query to get teams by Coordinator or coach
     const teamsQuerySnapshot = await getDocs(
-      query(collection(db, "teams"), where("coordinator", "==", userDocRef))
+      query(collection(db, "teams"), where("coordinator", "==", userDocRef),where("payment_status","==",true))
     );
-
-  
-
-    console.log('kjhugyftghjkl;dddswfew',teamsQuerySnapshot,userDocRef)
 
     return teamsQuerySnapshot;
   };
+  
   const getTeamsByCoach = async (userDocRef) => {
     // Implement your Firestore query to get teams by coordinator or coach
     const teamsQuerySnapshot = await getDocs(
       query(collection(db, "teams"),
-      where("coach", "==", userDocRef))
+      where("coach", "==", userDocRef),where("payment_status","==",true))
     );
 
     return teamsQuerySnapshot;
@@ -212,7 +209,7 @@ const useAuth = () => {
     // Implement your Firestore query to get teams by coordinator or coach
     const teamsQuerySnapshot = await getDocs(
       query(collection(db, "teams"),
-      where("captain", "==", userDocRef))
+      where("captain", "==", userDocRef),where("payment_status","==",true))
     );
 
     return teamsQuerySnapshot;
@@ -223,7 +220,7 @@ const useAuth = () => {
     // Implement your Firestore query to get teams by coordinator or coach
     const teamsQuerySnapshot = await getDocs(
     query(collection(db, "hotel"),
-      where("team", "==", teamDocRef))
+      where("team", "==", teamDocRef),where("payment_status","==",true))
     );
 
     return teamsQuerySnapshot;
@@ -234,7 +231,7 @@ const useAuth = () => {
     // Implement your Firestore query to get teams by member UID
     const teamsQuerySnapshot = await getDocs(
      query(collection(db, 'teams'),
-      where('team_members', 'array-contains', memberUid))
+      where('team_members', 'array-contains', memberUid),where("payment_status","==",true))
     );
   
     return teamsQuerySnapshot;

@@ -12,7 +12,6 @@
   background-color: #0e0e0a;
 }
 
-
 .logoContainer {
   width: 6rem;
  display: flex;
@@ -29,9 +28,6 @@
 .right{
 
   width: calc(100% - 8rem);
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
 }
 
 .login{
@@ -49,21 +45,11 @@
   padding: 0.3rem 1.2rem;
   cursor: pointer;
 }
-
-.login h2.logOut{
-  font-family: 'Anton';
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  background: transparent;
-  color: #efb810;
-  padding: 0.3rem 1.2rem;
-  cursor: pointer;
-}
 .navlinksContainer {
   display: flex;
   flex-direction: row;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 1rem 0;
 }

@@ -1,4 +1,3 @@
-// pages/api/send-email.js
 
 import nodemailer from 'nodemailer';
 
@@ -8,87 +7,97 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const { email, password, coordinator, country,link } = req.body;
+  const { email, password, coordinator, country, link } = req.body;
 
   try {
     // Create a nodemailer transporter
     const transporter = nodemailer.createTransport({
-      service: 'Gmail',
+      host: 'c2609024.ferozo.com',
+      port: 465,
+      secure: true,
       auth: {
-        user: 'vekasilva99@gmail.com',
-        pass: 'tjpn mcyr vbze fypz',
+        user: 'worldcup@cabiesesfoundation.com',
+        pass: 'on*/7ev5nK',
       },
     });
 
     // Send the email
     const info = await transporter.sendMail({
-      from: 'vekasilva99@gmail.com',
+      from: 'worldcup@cabiesesfoundation.com',
       to: email,
       subject: 'Welcome to the Pickleball World Cup!',
       html: `
-        <html>
-          <head>
-            <style>
-              body {
-                font-family: Arial, sans-serif;
-                background-color: #f8f8f8;
-                padding: 20px;
-              }
-              .container {
-                max-width: 600px;
-                margin: 0 auto;
-                background-color: #ffffff;
-                padding: 20px;
-                border-radius: 5px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-              }
+      <html>
+        <head>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              background-color: #f8f8f8;
+              padding: 20px;
+            }
+            .container {
+              max-width: 600px;
+              margin: 0 auto;
+              background-color: #ffffff;
+              padding: 20px;
+              border-radius: 5px;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+              text-align:center;
+            }
 
-              .container img{
-                width:4rem;
-                height:4rem;
-                object-fit:contain;
-              }
-              h1 {
-                font-size: 24px;
-                color: #333333;
-                margin-bottom: 20px;
-              }
-              p {
-                color: #555555;
-                margin-bottom: 10px;
-              }
-              a {
-                color: #007bff;
-                text-decoration: none;
-              }
-              .button {
-                display: inline-block;
-                background-color: #EFB810;
-                color: #000 !important;
-                border-radius: 4px;
-                padding: 10px 20px;
-                margin-top: 20px;
-                text-decoration: none;
-              }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-            <div style="background:#000; width:100%;height:fit-content;display:flex;align-items:center;padding:1rem;    border-radius: 1rem;">
-            <img src="https://firebasestorage.googleapis.com/v0/b/pickleball-worldcup.appspot.com/o/World%20Cup%20-%20Web%20HOME_logo%20menu%20bar.webp?alt=media&token=5c348fb9-4b86-4702-ba9c-eff4301acd5c" />
-            </div>  
-            <h1>Welcome to the Pickleball World Cup!</h1>
-              <p>You have been invited to participate by ${coordinator} to represent ${country}.</p>
-              <p>Your username: ${email}</p>
-              <a class="button" href="${link}">Set up your account</a>
-            </div>
-          </body>
-        </html>
-      `,
+            .container img{
+              width:4rem;
+              height:4rem;
+              object-fit:contain;
+            }
+            h1 {
+              font-size: 24px;
+              color: #333333;
+              margin-bottom: 20px;
+            }
+            p {
+              color: #555555;
+              margin-bottom: 10px;
+            }
+            a {
+              color: #007bff;
+              text-decoration: none;
+            }
+            .button {
+              display: inline-block;
+              background-color: #EFB810;
+              color: #000 !important;
+              border-radius: 4px;
+              padding: 10px 20px;
+              margin-top: 20px;
+              text-decoration: none;
+            }
+
+            .banner{
+      
+              height: auto;
+              width:100%;
+        
+            }
+          
+          </style>
+        </head>
+        <body>
+          <div class="container">
+          <img style=" width:100%;display:flex;align-items:center;border-radius: 1rem;height:auto;" class="banner" src="https://firebasestorage.googleapis.com/v0/b/pickleball-worldcup.appspot.com/o/2403-World-Cup-banner-mailing.png?alt=media&token=d25f0589-7472-4276-a807-300bc8192878" />
+   
+          <h1>Welcome to the Pickleball World Cup!</h1>
+            <p>You have been invited to participate by ${coordinator} to represent ${country}.</p>
+            <p>Your username: ${email}</p>
+            <a class="button" href="${link}">Set up your account</a>
+          </div>
+        </body>
+      </html>
+    `,
     });
 
     // Log success and send a response
-    //console.log('Email sent: ', info.messageId);
+    console.log('Email sent: ', info.messageId);
     res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
     // Log error and send an error response

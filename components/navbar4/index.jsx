@@ -40,12 +40,13 @@ setLoading(false)
     <Loader  loading={loading}/>
     <div className={styles.navbar}>
         <div className={styles.logoContainer}>
-        <LazyImage src="/logo.webp" width={200} height={200} />
+        <LazyImage src="/logo.webp" width={200} height={200} onClick={()=>{router.push('/')}} />
         
         </div>
         <div className={styles.right}>
           <div className={styles.login}>
-          {user && !loading &&  <h2 className={styles.logOut} onClick={()=>{handleLogOut()}}
+            
+          {user && !loading &&  <h2 onClick={()=>{handleLogOut()}}
           >
             Log Out
           </h2>}
@@ -54,25 +55,21 @@ setLoading(false)
             Log In
           </h2 >}
           </div>
-        {/* <div className={styles.navlinksContainer}>
-        <h2>Fellowship Tour</h2>
-          <h2 className={styles.active}>About Us</h2>
-          <h2>Teams</h2>
-          <h2>Events</h2>
-          <h2>News</h2>
-       
-       
-          <h2>Tickets</h2>
-          <h2>Gallery</h2>
+
+            {user && !loading && 
+        <div className={styles.navlinksContainer}>
+        <h2 onClick={()=>{router.push('/dashboard')}}>Dashboard</h2>
+        
+         
        
       
-        </div> */}
+        </div>}
         </div>
       </div>
 
       <div className={styles.navbarSmall}>
         <div className={styles.logoContainer}>
-        <img src="./logo.webp" />
+        <img src="./logo.webp" onClick={()=>{router.push('/')}} />
         </div>
         <div className={styles.navlinksContainer}>
          
@@ -85,11 +82,12 @@ setLoading(false)
           >
             LOG IN
           </h2 >}
+          {user && !loading && 
           <div className={styles.menu} onClick={()=>{setShowMenu(true)}}>
             <div className={styles.line}></div>
             <div className={styles.line}></div>
             <div className={styles.line}></div>
-          </div>
+          </div>}
         </div>
       </div>
       <div className={showMenu ? styles.navbarMobile : `${styles.navbarMobile} ${styles.hidden}`}>
@@ -99,15 +97,7 @@ setLoading(false)
                           className={styles.closeIcon}
                         />
         <div className={styles.navlinksContainer}>
-        <h2>Fellowship Tour</h2>
-          <h2 className={styles.active}>About Us</h2>
-          <h2>Teams</h2>
-          <h2>Events</h2>
-          <h2>News</h2>
-       
-       
-          <h2>Tickets</h2>
-          <h2>Gallery</h2>
+        <h2 onClick={()=>{router.push('/dashboard')}}>Dashboard</h2>
       
         </div>
       </div>
