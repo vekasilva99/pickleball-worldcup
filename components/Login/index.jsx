@@ -10,12 +10,14 @@ import {
   faMultiply
 } from "@fortawesome/free-solid-svg-icons";
 import LazyImage from "../LazyLoad";
+import { ErrorMessage } from "../ErrorMessage";
 
 export default function Login({showLogin,setShowLogin}) {
 
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
   const router=useRouter()
+  const [errorMessage, setErrorMessage] = useState(null);
 
 
   const handleLogin = async () => {
@@ -31,6 +33,8 @@ export default function Login({showLogin,setShowLogin}) {
       setShowLogin(false)
       router.push('/dashboard')
     } catch (error) {
+      setShowLogin(false)
+      setErrorMessage("Please enter a correct username and password. Note that both fields may be case-sensitive.")
       console.error("Login error:", error.message);
     }
   };
@@ -38,6 +42,11 @@ export default function Login({showLogin,setShowLogin}) {
 
   const isLoginDisabled = email === '' || password === ''; 
   return (
+<>
+<ErrorMessage    message={errorMessage}
+        setMessage={(value) => {
+          setErrorMessage(value);
+        }}/>
 
 
       <div className={showLogin ? styles.loginOverlay : `${styles.loginOverlay} ${styles.hidden}`}>
@@ -95,6 +104,6 @@ export default function Login({showLogin,setShowLogin}) {
 
 
       </div>
-    
+   </> 
   );
 }

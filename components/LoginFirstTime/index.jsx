@@ -21,12 +21,14 @@ import { db } from "@/firebase/firebase"; // Replace with your actual Firebase i
 
 
 import { Loader } from "../Loader";
+import { ErrorMessage } from "../ErrorMessage";
 
 export default function Login({ showLogin, setShowLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [user, setUser] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();
@@ -59,6 +61,7 @@ export default function Login({ showLogin, setShowLogin }) {
         //console.log("TEAM NUEVO", teamData);
       }
     } catch (error) {
+      setErrorMessage(error.message)
       console.error("Login error:", error.message);
     }
   };
@@ -68,9 +71,11 @@ export default function Login({ showLogin, setShowLogin }) {
     }
 
     if (password != password2) {
+      setErrorMessage('Password do not match.')
       return;
     }
     if (password.length < 6) {
+      setErrorMessage('Password must have at least 6 characters.')
       return;
     }
 
@@ -115,6 +120,7 @@ export default function Login({ showLogin, setShowLogin }) {
     
       }
     } catch (error) {
+      setErrorMessage(error.message)
       console.error("Login error:", error.message);
     }
   };
@@ -216,10 +222,12 @@ export default function Login({ showLogin, setShowLogin }) {
         setLoading(false);
         return userData;
       } else {
+        setErrorMessage("User document does not exist.")
         console.error("User document does not exist.");
         return null;
       }
     } catch (error) {
+      setErrorMessage("Oops. There was an error.")
       console.error("Error fetching user data from Firestore:", error);
       throw error;
     }
@@ -235,6 +243,7 @@ export default function Login({ showLogin, setShowLogin }) {
         return null;
       }
     } catch (error) {
+      setErrorMessage("Oops there was an error.")
       console.error("Error fetching team information:", error);
       throw error;
     }
@@ -283,10 +292,17 @@ export default function Login({ showLogin, setShowLogin }) {
   const getInfo = async () => {
     const userDataFromFirestore = await getUserDataFromFirestore(params.userId);
     //console.log(userDataFromFirestore);
+    console.log('iomrjvolmrv',userDataFromFirestore)
+    if(userDataFromFirestore){
     setUser({
       uid: params.userId,
       ...userDataFromFirestore, // Include additional data from Firestore
     });
+  }else{
+    console.log('lllll')
+    setUser(null)
+  }
+  setLoading(false)
   };
   useEffect(() => {
     if (params.userId && params.teamId) {
@@ -295,7 +311,8 @@ export default function Login({ showLogin, setShowLogin }) {
   }, [params]);
 
   useEffect(() => {
-    if (!loading && !user && !user.team) {
+    console.log('jinfbvuejviuehrn',loading,user)
+    if (!loading && !user && !user?.team) {
       router.replace("/"); // Redirect to the login page if the user is not authenticated
     }
   }, [user, loading, router]);
@@ -308,6 +325,10 @@ export default function Login({ showLogin, setShowLogin }) {
   const isLoginDisabled = email === "" || password === "";
   return (
     <>
+    <ErrorMessage    message={errorMessage}
+        setMessage={(value) => {
+          setErrorMessage(value);
+        }}/>
       {user && user.team && (
         <>
         <img src="/background photos/2403 World Cup - Web LOG IN -08.webp" className={styles.overlay}/>

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck,faMultiply } from "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import LazyImage from "../LazyLoad";
-export const SuccessMessage = ({ message,setMessage }) => {
+export const ErrorMessage = ({ message,setMessage }) => {
   return (
     <div
       className={
@@ -19,9 +19,9 @@ export const SuccessMessage = ({ message,setMessage }) => {
       <LazyImage className={styles.closeIcon}      onClick={()=>{setMessage(null)}} src="/LOG IN/2403-World-Cup-Web-LOG-IN-10.webp"  width={200} height={200} />
 
 
-        <div class="gradient-circle-success">
+        <div class="gradient-circle-success close">
        
-          <LazyImage style={{objectFit:'contain'}}src="/check-grey.png"    width={200} height={200} />
+          <LazyImage style={{objectFit:'contain'}}src="/close.png"    width={200} height={200} />
 
         </div>
         <h2>{message}</h2>

@@ -6,11 +6,15 @@ import { CardElement, Elements, useElements, useStripe } from '@stripe/react-str
 import {db,auth} from '@/firebase/firebase'
 import { collection, getDocs, doc, getDoc,where, collectionGroup,set,addDoc,updateDoc,arrayUnion,setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
+import { ErrorMessage } from '../ErrorMessage';
+import { SuccessMessage } from '../SuccessMessage';
 const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY);
 
 function PaymentForm({teamRef,setOpen,team,setuser2,reservationRef, total}) {
   const { user, loading, getInfo } = useAuth();
   const [clientSecret, setClientSecret] = useState('');
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const stripe = useStripe();
   const elements = useElements();
 const router=useRouter()
@@ -55,12 +59,13 @@ const router=useRouter()
     });
 
     if (result.error) {
+      setErrorMessage(result.error.message)
       console.error(result.error.message);
     } else {
    
         await updateDoc(reservationRef,{payment_status:true});
 
-
+setSuccessMessage('Your hotel reservation is ready.')
  
       let auxUser=await getInfo(user)
       setuser2(auxUser)
@@ -71,6 +76,16 @@ const router=useRouter()
 
 
   return (
+    <>
+        <ErrorMessage    message={errorMessage}
+        setMessage={(value) => {
+          setErrorMessage(value);
+        }}/>
+
+<SuccessMessage   message={successMessage}
+        setMessage={(value) => {
+          setSuccessMessage(value);
+        }}/>
     <form >
       <div className='card-element-container'>
         <CardElement id="card-element" options={CARD_ELEMENT_OPTIONS} />
@@ -88,6 +103,7 @@ const router=useRouter()
         </button>
       </div>
     </form>
+    </>
   );
 }
 

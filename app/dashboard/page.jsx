@@ -30,6 +30,7 @@ import { SuccessMessage } from "@/components/SuccessMessage";
 import Hotel from "@/components/hotel";
 import Footer from "@/components/footer2";
 import LazyImage from "@/components/LazyLoad";
+import { ErrorMessage } from "@/components/ErrorMessage";
 
 const generateRandomPassword = () => {
   // Implement your logic to generate a random password
@@ -93,6 +94,7 @@ const ProtectedPage = () => {
   const [edit, setEdit] = useState(false);
   const [hotel, setHotel] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [user2, setuser2] = useState(null);
   const [register, setRegister] = useState(false);
   const [showCoach, setShowCoach] = useState(false);
@@ -310,6 +312,7 @@ const ProtectedPage = () => {
       setSuccessMessage("Your team has been updated succesfully!");
       //  location.reload()
     } catch (error) {
+      setErrorMessage("There was an error when updating your team. Please try again and if the error persists contact the admin.")
       console.error("Login error:", error.message);
     }
   };
@@ -403,6 +406,7 @@ const ProtectedPage = () => {
     // sendEmail(memberData.email,password,user.name+" "+user.last_name,user.country.name,`http://localhost:3000/${newUserRef.id}/${newTeamRef.id}`)
       return newUserRef;
     } catch (error) {
+      setErrorMessage("There was an error when updating your team. Please try again and if the error persists contact the admin.")
       throw error;
     }
   };
@@ -507,6 +511,10 @@ const ProtectedPage = () => {
           setSuccessMessage(value);
         }}
       />
+      <ErrorMessage    message={errorMessage}
+        setMessage={(value) => {
+          setErrorMessage(value);
+        }}/>
       <Navbar />
       {user2 && (
         <div className="dashboard">
