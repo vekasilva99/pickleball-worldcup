@@ -31,10 +31,10 @@ export default function Register({open,setOpen,team,setuser2}) {
   const [showPayment, setShowPayment] = useState(team ? true : false);
   const [payNow, setPayNow] = useState(team ? true : false);
   const [teamData, setTeamData] = useState({
-    coach: { name: "", last_name: "", email: "", phone:"",dupr:null,passport:"",date_of_arrival:null,airline:"",flight_number:"",shirt_size:"" },
-    captain: { name: "", last_name: "", email: "", phone:"",dupr:null,passport:"",date_of_arrival:null,airline:"",flight_number:"",shirt_size:"" },
+    coach: { name: "", last_name: "", email: "", phone:"",phone_code:"",dupr:null,passport:"",date_of_arrival:null,airline:"",flight_number:"",shirt_size:"" },
+    captain: { name: "", last_name: "", email: "", phone:"",phone_code:"",dupr:null,passport:"",date_of_arrival:null,airline:"",flight_number:"",shirt_size:"" },
     pairs: [
-      { name: "", last_name: "", email: "",phone:"",dupr:null,passport:"",date_of_arrival:null,airline:"",flight_number:"",shirt_size:""   },
+      { name: "", last_name: "", email: "",phone:"",phone_code:"",dupr:null,passport:"",date_of_arrival:null,airline:"",flight_number:"",shirt_size:""   },
     ],
   });
 
@@ -105,7 +105,7 @@ export default function Register({open,setOpen,team,setuser2}) {
         ...prevTeamData,
         pairs: [
           ...prevTeamData.pairs,
-          { name: "", last_name: "", email: "",phone:"",dupr:null,passport:"",date_of_arrival:null,airline:"",flight_number:"",shirt_size:""   },
+          { name: "", last_name: "", email: "",phone:"",phone_code:"",dupr:null,passport:"",date_of_arrival:null,airline:"",flight_number:"",shirt_size:""   },
         ],
       }));
     }
@@ -131,7 +131,7 @@ const registerTeamMember = async (newTeamRef, memberData, role,countryRef) => {
         name: memberData.name,
         last_name: memberData.last_name,
         email: memberData.email,  // Fix: Use the correct email field instead of last_name
-        phone: memberData.phone,
+        phone: memberData.phone_code+memberData.phone,
         dupr:Number(memberData.dupr),
         role: roleReference,     // Assign the user role
         country:countryRef,
@@ -368,9 +368,9 @@ const options = {
                     name="coach-phone"
                     type="text"
                     autoComplete="phone"
-                    value={teamData.coach.phone}
+                    value={teamData.coach.phone_code}
                     onChange={(e) =>
-                      handleInputChange("coach", null, "phone", e.target.value)
+                      handleInputChange("coach", null, "phone_code", e.target.value)
                     }
                     placeholder="Enter phone number"
                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -652,9 +652,9 @@ Code                </label>
                     name="captain-phone"
                     type="text"
                     autoComplete="phone"
-                    value={teamData.captain.phone}
+                    value={teamData.captain.phone_code}
                     onChange={(e) =>
-                      handleInputChange("captain", null, "phone", e.target.value)
+                      handleInputChange("captain", null, "phone_code", e.target.value)
                     }
                     placeholder="Enter phone number"
                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -926,8 +926,8 @@ Code                </label>
                    name={`pair-phone-${index}`}
                     type="text"
                     autoComplete="phone"
-                    value={teamData.pairs[index].phone}
-                    onChange={(e) => handleInputChange('pairs', index, 'phone', e.target.value)}
+                    value={teamData.pairs[index].phone_code}
+                    onChange={(e) => handleInputChange('pairs', index, 'phone_code', e.target.value)}
                     placeholder="Enter phone number"
                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                   >
