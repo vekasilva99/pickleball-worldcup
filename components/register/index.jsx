@@ -11,6 +11,7 @@ import { Datepicker } from 'flowbite-react';
 import {format} from 'date-fns'
 import PaymentFormWrapper from "../PaymentForm";
 import { useRouter } from "next/navigation";
+import { countryCodes } from "@/helpers/countryCodes";
 
 
 
@@ -354,12 +355,40 @@ const options = {
                 </div>
               </div>
 
-              <div className="sm:col-span-3">
+              <div className="sm:col-span-1">
                 <label
                   htmlFor="coach-dupr"
                   className="block text-sm font-medium leading-6 text-gray-900 form-title"
                 >
-                  Phone number
+                  Code
+                </label>
+                <div className="mt-2">
+                  <select
+                    id="coach-phone"
+                    name="coach-phone"
+                    type="text"
+                    autoComplete="phone"
+                    value={teamData.coach.phone}
+                    onChange={(e) =>
+                      handleInputChange("coach", null, "phone", e.target.value)
+                    }
+                    placeholder="Enter phone number"
+                    className="block w-full rounded-md sm:text-sm sm:leading-6 input"
+                  >
+                    {countryCodes.map((phone)=>{
+ return <option value={phone.dial_code}>{phone.name} {phone.dial_code}</option>
+                    })}
+                   
+                  </select>
+                </div>
+              </div>
+              
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="coach-dupr"
+                  className="block text-sm font-medium leading-6 text-gray-900 form-title"
+                >
+                 Phone Number
                 </label>
                 <div className="mt-2">
                   <input
@@ -388,6 +417,9 @@ const options = {
                     id="coach-dupr"
                     name="coach-dupr"
                     type="number"
+                    step={"0.1"}
+                    min={'2.5'}
+                    max={'5.4'}
                     value={teamData.coach.dupr}
                     onChange={(e) =>
                       handleInputChange("coach", null, "dupr", e.target.value)
@@ -405,7 +437,7 @@ const options = {
                   Shirt Size
                 </label>
                 <div className="mt-2">
-                  <input
+                  <select
                     id="coach-shirt-size"
                     name="coach-shirt-size"
                     type="text"
@@ -415,7 +447,13 @@ const options = {
                     }
                     placeholder="Enter shirt size"
                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
-                  />
+                  >
+                    <option value={'XS'}>XS</option>
+                    <option value={'S'}>S</option>
+                    <option value={'M'}>M</option>
+                    <option value={'L'}>L</option>
+                    <option value={'XL'}>XL</option>
+                    </select>
                 </div>
               </div>
               <div className="sm:col-span-3">
@@ -602,7 +640,32 @@ const options = {
                 </div>
               </div>
 
-              <div className="sm:col-span-3">
+              <div className="sm:col-span-1">
+                <label
+                  htmlFor="captain-dupr"
+                  className="block text-sm font-medium leading-6 text-gray-900 form-title"
+                >
+Code                </label>
+                <div className="mt-2">
+                  <select
+                    id="captain-phone"
+                    name="captain-phone"
+                    type="text"
+                    autoComplete="phone"
+                    value={teamData.captain.phone}
+                    onChange={(e) =>
+                      handleInputChange("captain", null, "phone", e.target.value)
+                    }
+                    placeholder="Enter phone number"
+                    className="block w-full rounded-md sm:text-sm sm:leading-6 input"
+                  >
+                                  {countryCodes.map((phone)=>{
+ return <option value={phone.dial_code}>{phone.name} {phone.dial_code}</option>
+                    })}
+                    </select>
+                </div>
+              </div>
+              <div className="sm:col-span-2">
                 <label
                   htmlFor="captain-dupr"
                   className="block text-sm font-medium leading-6 text-gray-900 form-title"
@@ -636,6 +699,9 @@ const options = {
                     id="captain-dupr"
                     name="captain-dupr"
                     type="number"
+                    step={"0.1"}
+                    min={'2.5'}
+                    max={'5.4'}
                     value={teamData.captain.dupr}
                     onChange={(e) =>
                       handleInputChange("captain", null, "dupr", e.target.value)
@@ -653,7 +719,7 @@ const options = {
                   Shirt Size
                 </label>
                 <div className="mt-2">
-                  <input
+                  <select
                     id="captain-shirt-size"
                     name="captain-shirt-size"
                     type="text"
@@ -663,7 +729,13 @@ const options = {
                     }
                     placeholder="Enter shirt size"
                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
-                  />
+                  >
+                          <option value={'XS'}>XS</option>
+                    <option value={'S'}>S</option>
+                    <option value={'M'}>M</option>
+                    <option value={'L'}>L</option>
+                    <option value={'XL'}>XL</option>
+                    </select>
                 </div>
               </div>
               <div className="sm:col-span-3">
@@ -840,7 +912,32 @@ const options = {
         />
       </div>
     </div>
-    <div className="sm:col-span-3">
+
+    <div className="sm:col-span-1">
+                <label
+                 htmlFor={`pair-phone-${index}`}
+                  className="block text-sm font-medium leading-6 text-gray-900 form-title"
+                >
+                  Code
+                </label>
+                <div className="mt-2">
+                  <select
+                   id={`pair-phone-${index}`}
+                   name={`pair-phone-${index}`}
+                    type="text"
+                    autoComplete="phone"
+                    value={teamData.pairs[index].phone}
+                    onChange={(e) => handleInputChange('pairs', index, 'phone', e.target.value)}
+                    placeholder="Enter phone number"
+                    className="block w-full rounded-md sm:text-sm sm:leading-6 input"
+                  >
+                        {countryCodes.map((phone)=>{
+ return <option value={phone.dial_code}>{phone.name} {phone.dial_code}</option>
+                    })}
+                    </select>
+                </div>
+              </div>
+              <div className="sm:col-span-2">
                 <label
                  htmlFor={`pair-phone-${index}`}
                   className="block text-sm font-medium leading-6 text-gray-900 form-title"
@@ -873,6 +970,9 @@ const options = {
                      id={`pair-phone-${index}`}
                      name={`pair-phone-${index}`}
                     type="number"
+                    step={"0.1"}
+                    min={'2.5'}
+                    max={'5.4'}
                     value={teamData.pairs[index].dupr}
                     onChange={(e) =>
                       handleInputChange('pairs', index, "dupr", e.target.value)
@@ -890,7 +990,7 @@ const options = {
                   Shirt Size
                 </label>
                 <div className="mt-2">
-                  <input
+                  <select
                     id={`pair-shirt-size-${index}`}
                     name={`pair-shirt-size-${index}`}
                     type="text"
@@ -900,7 +1000,13 @@ const options = {
                     }
                     placeholder="Enter shirt size"
                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
-                  />
+                  >
+                          <option value={'XS'}>XS</option>
+                    <option value={'S'}>S</option>
+                    <option value={'M'}>M</option>
+                    <option value={'L'}>L</option>
+                    <option value={'XL'}>XL</option>
+                    </select>
                 </div>
               </div>
               <div className="sm:col-span-3">

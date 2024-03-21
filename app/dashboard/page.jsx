@@ -698,6 +698,9 @@ const ProtectedPage = () => {
                                 id="coordinator-dupr"
                                 name="coordinator-dupr"
                                 type="number"
+                                step={"0.1"}
+                                min={'2.5'}
+                                max={'5.4'}
                                 value={teamData.coordinator.dupr}
                                 onChange={(e) =>
                                   handleInputChange(
@@ -720,7 +723,7 @@ const ProtectedPage = () => {
                               Shirt Size
                             </label>
                             <div className="mt-2">
-                              <input
+                              <select
                                 id="coordinator-shirt-size"
                                 name="coordinator-shirt-size"
                                 type="text"
@@ -735,7 +738,13 @@ const ProtectedPage = () => {
                                 }
                                 placeholder="Enter shirt size"
                                 className="block w-full rounded-md sm:text-sm sm:leading-6 input"
-                              />
+                              >
+                                     <option value={'XS'}>XS</option>
+                    <option value={'S'}>S</option>
+                    <option value={'M'}>M</option>
+                    <option value={'L'}>L</option>
+                    <option value={'XL'}>XL</option>
+                                </select>
                             </div>
                           </div>
                           <div className="sm:col-span-3">
@@ -941,6 +950,9 @@ const ProtectedPage = () => {
                                 id="coordinator-dupr"
                                 name="coordinator-dupr"
                                 type="number"
+                                step={"0.1"}
+                                min={'2.5'}
+                                max={'5.4'}
                                 value={teamData.coordinator.dupr}
                                 className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                               />
@@ -954,14 +966,20 @@ const ProtectedPage = () => {
                               Shirt Size
                             </label>
                             <div className="mt-2">
-                              <input
+                              <select
                                 disabled={true}
                                 id="coordinator-shirt-size"
                                 name="coordinator-shirt-size"
                                 type="text"
                                 value={teamData.coordinator.shirt_size}
                                 className="block w-full rounded-md sm:text-sm sm:leading-6 input"
-                              />
+                              >
+                                     <option value={'XS'}>XS</option>
+                    <option value={'S'}>S</option>
+                    <option value={'M'}>M</option>
+                    <option value={'L'}>L</option>
+                    <option value={'XL'}>XL</option>
+                                </select>
                             </div>
                           </div>
                           <div className="sm:col-span-3">
@@ -1191,6 +1209,9 @@ const ProtectedPage = () => {
                                 id="coach-dupr"
                                 name="coach-dupr"
                                 type="number"
+                                step={"0.1"}
+                                min={'2.5'}
+                                max={'5.4'}
                                 value={teamData.coach.dupr}
                                 onChange={(e) =>
                                   handleInputChange(
@@ -1213,7 +1234,7 @@ const ProtectedPage = () => {
                               Shirt Size
                             </label>
                             <div className="mt-2">
-                              <input
+                              <select
                                 id="coach-shirt-size"
                                 name="coach-shirt-size"
                                 type="text"
@@ -1228,7 +1249,13 @@ const ProtectedPage = () => {
                                 }
                                 placeholder="Enter shirt size"
                                 className="block w-full rounded-md sm:text-sm sm:leading-6 input"
-                              />
+                              >
+                                     <option value={'XS'}>XS</option>
+                    <option value={'S'}>S</option>
+                    <option value={'M'}>M</option>
+                    <option value={'L'}>L</option>
+                    <option value={'XL'}>XL</option>
+                                </select>
                             </div>
                           </div>
                           <div className="sm:col-span-3">
@@ -1434,6 +1461,9 @@ const ProtectedPage = () => {
                                 id="coach-dupr"
                                 name="coach-dupr"
                                 type="number"
+                                step={"0.1"}
+                                min={'2.5'}
+                                max={'5.4'}
                                 value={teamData.coach.dupr}
                                 className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                               />
@@ -1447,14 +1477,20 @@ const ProtectedPage = () => {
                               Shirt Size
                             </label>
                             <div className="mt-2">
-                              <input
+                              <select
                                 disabled={true}
                                 id="coach-shirt-size"
                                 name="coach-shirt-size"
                                 type="text"
                                 value={teamData.coach.shirt_size}
                                 className="block w-full rounded-md sm:text-sm sm:leading-6 input"
-                              />
+                              >
+                                     <option value={'XS'}>XS</option>
+                    <option value={'S'}>S</option>
+                    <option value={'M'}>M</option>
+                    <option value={'L'}>L</option>
+                    <option value={'XL'}>XL</option>
+                                </select>
                             </div>
                           </div>
                           <div className="sm:col-span-3">
@@ -1686,6 +1722,9 @@ const ProtectedPage = () => {
                                 id="captain-dupr"
                                 name="captain-dupr"
                                 type="number"
+                                step={"0.1"}
+                                min={'2.5'}
+                                max={'5.4'}
                                 value={teamData.captain.dupr}
                                 onChange={(e) =>
                                   handleInputChange(
@@ -1708,7 +1747,7 @@ const ProtectedPage = () => {
                               Shirt Size
                             </label>
                             <div className="mt-2">
-                              <input
+                              <select
                                 id="captain-shirt-size"
                                 name="captain-shirt-size"
                                 type="text"
@@ -1723,7 +1762,13 @@ const ProtectedPage = () => {
                                 }
                                 placeholder="Enter shirt size"
                                 className="block w-full rounded-md sm:text-sm sm:leading-6 input"
-                              />
+                              >
+                                     <option value={'XS'}>XS</option>
+                    <option value={'S'}>S</option>
+                    <option value={'M'}>M</option>
+                    <option value={'L'}>L</option>
+                    <option value={'XL'}>XL</option>
+                                </select>
                             </div>
                           </div>
                           <div className="sm:col-span-3">
@@ -1929,6 +1974,9 @@ const ProtectedPage = () => {
                                 id="captain-dupr"
                                 name="captain-dupr"
                                 type="number"
+                                step={"0.1"}
+                                min={'2.5'}
+                                max={'5.4'}
                                 value={teamData.captain.dupr}
                                 className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                               />
@@ -1942,14 +1990,21 @@ const ProtectedPage = () => {
                               Shirt Size
                             </label>
                             <div className="mt-2">
-                              <input
+                              <select
                                 disabled={true}
                                 id="captain-shirt-size"
                                 name="captain-shirt-size"
                                 type="text"
                                 value={teamData.captain.shirt_size}
                                 className="block w-full rounded-md sm:text-sm sm:leading-6 input"
-                              />
+                              >
+
+<option value={'XS'}>XS</option>
+                    <option value={'S'}>S</option>
+                    <option value={'M'}>M</option>
+                    <option value={'L'}>L</option>
+                    <option value={'XL'}>XL</option>
+                              </select>
                             </div>
                           </div>
                           <div className="sm:col-span-3">
@@ -2201,6 +2256,9 @@ const ProtectedPage = () => {
                                     id={`pair-phone-${index}`}
                                     name={`pair-phone-${index}`}
                                     type="number"
+                                    step={"0.1"}
+                                    min={'2.5'}
+                                    max={'5.4'}
                                     value={teamData.pairs[index].dupr}
                                     onChange={(e) =>
                                       handleInputChange(
@@ -2223,7 +2281,7 @@ const ProtectedPage = () => {
                                   Shirt Size
                                 </label>
                                 <div className="mt-2">
-                                  <input
+                                  <select
                                     id={`pair-shirt-size-${index}`}
                                     name={`pair-shirt-size-${index}`}
                                     type="text"
@@ -2238,7 +2296,13 @@ const ProtectedPage = () => {
                                     }
                                     placeholder="Enter shirt size"
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
-                                  />
+                                  >
+                                         <option value={'XS'}>XS</option>
+                    <option value={'S'}>S</option>
+                    <option value={'M'}>M</option>
+                    <option value={'L'}>L</option>
+                    <option value={'XL'}>XL</option>
+                                  </select>
                                 </div>
                               </div>
                               <div className="sm:col-span-3">
@@ -2501,6 +2565,9 @@ const ProtectedPage = () => {
                                     id={`pair-phone-${index}`}
                                     name={`pair-phone-${index}`}
                                     type="number"
+                                    step={"0.1"}
+                                    min={'2.5'}
+                                    max={'5.4'}
                                     value={teamData.pairs[index].dupr}
                                   
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -2519,7 +2586,7 @@ const ProtectedPage = () => {
                                   Shirt Size
                                 </label>
                                 <div className="mt-2">
-                                  <input
+                                  <select
                                      disabled={true}
                                     id={`pair-shirt-size-${index}`}
                                     name={`pair-shirt-size-${index}`}
@@ -2527,7 +2594,13 @@ const ProtectedPage = () => {
                                     value={teamData.pairs[index].shirt_size}
                                    
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
-                                  />
+                                  >
+                                         <option value={'XS'}>XS</option>
+                    <option value={'S'}>S</option>
+                    <option value={'M'}>M</option>
+                    <option value={'L'}>L</option>
+                    <option value={'XL'}>XL</option>
+                                    </select>
                                 </div>
                               </div>
                               <div
