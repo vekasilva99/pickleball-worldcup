@@ -53,6 +53,10 @@
   padding: 1rem;
 }
 
+.option-dashboard.senior{
+  border: 1.8pt solid #CCCCCC;
+}
+
 .option-dashboard .content{
 width: calc(100% - 5rem);
 height: 100%;
@@ -76,6 +80,10 @@ justify-content: space-around;
   font-family: 'Montserrat';
   margin-bottom: 0.5rem;
 
+}
+
+.option-dashboard.senior .content h4{
+  color: #CCCCCC;
 }
 
 .option-dashboard .content h3{
@@ -114,7 +122,9 @@ font-family: 'Montserrat';
   opacity: 0.8;
 }
 
-
+.option-dashboard.senior .content button:disabled{
+  color: #CCCCCC;
+}
 .option-dashboard .content button:hover{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -287,6 +297,10 @@ margin-top:2rem;
 
 }
 
+.gold-button.senior{
+  background: linear-gradient(to right, #989898, #cbcbcb, #f1f1f1, #cbcbcb, #989898);
+}
+
 .gold-button:hover{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
   font-size: 1.55rem;
@@ -304,6 +318,10 @@ margin-top:2rem;
 
 }
 
+.gold-button3.senior{
+  background: linear-gradient(to right, #989898, #cbcbcb, #f1f1f1, #cbcbcb, #989898);
+}
+
 .gold-button3:hover{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
   font-size: 2.1rem;
@@ -318,6 +336,10 @@ margin-top:2rem;
   cursor: pointer;
   transition: all 0.5s;
 
+}
+
+.gold-button2.senior{
+  background: #CCCCCC;
 }
 
 .gold-button2:hover{
@@ -505,6 +527,10 @@ background-color: #EFB810;
 
 }
 
+.form-title-container.senior{
+  background-color: #CCCCCC;
+}
+
 .form-title-container h2{
 font-size: 3rem;
 color:#000;
@@ -526,6 +552,10 @@ text-transform: uppercase;
   width: 100%;
   max-height: 70vh;
 
+}
+
+.form-container.senior{
+  border: 1.8pt solid #CCCCCC;
 }
 
 .form-container {
@@ -745,6 +775,10 @@ text-align: right;
   font-style: italic;
 }
 
+.header-dashboard.senior h3{
+  color: #CCCCCC;
+}
+
 .gradient-circle {
   width: 8rem;
   min-width: 8rem;
@@ -860,6 +894,11 @@ align-items: center;
   font-weight: 500;
 }
 
+.row-title.senior{
+  background: #CCCCCC;
+}
+
+
 .dashboard .row{
   width: 80vw;
   margin-top: 1rem;
@@ -885,6 +924,9 @@ align-items: center;
   border: 1.5pt solid #EFB810;
 }
 
+.dashboard.senior .row .column-55-2{
+  border: 1.5pt solid #CCCCCC;
+}
 .no-show {
   max-height: 0;
   overflow: hidden;

@@ -461,6 +461,8 @@ const ProtectedPage = () => {
   useEffect(() => {
     if (!loading && !user) {
       router.replace("/"); // Redirect to the login page if the user2 is not authenticated
+    }else if(!loading && user && user.senior){
+      router.replace("/dashboard/senior");
     }
     if (user) {
       setuser2(user)

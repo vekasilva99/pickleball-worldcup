@@ -148,6 +148,7 @@ const useAuth = () => {
           //console.log('CAPTAIN',userData.team.captain)
           userData.team.captain=await getTeamInformation(userData.team.captain)
           for (let i = 0; i < userData.team.team_members.length; i++) {
+            console.log("bgegjwhehwugegvuwye")
             userData.team.team_members[i] = await getTeamInformation(userData.team.team_members[i]);
           }
         }
@@ -169,8 +170,9 @@ const useAuth = () => {
 
   const getTeamInformation = async (userDocRef) => {
     try {
-      //console.log('UNUNN',userDocRef)
+      console.log('UNUNN',userDocRef)
       const userDocSnapshot = await getDoc(userDocRef);
+      console.log('UNUNN',userDocSnapshot.exists())
       if (userDocSnapshot.exists()) {
         const userData = await userDocSnapshot.data();
         userData.id=userDocSnapshot.id
@@ -229,11 +231,13 @@ const useAuth = () => {
   // Helper function to get teams by member
   const getTeamsByMember = async (memberUid) => {
     // Implement your Firestore query to get teams by member UID
+    const userDocRef = doc(db, "users", memberUid);
     const teamsQuerySnapshot = await getDocs(
      query(collection(db, 'teams'),
-      where('team_members', 'array-contains', memberUid),where("payment_status","==",true))
+      where('team_members', 'array-contains', userDocRef),where("payment_status","==",true))
     );
   
+    console.log('jihnvwjv',teamsQuerySnapshot,memberUid)
     return teamsQuerySnapshot;
   };
 

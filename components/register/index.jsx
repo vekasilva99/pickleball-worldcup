@@ -417,7 +417,7 @@ const options = {
                     id="coach-dupr"
                     name="coach-dupr"
                     type="number"
-                    step={"0.1"}
+                    step={"0.01"}
                     min={'2.5'}
                     max={'5.4'}
                     value={teamData.coach.dupr}
@@ -699,7 +699,7 @@ Code                </label>
                     id="captain-dupr"
                     name="captain-dupr"
                     type="number"
-                    step={"0.1"}
+                    step={"0.01"}
                     min={'2.5'}
                     max={'5.4'}
                     value={teamData.captain.dupr}
@@ -970,7 +970,7 @@ Code                </label>
                      id={`pair-phone-${index}`}
                      name={`pair-phone-${index}`}
                     type="number"
-                    step={"0.1"}
+                    step={"0.01"}
                     min={'2.5'}
                     max={'5.4'}
                     value={teamData.pairs[index].dupr}
