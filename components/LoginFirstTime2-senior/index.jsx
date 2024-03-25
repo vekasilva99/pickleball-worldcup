@@ -97,19 +97,25 @@ export default function Login({ showLogin, setShowLogin }) {
         const userData = userDocSnapshot.data();
         //console.log(userData);
 
-        const newUserRef = doc(db, "users", userId);
+        // const newUserRef = doc(db, "users", userId);
         
-        await setDoc(newUserRef, {
-          name: userData.name,
-          last_name: userData.last_name,
-          email: userData.email, // Fix: Use the correct email field instead of last_name
-          phone: userData.phone,
-          dupr: Number(userData.dupr),
-          role: userData.role,
-          country:userData.country,
-          senior: true
-        });
-        const newUserDocSnapshot = await getDoc(newUserRef);
+        // await setDoc(newUserRef, {
+        //   name: userData.name,
+        //   last_name: userData.last_name,
+        //   email: userData.email, // Fix: Use the correct email field instead of last_name
+        //   phone: userData.phone,
+        //   dupr: Number(userData.dupr),
+        //   role: userData.role,
+        //   country:userData.country,
+        //   senior: true,
+        //   birthdate: userData.birthdate ? new Date(userData.birthdate) :null,
+        //   passport: userData.passport,
+        //   date_of_arrival:userData.date_of_arrival ? new Date(userData.date_of_arrival) :null,
+        //   airline: userData.airline,
+        //   flight_number: userData.flight_number,
+        //   shirt_size: userData.shirt_size,
+        // });
+        // const newUserDocSnapshot = await getDoc(newUserRef);
 console.log(newUserDocSnapshot.data())
         if (newUserDocSnapshot === undefined) {
           console.error("Error creating user document.");

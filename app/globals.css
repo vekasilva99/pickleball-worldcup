@@ -39,6 +39,10 @@
   z-index: 20;
   bottom:8rem
 }
+
+.header-dashboard .gradient-circle{
+  margin-right: 2rem;
+}
 .option-dashboard{
   width: 100%;
   background-color: transparent;
@@ -996,6 +1000,10 @@ align-items: center;
     flex-direction: column;
     height: fit-content;
     min-height: 100vh;
+  }
+
+  .header-dashboard .gradient-circle{
+    margin-right: 0;
   }
   .header-dashboard{
     flex-direction: column;

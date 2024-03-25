@@ -105,7 +105,13 @@ export default function Login({ showLogin, setShowLogin }) {
           dupr: Number(userData.dupr),
           role: userData.role,
           country:userData.country,
-          senior: true
+          senior: true,
+          birthdate: userData.birthdate ? new Date(userData.birthdate.seconds*1000) :null,
+          passport: userData.passport,
+          date_of_arrival:userData.date_of_arrival ? new Date(userData.birthdate.seconds*1000) :null,
+          airline: userData.airline,
+          flight_number: userData.flight_number,
+          shirt_size: userData.shirt_size,
         });
         const newUserDocSnapshot = await getDoc(newUserRef);
 
