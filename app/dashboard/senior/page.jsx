@@ -156,7 +156,7 @@ const ProtectedPage = () => {
 
   const sendEmail = async (email, password, coordinator, country, link) => {
     try {
-      await axios.post("/api/send-email", {
+      await axios.post("/api/send-email2", {
         email: email,
         password: password,
         coordinator: coordinator,

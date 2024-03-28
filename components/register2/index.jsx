@@ -228,7 +228,7 @@ export default function Register({ open, setOpen, team, setuser2 }) {
 
   const sendEmail = async (email, password, coordinator, country, link) => {
     try {
-      await axios.post("/api/send-email", {
+      await axios.post("/api/send-email2", {
         email: email,
         password: password,
         coordinator: coordinator,
@@ -305,7 +305,7 @@ export default function Register({ open, setOpen, team, setuser2 }) {
                     <div className="mt-2 relative">
                       <div className="datepicker">
                         <Datepicker
-                          maxDate={new Date(1974, 11, 31)}
+                     
                           value={teamData.coach.birthdate}
                           onSelectedDateChanged={(e) => {
                             handleInputChange("coach", null, "birthdate", format(e, "MM/dd/yyyy"));
