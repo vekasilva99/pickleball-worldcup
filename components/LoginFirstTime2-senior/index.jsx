@@ -347,6 +347,7 @@ console.log(newUserDocSnapshot.data())
               : `${styles.loginOverlay} ${styles.hidden}`
           }
         >
+          <div className={styles.loginContainer2}>
           <div className={styles.loginContainer}>
          
               <img src={user.country.image_senior} />
@@ -415,6 +416,7 @@ console.log(newUserDocSnapshot.data())
                 Log In
               </button>
             </div>
+          </div>
           </div>
      
         </div>

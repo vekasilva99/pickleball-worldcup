@@ -336,6 +336,7 @@ export default function Login({ showLogin, setShowLogin }) {
               : `${styles.loginOverlay} ${styles.hidden}`
           }
         >
+          <div className={styles.loginContainer2}>
           <div className={styles.loginContainer}>
          
               <img src={user.country.image} />
@@ -404,6 +405,7 @@ export default function Login({ showLogin, setShowLogin }) {
                 Log In
               </button>
             </div>
+          </div>
           </div>
      
         </div>

@@ -3,10 +3,10 @@
   visibility: hidden;
 }
 .loginOverlay {
-  width: 100vw;
+  /* width: 100vw;
   height: 100vh;
   min-height: 100vh;
-  max-height: 100vh;
+  max-height: 100vh; */
   background-color:transparent;
 position: relative;
   display: flex;
@@ -16,10 +16,11 @@ position: relative;
   visibility: visible;
   transition: all 0.5s;
 
+
 }
 
 .loginContainer {
-  width: 30vw;
+  width: 40vw;
   min-height: 35vw;
   height: fit-content;
   background-color: transparent;
@@ -29,14 +30,23 @@ position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  position: relative;
   max-width: 800px;
-  max-height: 900px;
+
+
+}
+
+.loginContainer2{
+
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
 }
 
 .loginContainer h1 {
  color: #EFB810;
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-align: center;
   font-family: 'Anton';
 line-height: 1.2;
@@ -44,8 +54,8 @@ line-height: 1.2;
 }
 
 .loginContainer img{
-  width: 10rem;
-  height: 10rem;
+  width: 8rem;
+  height: 8rem;
   margin-bottom: 1rem;
   object-fit: contain;
 }
