@@ -48,10 +48,7 @@ export default function Register({open,setOpen,team,setuser2}) {
   }, [team]);
   const validateInput = () => {
     // Validate coach information
-    if (!teamData.coach.name || !teamData.coach.last_name || !teamData.coach.email || !teamData.coach.phone) {
-      alert("Coach information is incomplete. Please fill in all fields.");
-      return false;
-    }
+
   
     // Validate pairs information
     for (let i = 0; i < teamData.pairs.length; i++) {
@@ -63,11 +60,14 @@ export default function Register({open,setOpen,team,setuser2}) {
     }
   
     // Validate email format for coach and pairs
+   
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(teamData.coach.email != ""){
     if (!emailRegex.test(teamData.coach.email)) {
       alert("Coach email is not in a valid format.");
       return false;
     }
+  }
   
     for (let i = 0; i < teamData.pairs.length; i++) {
       if (!emailRegex.test(teamData.pairs[i].email)) {
@@ -200,8 +200,11 @@ const saveTeamToFirebase = async (e) => {
     await updateDoc(newTeamRef,{coordinator:coordinatorReference});
 
     // // Update coach and pairs with their Firebase UID
-    const coachData = await registerTeamMember(newTeamRef, teamData.coach,'8l9gFgT0smIiDSyCOzx6',countryRef);
-    await updateDoc(newTeamRef,{ coach: coachData });
+    if(teamData.coach.email != ""){
+      const coachData = await registerTeamMember(newTeamRef, teamData.coach,'8l9gFgT0smIiDSyCOzx6',countryRef);
+      await updateDoc(newTeamRef,{ coach: coachData });
+    }
+
     
    
      const captainData = await registerTeamMember(newTeamRef, teamData.captain,'hmUMi4XcozY2qQx9DudP',countryRef);
@@ -214,6 +217,7 @@ const saveTeamToFirebase = async (e) => {
      
     return newTeamRef.key;
   } catch (error) {
+    console.log('kjhugyftcdgvhbjnkml',error)
     throw error;
   }
 };

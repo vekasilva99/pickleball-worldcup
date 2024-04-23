@@ -143,10 +143,10 @@ const useAuth = () => {
         // ... Other code to fetch and include other role information
 
         if(userData.team !=null){
-          userData.team.coordinator=await getTeamInformation(userData.team.coordinator)
-          userData.team.coach=await getTeamInformation(userData.team.coach)
+          userData.team.coordinator= userData.team.coordinator ? await getTeamInformation(userData.team.coordinator) : {}
+          userData.team.coach= userData.team.coach ? await getTeamInformation(userData.team.coach) : {}
           //console.log('CAPTAIN',userData.team.captain)
-          userData.team.captain=await getTeamInformation(userData.team.captain)
+          userData.team.captain=userData.team.captain ? await getTeamInformation(userData.team.captain) : {}
           for (let i = 0; i < userData.team.team_members.length; i++) {
             console.log("bgegjwhehwugegvuwye")
             userData.team.team_members[i] = await getTeamInformation(userData.team.team_members[i]);
