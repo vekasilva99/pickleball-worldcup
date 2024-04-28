@@ -26,8 +26,8 @@ export default function Hotel({open,setOpen,team,setuser2}) {
   const { user, loading, getInfo } = useAuth();
   const router=useRouter()
   const [selectedDate, setSelectedDate] = useState(null);
-  const [option, setOptions] = useState(['10/21/2024','10/22/2024','10/23/2024','10/24/2024','10/25/2024','10/26/2024','10/27/2024','10/28/2024']);
-  const [option2, setOptions2] = useState(['10/21/2024','10/22/2024','10/23/2024','10/24/2024','10/25/2024','10/26/2024','10/27/2024','10/28/2024']);
+  const [option, setOptions] = useState(['10/21/2024','10/22/2024','10/23/2024','10/24/2024','10/25/2024','10/26/2024','10/27/2024','10/28/2024','10/29/2024']);
+  const [option2, setOptions2] = useState(['10/21/2024','10/22/2024','10/23/2024','10/24/2024','10/25/2024','10/26/2024','10/27/2024','10/28/2024','10/29/2024']);
   const [teamRef, setTeamRef] = useState(team ? team :null);
   const [showPayment, setShowPayment] = useState(team ? true : false);
   const [payNow, setPayNow] = useState(team ? true : false);
@@ -37,8 +37,8 @@ export default function Hotel({open,setOpen,team,setuser2}) {
   const [reservation, setReservations] = useState([]);
   const [price, setPrice] = useState(0);
   const [startDate,setStartDate]=useState('10/21/2024')
-  const [endDate,setEndDate]=useState('10/28/2024')
-  const [reservatedRooms,setReservatedRooms]=useState({'10/21/2024':0,'10/22/2024':0,'10/23/2024':0,'10/24/2024':0,'10/25/2024':0,'10/26/2024':0,'10/27/2024':0,'10/28/2024':0})
+  const [endDate,setEndDate]=useState('10/29/2024')
+  const [reservatedRooms,setReservatedRooms]=useState({'10/21/2024':0,'10/22/2024':0,'10/23/2024':0,'10/24/2024':0,'10/25/2024':0,'10/26/2024':0,'10/27/2024':0,'10/28/2024':0,'10/29/2024':0})
 
 
 
@@ -120,7 +120,7 @@ const getReservations=async()=>{
 // }
 const setAvailability = () => {
   const startDate = new Date('10/21/2024'); // Replace with your start date
-  const endDate = new Date('10/28/2024'); // Replace with your end date
+  const endDate = new Date('10/29/2024'); // Replace with your end date
   const maxRoomsAvailable = 34; // Replace with the maximum number of rooms available per day
 
   const reservedRooms = {};
@@ -168,7 +168,7 @@ setReservatedRooms(reservedRooms)
   if(availableDates.length>0){
     setStartDate(availableDates[0])
    
-    if(availableDates[0] !="10/28/2024"){
+    if(availableDates[0] !="10/29/2024"){
       //console.log('mkjnbhgvcfdgvhbjnkmjnkbhgvhbjn',addDays(new Date(availableDates[0]),1))
       setEndDate(format(addDays(new Date(availableDates[0]),1),'MM/dd/yyyy'))
     }
@@ -261,7 +261,7 @@ const calcPrice=()=>{
 const maxRoomsAvailable = 34;
 let nights=0
 while(start<new Date(endDate)){
-  //console.log(start)
+  console.log(start)
 nights+=1
 start=addDays(start,1)
   
@@ -343,7 +343,7 @@ try {
                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                   >
                     {option.map((date,index)=>{
-                      if(date != "10/28/2024"){
+                      if(date != "10/29/2024"){
                         return <option value={date}>{date}</option>
                       }
 
