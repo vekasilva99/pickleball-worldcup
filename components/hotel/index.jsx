@@ -398,14 +398,14 @@ try {
                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                   >
                           <option value={1}>1</option>
-                          {availableRooms &&
+                          {availableRooms && !user?.country?.name=="New Zealand" &&
                     <option value={2}>2</option>}
-                    {availableRooms && user?.country?.name=="New Zealand" &&
+                    {/* {availableRooms && user?.country?.name=="New Zealand" &&
                     <option value={3}>3</option>
                     }
                      {availableRooms && user?.country?.name=="New Zealand" &&
                     <option value={4}>4</option>
-                    }
+                    } */}
                     </select>
                   </td>
       <td>{rooms} {rooms==1 ? 'room' :'rooms'} for <br/><span style={{fontSize:'1rem', fontWeight:"bold"}}>${price}.00</span></td>

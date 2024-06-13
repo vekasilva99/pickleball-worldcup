@@ -46,12 +46,14 @@ const useAuth = () => {
             const reservationQuerySnapshot= await getReservation(teamDoc)
             console.log('jnhubgyvftcdrxesdrfcgvhbjnk',reservationQuerySnapshot)
             if (!reservationQuerySnapshot.empty) {
+              let auxReservations=[]
+              reservationQuerySnapshot.docs.map((reservation)=>
+                auxReservations.push({id:reservation.id,...reservation.data()})
+              )
+              console.log("jinivjnekv",auxReservations)
               const reservationDocSnapshot = reservationQuerySnapshot.docs[0];
               const reservationData = reservationDocSnapshot.data();
-              userData.team.reservation = {
-                id: reservationDocSnapshot.id,
-                ...reservationData,
-              };
+              userData.team.reservation = auxReservations
             }
           } else {
             userData.team = null; // User is not a Coordinator or coach of any team
@@ -249,12 +251,14 @@ const useAuth = () => {
         // User is signed in
         const userDataFromFirestore = await getUserDataFromFirestore(
           authUser.uid
+
         );
 
         console.log('lkmjnhbgvhbjnkmldckwmenkv',userDataFromFirestore)
         //console.log("jncjkedcnjek", userDataFromFirestore);
         if(userDataFromFirestore){
           setUser({
+
             uid: authUser.uid,
             email: authUser.email,
             ...userDataFromFirestore, // Include additional data from Firestore

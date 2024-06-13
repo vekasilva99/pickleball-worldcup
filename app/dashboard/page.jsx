@@ -486,6 +486,18 @@ const ProtectedPage = () => {
  
     setRegister(true)
   }
+
+  const getNumberRooms=()=>{
+    let rooms=0;
+    for(let i=0;i<user2.team?.reservation.length;i++){
+      rooms+=user2.team?.reservation[i].rooms
+    }
+
+    console.log("jinhubgyvftbhjknml",rooms)
+    return rooms
+  }
+
+  console.log("jinhubgvycftdrxfckml",user2)
   return (
     <>
     <main className="flex min-h-screen main">
@@ -2765,14 +2777,22 @@ const ProtectedPage = () => {
                   <h2>Hotel</h2>
                       {user2.team?.reservation &&
                          <h4>         Albergue Villa Deportiva Nacional (VIDENA)</h4>}
-             
+      
+                     
+                      {user2.team?.reservation &&
+                      <>
+                      {user2.team?.reservation.map((reservation)=>{
+                       return <div>
+                      <h3>{reservation.rooms} {reservation.rooms ==2 ? "rooms" :"room"} ({reservation.rooms*4} people)</h3>
+                     
+                      <h3>{format(new Date(reservation.start_date.seconds*1000),'MM/dd/yyyy')} - {format(new Date(reservation.end_date.seconds*1000),'MM/dd/yyyy')}</h3>
+                      </div>
+                      })}
                       
-                      {user2.team?.reservation &&
-                      <h3>{user2.team?.reservation.rooms} {user2.team?.reservation.rooms ==2 ? "rooms" :"room"} ({user2.team?.reservation.rooms*4} people)</h3>}
-                      {user2.team?.reservation &&
-                      <h3>{format(new Date(user2.team?.reservation.start_date.seconds*1000),'MM/dd/yyyy')} - {format(new Date(user2.team?.reservation.end_date.seconds*1000),'MM/dd/yyyy')}</h3>}
+                      </>}
+                     
                       <div className="button-container">
-                        {!user2.team?.reservation && user2.role.name == "Coordinator" &&
+                        {((!user2.team?.reservation && user2.role.name == "Coordinator") || (user2.role.name == "Coordinator" && user2.country?.id=="UDmXqlO58KJ4Zgqw2REJ" && getNumberRooms()<4)) &&
                         <button   onClick={() => {
           setHotel(true);
         }}>Book</button>}
