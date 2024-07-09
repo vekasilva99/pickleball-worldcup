@@ -126,7 +126,7 @@ const ProtectedPage = () => {
       }
       for (let i = 0; i < user2.team.team_members.length; i++) {
         updatedData.pairs[i] = user2.team.team_members[i];
-        if(typeof user2.team.team_members[i].date_of_arrival == 'object' && user2.team.team_members[i].date_of_arrival !=null && user2.team.team_members[i].date_of_arrival !=undefined){
+        if(typeof user2.team.team_members[i]?.date_of_arrival == 'object' && user2.team.team_members[i]?.date_of_arrival !=null && user2.team.team_members[i]?.date_of_arrival !=undefined){
           let prueba=format(user2.team.team_members[i].date_of_arrival.toDate(),'MM/dd/yyyy')
           updatedData.pairs[i].date_of_arrival=prueba
         }
@@ -212,6 +212,7 @@ const ProtectedPage = () => {
      
       }
 
+      if(teamData.coach?.id){
       const coachReference = await doc(db, "users", teamData.coach.id);
       const coachDocSnapshot = await getDoc(coachReference);
 
@@ -243,6 +244,7 @@ const ProtectedPage = () => {
         });
       }
       }
+    }
       const captainReference = await doc(db, "users", teamData.captain.id);
       const captainDocSnapshot = await getDoc(captainReference);
 //console.log(teamData.captain.date_of_arrival)
@@ -2443,7 +2445,7 @@ const ProtectedPage = () => {
                                
                                 >
                                   Player {index + 1} -{" "}
-                                  <span style={{color:"#EFB810", fontStyle:'italic'}}>{teamData.pairs[index].name} {teamData.pairs[index].last_name}</span>
+                                  <span style={{color:"#EFB810", fontStyle:'italic'}}>{teamData.pairs[index]?.name} {teamData.pairs[index]?.last_name}</span>
                           
                                 </h2>
                                 <div
@@ -2481,7 +2483,7 @@ const ProtectedPage = () => {
                                     id={`pair-first-name-${index}`}
                                     name={`pair-first-name-${index}`}
                                     autoComplete="given-name"
-                                    value={teamData.pairs[index].name}
+                                    value={teamData.pairs[index]?.name}
                               
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                                   />
@@ -2506,7 +2508,7 @@ const ProtectedPage = () => {
                                     id={`pair-last-name-${index}`}
                                     name={`pair-last-name-${index}`}
                                     autoComplete="family-name"
-                                    value={teamData.pairs[index].last_name}
+                                    value={teamData.pairs[index]?.last_name}
                                   
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                                   />
@@ -2531,7 +2533,7 @@ const ProtectedPage = () => {
                                     name={`pair-email-${index}`}
                                     type="email"
                                     autoComplete="email"
-                                    value={teamData.pairs[index].email}
+                                    value={teamData.pairs[index]?.email}
                                   
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                                   />
