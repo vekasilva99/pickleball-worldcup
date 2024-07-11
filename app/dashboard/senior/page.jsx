@@ -96,12 +96,12 @@ const ProtectedPage = () => {
 
       updatedData.coach = user2.team.coach;
 
-      if (typeof user2.team.coach.date_of_arrival == "object" && user2.team.coach.date_of_arrival != null && user2.team.coach.date_of_arrival != undefined) {
-        let prueba = format(user2.team.coach.date_of_arrival.toDate(), "MM/dd/yyyy");
+      if (typeof user2.team.coach?.date_of_arrival == "object" && user2.team.coach?.date_of_arrival != null && user2.team.coach?.date_of_arrival != undefined) {
+        let prueba = format(user2.team.coach?.date_of_arrival.toDate(), "MM/dd/yyyy");
         updatedData.coach.date_of_arrival = prueba;
       }
-      if (typeof user2.team.coach.birthdate == "object" && user2.team.coach.birthdate != null && user2.team.coach.birthdate != undefined) {
-        let prueba = format(user2.team.coach.birthdate.toDate(), "MM/dd/yyyy");
+      if (typeof user2.team.coach?.birthdate == "object" && user2.team.coach?.birthdate != null && user2.team.coach?.birthdate != undefined) {
+        let prueba = format(user2.team.coach?.birthdate.toDate(), "MM/dd/yyyy");
         updatedData.coach.birthdate = prueba;
       }
 
@@ -213,32 +213,32 @@ const ProtectedPage = () => {
         });
       }
 
-      const coachReference = await doc(db, "users", teamData.coach.id);
+      const coachReference = await doc(db, "users", teamData.coach?.id);
       const coachDocSnapshot = await getDoc(coachReference);
 
       if (coachDocSnapshot.exists()) {
         const coachData = coachDocSnapshot.data();
 
-        if (coachData.email != teamData.coach.email) {
+        if (coachData.email != teamData.coach?.email) {
           console.log("COACH", teamData.coach);
           const coachData = await registerTeamMember(newTeamRef, teamData.coach, "8l9gFgT0smIiDSyCOzx6", countryRef);
           await updateDoc(newTeamRef, { coach: coachData });
-          await deleteDoc(doc(db, "users", teamData.coach.id));
+          await deleteDoc(doc(db, "users", teamData.coach?.id));
         } else {
           await setDoc(coachReference, {
-            name: teamData.coach.name,
-            last_name: teamData.coach.last_name,
-            email: teamData.coach.email, // Fix: Use the correct email field instead of last_name
-            phone: teamData.coach.phone,
-            dupr: Number(teamData.coach.dupr),
-            role: teamData.coach.role, // Assign the user2 role
-            country: teamData.coach.country,
-            passport: teamData.coach.passport ? teamData.coach.passport : null,
-            date_of_arrival: teamData.coach.date_of_arrival ? new Date(teamData.coach.date_of_arrival) : null,
-            birthdate: teamData.coach.birthdate ? new Date(teamData.coach.birthdate) : null,
-            airline: teamData.coach.airline ? teamData.coach.airline : null,
-            flight_number: teamData.coach.flight_number ? teamData.coach.flight_number : null,
-            shirt_size: teamData.coach.shirt_size ? teamData.coach.shirt_size : null,
+            name: teamData.coach?.name,
+            last_name: teamData.coach?.last_name,
+            email: teamData.coach?.email, // Fix: Use the correct email field instead of last_name
+            phone: teamData.coach?.phone,
+            dupr: Number(teamData.coach?.dupr),
+            role: teamData.coach?.role, // Assign the user2 role
+            country: teamData.coach?.country,
+            passport: teamData.coach?.passport ? teamData.coach?.passport : null,
+            date_of_arrival: teamData.coach?.date_of_arrival ? new Date(teamData.coach?.date_of_arrival) : null,
+            birthdate: teamData.coach?.birthdate ? new Date(teamData.coach?.birthdate) : null,
+            airline: teamData.coach?.airline ? teamData.coach?.airline : null,
+            flight_number: teamData.coach?.flight_number ? teamData.coach?.flight_number : null,
+            shirt_size: teamData.coach?.shirt_size ? teamData.coach?.shirt_size : null,
             senior: true,
           });
         }
@@ -879,7 +879,7 @@ const ProtectedPage = () => {
                             <h2 className="text-base font-semibold leading-7 text-gray-900 form-title">
                               Coach -{" "}
                               <span style={{ color: "#CCCCCC", fontStyle: "italic" }}>
-                                {user2.team.coach.name} {user2.team.coach.last_name}
+                                {user2.team.coach?.name} {user2.team.coach?.last_name}
                               </span>
                             </h2>
                             <div
@@ -905,7 +905,7 @@ const ProtectedPage = () => {
                                   id="coach-first-name"
                                   name="coach-first-name"
                                   autoComplete="given-name"
-                                  value={teamData.coach.name}
+                                  value={teamData.coach?.name}
                                   onChange={(e) => handleInputChange("coach", null, "name", e.target.value)}
                                   placeholder="Enter first name"
                                   className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -923,7 +923,7 @@ const ProtectedPage = () => {
                                   id="coach-last-name"
                                   name="coach-last-name"
                                   autoComplete="family-name"
-                                  value={teamData.coach.last_name}
+                                  value={teamData.coach?.last_name}
                                   onChange={(e) => handleInputChange("coach", null, "last_name", e.target.value)}
                                   placeholder="Enter last name"
                                   className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -938,7 +938,7 @@ const ProtectedPage = () => {
                                 <div className="datepicker">
                                   <Datepicker
                                     maxDate={new Date(1974, 11, 31)}
-                                    value={teamData.coach.birthdate}
+                                    value={teamData.coach?.birthdate}
                                     onSelectedDateChanged={(e) => {
                                       handleInputChange("coach", null, "birthdate", format(e, "MM/dd/yyyy"));
                                     }}
@@ -959,7 +959,7 @@ const ProtectedPage = () => {
                                   name="coach-email"
                                   type="email"
                                   autoComplete="email"
-                                  value={teamData.coach.email}
+                                  value={teamData.coach?.email}
                                   onChange={(e) => handleInputChange("coach", null, "email", e.target.value)}
                                   placeholder="Enter email address"
                                   className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -977,7 +977,7 @@ const ProtectedPage = () => {
                                   name="coach-phone"
                                   type="text"
                                   autoComplete="phone"
-                                  value={teamData.coach.phone}
+                                  value={teamData.coach?.phone}
                                   onChange={(e) => handleInputChange("coach", null, "phone", e.target.value)}
                                   placeholder="Enter phone number"
                                   className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -996,7 +996,7 @@ const ProtectedPage = () => {
                                   step={"0.01"}
                                   min={"2.5"}
                                   max={"5.4"}
-                                  value={teamData.coach.dupr}
+                                  value={teamData.coach?.dupr}
                                   onChange={(e) => handleInputChange("coach", null, "dupr", e.target.value)}
                                   placeholder="Enter DUPR Ranking"
                                   className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1012,7 +1012,7 @@ const ProtectedPage = () => {
                                   id="coach-shirt-size"
                                   name="coach-shirt-size"
                                   type="text"
-                                  value={teamData.coach.shirt_size}
+                                  value={teamData.coach?.shirt_size}
                                   onChange={(e) => handleInputChange("coach", null, "shirt_size", e.target.value)}
                                   placeholder="Enter shirt size"
                                   className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1034,7 +1034,7 @@ const ProtectedPage = () => {
                                   id="coach-passport"
                                   name="coach-passport"
                                   type="text"
-                                  value={teamData.coach.passport}
+                                  value={teamData.coach?.passport}
                                   onChange={(e) => handleInputChange("coach", null, "passport", e.target.value)}
                                   placeholder="Enter passport number"
                                   className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1048,7 +1048,7 @@ const ProtectedPage = () => {
                               <div className="mt-2 relative">
                                 <div className="datepicker">
                                   <Datepicker
-                                    value={teamData.coach.date_of_arrival}
+                                    value={teamData.coach?.date_of_arrival}
                                     onSelectedDateChanged={(e) => {
                                       handleInputChange("coach", null, "date_of_arrival", format(e, "MM/dd/yyyy"));
                                     }}
@@ -1062,7 +1062,7 @@ const ProtectedPage = () => {
                                 Airline
                               </label>
                               <div className="mt-2">
-                                <input id="coach-airline" name="coach-airline" type="text" value={teamData.coach.airline} onChange={(e) => handleInputChange("coach", null, "airline", e.target.value)} placeholder="Enter airline" className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                <input id="coach-airline" name="coach-airline" type="text" value={teamData.coach?.airline} onChange={(e) => handleInputChange("coach", null, "airline", e.target.value)} placeholder="Enter airline" className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                               </div>
                             </div>
                             <div className="sm:col-span-3">
@@ -1074,7 +1074,7 @@ const ProtectedPage = () => {
                                   id="coach-flight-number"
                                   name="coach-flight-number"
                                   type="text"
-                                  value={teamData.coach.flight_number}
+                                  value={teamData.coach?.flight_number}
                                   onChange={(e) => handleInputChange("coach", null, "flight_number", e.target.value)}
                                   placeholder="Enter flight number"
                                   className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1089,7 +1089,7 @@ const ProtectedPage = () => {
                                 First name
                               </label>
                               <div className="mt-2">
-                                <input disabled={true} type="text" id="coach-first-name" name="coach-first-name" autoComplete="given-name" value={teamData.coach.name} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                <input disabled={true} type="text" id="coach-first-name" name="coach-first-name" autoComplete="given-name" value={teamData.coach?.name} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                               </div>
                             </div>
 
@@ -1098,7 +1098,7 @@ const ProtectedPage = () => {
                                 Last name
                               </label>
                               <div className="mt-2">
-                                <input disabled={true} type="text" id="coach-last-name" name="coach-last-name" autoComplete="family-name" value={teamData.coach.last_name} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                <input disabled={true} type="text" id="coach-last-name" name="coach-last-name" autoComplete="family-name" value={teamData.coach?.last_name} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                               </div>
                             </div>
                             <div className="sm:col-span-3">
@@ -1109,7 +1109,7 @@ const ProtectedPage = () => {
                                 <div className="datepicker">
                                   <Datepicker
                                     maxDate={new Date(1974, 11, 31)}
-                                    value={teamData.coach.birthdate}
+                                    value={teamData.coach?.birthdate}
                                     disabled={true}
                                     onSelectedDateChanged={(e) => {
                                       handleInputChange("coach", null, "birthdate", format(e, "MM/dd/yyyy"));
@@ -1126,7 +1126,7 @@ const ProtectedPage = () => {
                                 Email address
                               </label>
                               <div className="mt-2">
-                                <input disabled={true} id="coach-email" name="coach-email" type="email" autoComplete="email" value={teamData.coach.email} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                <input disabled={true} id="coach-email" name="coach-email" type="email" autoComplete="email" value={teamData.coach?.email} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                               </div>
                             </div>
 
@@ -1135,7 +1135,7 @@ const ProtectedPage = () => {
                                 Phone number
                               </label>
                               <div className="mt-2">
-                                <input disabled={true} id="coach-phone" name="coach-phone" type="text" autoComplete="phone" value={teamData.coach.phone} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                <input disabled={true} id="coach-phone" name="coach-phone" type="text" autoComplete="phone" value={teamData.coach?.phone} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                               </div>
                             </div>
                             <div className="sm:col-span-3">
@@ -1143,7 +1143,7 @@ const ProtectedPage = () => {
                                 DUPR Ranking
                               </label>
                               <div className="mt-2">
-                                <input disabled={true} id="coach-dupr" name="coach-dupr" type="number" step={"0.01"} min={"2.5"} max={"5.4"} value={teamData.coach.dupr} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                <input disabled={true} id="coach-dupr" name="coach-dupr" type="number" step={"0.01"} min={"2.5"} max={"5.4"} value={teamData.coach?.dupr} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                               </div>
                             </div>
                             <div className="sm:col-span-3">
@@ -1151,7 +1151,7 @@ const ProtectedPage = () => {
                                 Shirt Size
                               </label>
                               <div className="mt-2">
-                                <select disabled={true} id="coach-shirt-size" name="coach-shirt-size" type="text" value={teamData.coach.shirt_size} className="block w-full rounded-md sm:text-sm sm:leading-6 input">
+                                <select disabled={true} id="coach-shirt-size" name="coach-shirt-size" type="text" value={teamData.coach?.shirt_size} className="block w-full rounded-md sm:text-sm sm:leading-6 input">
                                   <option value={"XS"}>XS</option>
                                   <option value={"S"}>S</option>
                                   <option value={"M"}>M</option>
@@ -1165,7 +1165,7 @@ const ProtectedPage = () => {
                                 Passport
                               </label>
                               <div className="mt-2">
-                                <input disabled={true} id="coach-passport" name="coach-passport" type="text" value={teamData.coach.passport} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                <input disabled={true} id="coach-passport" name="coach-passport" type="text" value={teamData.coach?.passport} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                               </div>
                             </div>
                             <div className="sm:col-span-3">
@@ -1174,7 +1174,7 @@ const ProtectedPage = () => {
                               </label>
                               <div className="mt-2 relative">
                                 <div className="mt-2">
-                                  <input disabled={true} id="coach-passport" name="coach-passport" type="text" value={teamData.coach.date_of_arrival} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                  <input disabled={true} id="coach-passport" name="coach-passport" type="text" value={teamData.coach?.date_of_arrival} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                                 </div>
                               </div>
                             </div>
@@ -1183,7 +1183,7 @@ const ProtectedPage = () => {
                                 Airline
                               </label>
                               <div className="mt-2">
-                                <input disabled={true} id="coach-airline" name="coach-airline" type="text" value={teamData.coach.airline} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                <input disabled={true} id="coach-airline" name="coach-airline" type="text" value={teamData.coach?.airline} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                               </div>
                             </div>
                             <div className="sm:col-span-3">
@@ -1191,7 +1191,7 @@ const ProtectedPage = () => {
                                 Flight number
                               </label>
                               <div className="mt-2">
-                                <input disabled={true} id="coach-flight-number" name="coach-flight-number" type="text" value={teamData.coach.flight_number} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                <input disabled={true} id="coach-flight-number" name="coach-flight-number" type="text" value={teamData.coach?.flight_number} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                               </div>
                             </div>
                           </div>
