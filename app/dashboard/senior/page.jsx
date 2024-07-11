@@ -1577,7 +1577,7 @@ const ProtectedPage = () => {
                                       id={`pair-first-name-${index}`}
                                       name={`pair-first-name-${index}`}
                                       autoComplete="given-name"
-                                      value={teamData.pairs[index].name}
+                                      value={teamData.pairs[index]?.name}
                                       onChange={(e) => handleInputChange("pairs", index, "name", e.target.value)}
                                       placeholder="Enter first name"
                                       className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1595,7 +1595,7 @@ const ProtectedPage = () => {
                                       id={`pair-last-name-${index}`}
                                       name={`pair-last-name-${index}`}
                                       autoComplete="family-name"
-                                      value={teamData.pairs[index].last_name}
+                                      value={teamData.pairs[index]?.last_name}
                                       onChange={(e) => handleInputChange("pairs", index, "last_name", e.target.value)}
                                       placeholder="Enter last name"
                                       className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1610,7 +1610,7 @@ const ProtectedPage = () => {
                                     <div className="datepicker">
                                       <Datepicker
                                         maxDate={new Date(1974, 11, 31)}
-                                        value={teamData.pairs[index].birthdate}
+                                        value={teamData.pairs[index]?.birthdate}
                                         onSelectedDateChanged={(e) => {
                                           handleInputChange("pairs", index, "birthdate", format(e, "MM/dd/yyyy"));
                                         }}
@@ -1631,7 +1631,7 @@ const ProtectedPage = () => {
                                       name={`pair-email-${index}`}
                                       type="email"
                                       autoComplete="email"
-                                      value={teamData.pairs[index].email}
+                                      value={teamData.pairs[index]?.email}
                                       onChange={(e) => handleInputChange("pairs", index, "email", e.target.value)}
                                       placeholder="Enter email address"
                                       className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1648,7 +1648,7 @@ const ProtectedPage = () => {
                                       name={`pair-phone-${index}`}
                                       type="text"
                                       autoComplete="phone"
-                                      value={teamData.pairs[index].phone}
+                                      value={teamData.pairs[index]?.phone}
                                       onChange={(e) => handleInputChange("pairs", index, "phone", e.target.value)}
                                       placeholder="Enter phone number"
                                       className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1668,7 +1668,7 @@ const ProtectedPage = () => {
                                       step={"0.01"}
                                       min={"2.5"}
                                       max={"5.4"}
-                                      value={teamData.pairs[index].dupr}
+                                      value={teamData.pairs[index]?.dupr}
                                       onChange={(e) => handleInputChange("pairs", index, "dupr", e.target.value)}
                                       placeholder="Enter DUPR Ranking"
                                       className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1684,7 +1684,7 @@ const ProtectedPage = () => {
                                       id={`pair-shirt-size-${index}`}
                                       name={`pair-shirt-size-${index}`}
                                       type="text"
-                                      value={teamData.pairs[index].shirt_size}
+                                      value={teamData.pairs[index]?.shirt_size}
                                       onChange={(e) => handleInputChange("pairs", index, "shirt_size", e.target.value)}
                                       placeholder="Enter shirt size"
                                       className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1706,7 +1706,7 @@ const ProtectedPage = () => {
                                       id={`pair-passport-${index}`}
                                       name={`pair-passport-${index}`}
                                       type="text"
-                                      value={teamData.pairs[index].passport}
+                                      value={teamData.pairs[index]?.passport}
                                       onChange={(e) => handleInputChange("pairs", index, "passport", e.target.value)}
                                       placeholder="Enter passport number"
                                       className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1720,7 +1720,7 @@ const ProtectedPage = () => {
                                   <div className="mt-2">
                                     <div className="datepicker">
                                       <Datepicker
-                                        value={teamData.pairs[index].date_of_arrival}
+                                        value={teamData.pairs[index]?.date_of_arrival}
                                         onSelectedDateChanged={(e) => {
                                           handleInputChange("pairs", index, "date_of_arrival", format(e, "MM/dd/yyyy"));
                                         }}
@@ -1738,7 +1738,7 @@ const ProtectedPage = () => {
                                       id={`pair-airline-${index}`}
                                       name={`pair-airline-${index}`}
                                       type="text"
-                                      value={teamData.pairs[index].airline}
+                                      value={teamData.pairs[index]?.airline}
                                       onChange={(e) => handleInputChange("pairs", index, "airline", e.target.value)}
                                       placeholder="Enter airline"
                                       className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1754,7 +1754,7 @@ const ProtectedPage = () => {
                                       id={`pair-flight-number-${index}`}
                                       name={`pair-flight-number-${index}`}
                                       type="text"
-                                      value={teamData.pairs[index].flight_number}
+                                      value={teamData.pairs[index]?.flight_number}
                                       onChange={(e) => handleInputChange("pairs", index, "flight_number", e.target.value)}
                                       placeholder="Enter flight number"
                                       className="block w-full rounded-md sm:text-sm sm:leading-6 input"
@@ -1774,7 +1774,7 @@ const ProtectedPage = () => {
                                   <h2 className="text-base font-semibold leading-7 text-gray-900 sm:col-span-5 form-title">
                                     Player {index + 1} -{" "}
                                     <span style={{ color: "#CCCCCC", fontStyle: "italic" }}>
-                                      {teamData.pairs[index].name} {teamData.pairs[index].last_name}
+                                      {teamData.pairs[index]?.name} {teamData.pairs[index]?.last_name}
                                     </span>
                                   </h2>
                                   <div
@@ -1798,7 +1798,7 @@ const ProtectedPage = () => {
                                     First name
                                   </label>
                                   <div className="mt-2">
-                                    <input disabled={true} type="text" id={`pair-first-name-${index}`} name={`pair-first-name-${index}`} autoComplete="given-name" value={teamData.pairs[index].name} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                    <input disabled={true} type="text" id={`pair-first-name-${index}`} name={`pair-first-name-${index}`} autoComplete="given-name" value={teamData.pairs[index]?.name} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                                   </div>
                                 </div>
 
@@ -1807,7 +1807,7 @@ const ProtectedPage = () => {
                                     Last name
                                   </label>
                                   <div className="mt-2">
-                                    <input disabled={true} type="text" id={`pair-last-name-${index}`} name={`pair-last-name-${index}`} autoComplete="family-name" value={teamData.pairs[index].last_name} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                    <input disabled={true} type="text" id={`pair-last-name-${index}`} name={`pair-last-name-${index}`} autoComplete="family-name" value={teamData.pairs[index]?.last_name} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                                   </div>
                                 </div>
                                 <div className={`sm:col-span-3 ${showPairs[index] ? "show" : "no-show"}`}>
@@ -1818,7 +1818,7 @@ const ProtectedPage = () => {
                                     <div className="datepicker">
                                       <Datepicker
                                         maxDate={new Date(1974, 11, 31)}
-                                        value={teamData.pairs[index].birthdate}
+                                        value={teamData.pairs[index]?.birthdate}
                                         onSelectedDateChanged={(e) => {
                                           handleInputChange("pairs", index, "birthdate", format(e, "MM/dd/yyyy"));
                                         }}
@@ -1834,7 +1834,7 @@ const ProtectedPage = () => {
                                     Email address
                                   </label>
                                   <div className="mt-2">
-                                    <input disabled={true} id={`pair-email-${index}`} name={`pair-email-${index}`} type="email" autoComplete="email" value={teamData.pairs[index].email} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                    <input disabled={true} id={`pair-email-${index}`} name={`pair-email-${index}`} type="email" autoComplete="email" value={teamData.pairs[index]?.email} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                                   </div>
                                 </div>
                                 <div className={`sm:col-span-3 ${showPairs[index] ? "show" : "no-show"}`}>
@@ -1842,7 +1842,7 @@ const ProtectedPage = () => {
                                     Phone number
                                   </label>
                                   <div className="mt-2">
-                                    <input disabled={true} id={`pair-phone-${index}`} name={`pair-phone-${index}`} type="text" autoComplete="phone" value={teamData.pairs[index].phone} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                    <input disabled={true} id={`pair-phone-${index}`} name={`pair-phone-${index}`} type="text" autoComplete="phone" value={teamData.pairs[index]?.phone} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                                   </div>
                                 </div>
 
@@ -1851,7 +1851,7 @@ const ProtectedPage = () => {
                                     DUPR Ranking
                                   </label>
                                   <div className="mt-2">
-                                    <input disabled={true} id={`pair-phone-${index}`} name={`pair-phone-${index}`} type="number" step={"0.01"} min={"2.5"} max={"5.4"} value={teamData.pairs[index].dupr} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                    <input disabled={true} id={`pair-phone-${index}`} name={`pair-phone-${index}`} type="number" step={"0.01"} min={"2.5"} max={"5.4"} value={teamData.pairs[index]?.dupr} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                                   </div>
                                 </div>
                                 <div className={`sm:col-span-3 ${showPairs[index] ? "show" : "no-show"}`}>
@@ -1859,7 +1859,7 @@ const ProtectedPage = () => {
                                     Shirt Size
                                   </label>
                                   <div className="mt-2">
-                                    <select disabled={true} id={`pair-shirt-size-${index}`} name={`pair-shirt-size-${index}`} type="text" value={teamData.pairs[index].shirt_size} className="block w-full rounded-md sm:text-sm sm:leading-6 input">
+                                    <select disabled={true} id={`pair-shirt-size-${index}`} name={`pair-shirt-size-${index}`} type="text" value={teamData.pairs[index]?.shirt_size} className="block w-full rounded-md sm:text-sm sm:leading-6 input">
                                       <option value={"XS"}>XS</option>
                                       <option value={"S"}>S</option>
                                       <option value={"M"}>M</option>
@@ -1873,7 +1873,7 @@ const ProtectedPage = () => {
                                     Passport
                                   </label>
                                   <div className="mt-2">
-                                    <input disabled={true} id={`pair-passport-${index}`} name={`pair-passport-${index}`} type="text" value={teamData.pairs[index].passport} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                    <input disabled={true} id={`pair-passport-${index}`} name={`pair-passport-${index}`} type="text" value={teamData.pairs[index]?.passport} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                                   </div>
                                 </div>
                                 <div className={`sm:col-span-3 ${showPairs[index] ? "show" : "no-show"}`}>
@@ -1881,7 +1881,7 @@ const ProtectedPage = () => {
                                     Date of Arrival
                                   </label>
                                   <div className="mt-2">
-                                    <input disabled={true} id={`pair-passport-${index}`} name={`pair-passport-${index}`} type="text" value={teamData.pairs[index].date_of_arrival} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                    <input disabled={true} id={`pair-passport-${index}`} name={`pair-passport-${index}`} type="text" value={teamData.pairs[index]?.date_of_arrival} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                                   </div>
                                 </div>
                                 <div className={`sm:col-span-3 ${showPairs[index] ? "show" : "no-show"}`}>
@@ -1889,7 +1889,7 @@ const ProtectedPage = () => {
                                     Airline
                                   </label>
                                   <div className="mt-2">
-                                    <input disabled={true} id={`pair-airline-${index}`} name={`pair-airline-${index}`} type="text" value={teamData.pairs[index].airline} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                    <input disabled={true} id={`pair-airline-${index}`} name={`pair-airline-${index}`} type="text" value={teamData.pairs[index]?.airline} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                                   </div>
                                 </div>
                                 <div className={`sm:col-span-3 ${showPairs[index] ? "show" : "no-show"}`}>
@@ -1897,7 +1897,7 @@ const ProtectedPage = () => {
                                     Flight number
                                   </label>
                                   <div className="mt-2">
-                                    <input disabled={true} id={`pair-flight-number-${index}`} name={`pair-flight-number-${index}`} type="text" value={teamData.pairs[index].flight_number} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
+                                    <input disabled={true} id={`pair-flight-number-${index}`} name={`pair-flight-number-${index}`} type="text" value={teamData.pairs[index]?.flight_number} className="block w-full rounded-md sm:text-sm sm:leading-6 input" />
                                   </div>
                                 </div>
                               </div>

@@ -2162,7 +2162,7 @@ const ProtectedPage = () => {
                                     id={`pair-first-name-${index}`}
                                     name={`pair-first-name-${index}`}
                                     autoComplete="given-name"
-                                    value={teamData.pairs[index].name}
+                                    value={teamData.pairs[index]?.name}
                                     onChange={(e) =>
                                       handleInputChange(
                                         "pairs",
@@ -2190,7 +2190,7 @@ const ProtectedPage = () => {
                                     id={`pair-last-name-${index}`}
                                     name={`pair-last-name-${index}`}
                                     autoComplete="family-name"
-                                    value={teamData.pairs[index].last_name}
+                                    value={teamData.pairs[index]?.last_name}
                                     onChange={(e) =>
                                       handleInputChange(
                                         "pairs",
@@ -2218,7 +2218,7 @@ const ProtectedPage = () => {
                                     name={`pair-email-${index}`}
                                     type="email"
                                     autoComplete="email"
-                                    value={teamData.pairs[index].email}
+                                    value={teamData.pairs[index]?.email}
                                     onChange={(e) =>
                                       handleInputChange(
                                         "pairs",
@@ -2245,7 +2245,7 @@ const ProtectedPage = () => {
                                     name={`pair-phone-${index}`}
                                     type="text"
                                     autoComplete="phone"
-                                    value={teamData.pairs[index].phone}
+                                    value={teamData.pairs[index]?.phone}
                                     onChange={(e) =>
                                       handleInputChange(
                                         "pairs",
@@ -2275,7 +2275,7 @@ const ProtectedPage = () => {
                                     step={"0.1"}
                                     min={'2.5'}
                                     max={'5.4'}
-                                    value={teamData.pairs[index].dupr}
+                                    value={teamData.pairs[index]?.dupr}
                                     onChange={(e) =>
                                       handleInputChange(
                                         "pairs",
@@ -2301,7 +2301,7 @@ const ProtectedPage = () => {
                                     id={`pair-shirt-size-${index}`}
                                     name={`pair-shirt-size-${index}`}
                                     type="text"
-                                    value={teamData.pairs[index].shirt_size}
+                                    value={teamData.pairs[index]?.shirt_size}
                                     onChange={(e) =>
                                       handleInputChange(
                                         "pairs",
@@ -2333,7 +2333,7 @@ const ProtectedPage = () => {
                                     id={`pair-passport-${index}`}
                                     name={`pair-passport-${index}`}
                                     type="text"
-                                    value={teamData.pairs[index].passport}
+                                    value={teamData.pairs[index]?.passport}
                                     onChange={(e) =>
                                       handleInputChange(
                                         "pairs",
@@ -2358,7 +2358,7 @@ const ProtectedPage = () => {
                                   <div className="datepicker">
                                     <Datepicker
                                       value={
-                                        teamData.pairs[index].date_of_arrival
+                                        teamData.pairs[index]?.date_of_arrival
                                       }
                                       onSelectedDateChanged={(e) => {
                                         handleInputChange(
@@ -2385,7 +2385,7 @@ const ProtectedPage = () => {
                                     id={`pair-airline-${index}`}
                                     name={`pair-airline-${index}`}
                                     type="text"
-                                    value={teamData.pairs[index].airline}
+                                    value={teamData.pairs[index]?.airline}
                                     onChange={(e) =>
                                       handleInputChange(
                                         "pairs",
@@ -2411,7 +2411,7 @@ const ProtectedPage = () => {
                                     id={`pair-flight-number-${index}`}
                                     name={`pair-flight-number-${index}`}
                                     type="text"
-                                    value={teamData.pairs[index].flight_number}
+                                    value={teamData.pairs[index]?.flight_number}
                                     onChange={(e) =>
                                       handleInputChange(
                                         "pairs",
@@ -2557,7 +2557,7 @@ const ProtectedPage = () => {
                                     name={`pair-phone-${index}`}
                                     type="text"
                                     autoComplete="phone"
-                                    value={teamData.pairs[index].phone}
+                                    value={teamData.pairs[index]?.phone}
                                 
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                                   />
@@ -2584,7 +2584,7 @@ const ProtectedPage = () => {
                                     step={"0.1"}
                                     min={'2.5'}
                                     max={'5.4'}
-                                    value={teamData.pairs[index].dupr}
+                                    value={teamData.pairs[index]?.dupr}
                                   
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                                   />
@@ -2607,7 +2607,7 @@ const ProtectedPage = () => {
                                     id={`pair-shirt-size-${index}`}
                                     name={`pair-shirt-size-${index}`}
                                     type="text"
-                                    value={teamData.pairs[index].shirt_size}
+                                    value={teamData.pairs[index]?.shirt_size}
                                    
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                                   >
@@ -2636,7 +2636,7 @@ const ProtectedPage = () => {
                                     id={`pair-passport-${index}`}
                                     name={`pair-passport-${index}`}
                                     type="text"
-                                    value={teamData.pairs[index].passport}
+                                    value={teamData.pairs[index]?.passport}
                                 
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                                   />
@@ -2659,7 +2659,7 @@ const ProtectedPage = () => {
                                     id={`pair-passport-${index}`}
                                     name={`pair-passport-${index}`}
                                     type="text"
-                                    value={teamData.pairs[index].date_of_arrival}
+                                    value={teamData.pairs[index]?.date_of_arrival}
                                 
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                                   />
@@ -2682,7 +2682,7 @@ const ProtectedPage = () => {
                                     id={`pair-airline-${index}`}
                                     name={`pair-airline-${index}`}
                                     type="text"
-                                    value={teamData.pairs[index].airline}
+                                    value={teamData.pairs[index]?.airline}
                                   
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                                   />
@@ -2705,7 +2705,7 @@ const ProtectedPage = () => {
                                     id={`pair-flight-number-${index}`}
                                     name={`pair-flight-number-${index}`}
                                     type="text"
-                                    value={teamData.pairs[index].flight_number}
+                                    value={teamData.pairs[index]?.flight_number}
                                    
                                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                                   />
