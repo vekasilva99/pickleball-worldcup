@@ -244,7 +244,12 @@ const ProtectedPage = () => {
         });
       }
       }
+    }else if(teamData.coach?.email && !teamData.coach?.id ){
+      const coachData = await registerTeamMember(newTeamRef, teamData.coach,'8l9gFgT0smIiDSyCOzx6',countryRef);
+      await updateDoc(newTeamRef,{ coach: coachData });
     }
+
+    if(teamData.captain?.id){
       const captainReference = await doc(db, "users", teamData.captain.id);
       const captainDocSnapshot = await getDoc(captainReference);
 //console.log(teamData.captain.date_of_arrival)
@@ -272,6 +277,10 @@ const ProtectedPage = () => {
         });
       }
     }
+  }else if(teamData.captain?.email && !teamData.captain?.id ){
+    const captainData = await registerTeamMember(newTeamRef, teamData.captain,'hmUMi4XcozY2qQx9DudP',countryRef);
+    await updateDoc(newTeamRef,{ captain: captainData });
+  }
 
     let aux = [];
     for (let i = 0; i < teamData.pairs.length; i++) {
