@@ -185,12 +185,13 @@ const maxRoomsAvailable = 34;
 let twoRooms=true
 while(start<new Date(endDate)){
   //console.log(start)
-
+console.log('oijckhfeijwk',reservatedRooms[format(start,'MM/dd/yyyy')]+2)
   if(reservatedRooms[format(start,'MM/dd/yyyy')]+2>maxRoomsAvailable){
 twoRooms=false
   }
   start=addDays(start,1)
 }
+console.log('jehnfikbehjwkf',twoRooms)
 setAvailableRooms(twoRooms)
 //console.log('ROOOMS',twoRooms)
 }
@@ -398,7 +399,7 @@ try {
                     className="block w-full rounded-md sm:text-sm sm:leading-6 input"
                   >
                           <option value={1}>1</option>
-                          {availableRooms && !user?.country?.name=="New Zealand" &&
+                          {availableRooms &&
                     <option value={2}>2</option>}
                     {/* {availableRooms && user?.country?.name=="New Zealand" &&
                     <option value={3}>3</option>
