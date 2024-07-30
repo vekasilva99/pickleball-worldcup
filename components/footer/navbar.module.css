@@ -1,6 +1,6 @@
 .footer{
   width: 100vw;
-  background-color: #CBC6C6;
+  background-color: hsl(0, 5%, 79%);
   padding: 2rem;
   display: flex;
   flex-direction: row;
