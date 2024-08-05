@@ -55,6 +55,17 @@ const useAuth = () => {
               const reservationData = reservationDocSnapshot.data();
               userData.team.reservation = auxReservations
             }
+
+            const tourQuerySnapshot= await getTour(userDocRef)
+            console.log('jnhubgyvftcdrxesdrfcgvhbjnk',tourQuerySnapshot)
+            if (!tourQuerySnapshot.empty) {
+              let auxTour=[]
+              tourQuerySnapshot.docs.map((reservation)=>
+                auxTour.push({id:reservation.id,...reservation.data()})
+              )
+              console.log("jinivjnekv",auxTour)
+              userData.tour = auxTour
+            }
           } else {
             userData.team = null; // User is not a Coordinator or coach of any team
           }
@@ -82,6 +93,16 @@ const useAuth = () => {
                 id: reservationDocSnapshot.id,
                 ...reservationData,
               };
+            }
+            const tourQuerySnapshot= await getTour(userDocRef)
+            console.log('jnhubgyvftcdrxesdrfcgvhbjnk',tourQuerySnapshot)
+            if (!tourQuerySnapshot.empty) {
+              let auxTour=[]
+              tourQuerySnapshot.docs.map((reservation)=>
+                auxTour.push({id:reservation.id,...reservation.data()})
+              )
+              console.log("jinivjnekv",auxTour)
+              userData.tour = auxTour
             }
           } else {
             userData.team = null; // User is not a Coordinator or coach of any team
@@ -111,6 +132,16 @@ const useAuth = () => {
                 ...reservationData,
               };
             }
+            const tourQuerySnapshot= await getTour(userDocRef)
+            console.log('jnhubgyvftcdrxesdrfcgvhbjnk',tourQuerySnapshot)
+            if (!tourQuerySnapshot.empty) {
+              let auxTour=[]
+              tourQuerySnapshot.docs.map((reservation)=>
+                auxTour.push({id:reservation.id,...reservation.data()})
+              )
+              console.log("jinivjnekv",auxTour)
+              userData.tour = auxTour
+            }
           } else {
             userData.team = null; // User is not a Coordinator or coach of any team
           }
@@ -136,6 +167,16 @@ const useAuth = () => {
            id: reservationDocSnapshot.id,
            ...reservationData,
          };
+       }
+       const tourQuerySnapshot= await getTour(userDocRef)
+       console.log('jnhubgyvftcdrxesdrfcgvhbjnk',tourQuerySnapshot)
+       if (!tourQuerySnapshot.empty) {
+         let auxTour=[]
+         tourQuerySnapshot.docs.map((reservation)=>
+           auxTour.push({id:reservation.id,...reservation.data()})
+         )
+         console.log("jinivjnekv",auxTour)
+         userData.tour = auxTour
        }
      } else {
        userData.team = null; // User is not a team member
@@ -225,6 +266,17 @@ const useAuth = () => {
     const teamsQuerySnapshot = await getDocs(
     query(collection(db, "hotel"),
       where("team", "==", teamDocRef),where("payment_status","==",true))
+    );
+
+    return teamsQuerySnapshot;
+  };
+
+
+  const getTour = async (DocRef) => {
+    // Implement your Firestore query to get teams by coordinator or coach
+    const teamsQuerySnapshot = await getDocs(
+    query(collection(db, "tour"),
+      where("user", "==", DocRef),where("payment_status","==",true))
     );
 
     return teamsQuerySnapshot;

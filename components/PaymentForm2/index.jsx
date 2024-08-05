@@ -65,7 +65,7 @@ const router=useRouter()
    
         await updateDoc(reservationRef,{payment_status:true});
 
-setSuccessMessage('Your hotel reservation is ready.')
+setSuccessMessage('Your reservation is ready.')
  
       let auxUser=await getInfo(user)
       setuser2(auxUser)

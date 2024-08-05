@@ -18,6 +18,7 @@ import Hotel from "@/components/hotel";
 import Footer from "@/components/footer2";
 import LazyImage from "@/components/LazyLoad";
 import { ErrorMessage } from "@/components/ErrorMessage";
+import Tour from "@/components/tour";
 
 const generateRandomPassword = () => {
   // Implement your logic to generate a random password
@@ -80,6 +81,7 @@ const ProtectedPage = () => {
   });
   const [edit, setEdit] = useState(false);
   const [hotel, setHotel] = useState(false);
+  const [tour, setTour] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [user2, setuser2] = useState(null);
@@ -473,6 +475,16 @@ const ProtectedPage = () => {
           open={register}
           setOpen={() => {
             setRegister(!register);
+          }}
+          setuser2={(user) => {
+            setuser2(user);
+          }}
+        />
+           <Tour
+          team={teamRef}
+          open={tour}
+          setOpen={() => {
+            setTour(!tour);
           }}
           setuser2={(user) => {
             setuser2(user);
@@ -1853,8 +1865,22 @@ const ProtectedPage = () => {
                       <LazyImage src="/dashboard/2403-World-Cup-Web-LOG-IN-23.webp" width={200} height={200} />
                     </div>
                     <div className="content">
-                      <h2>Fellowship Tour</h2>
-                      <h3>
+                      <h2>Lima City Tour</h2>
+                      {user?.tour?.length >0 ?
+                      <> 
+                        {user?.tour.map((reservation)=>{
+                          return  <>
+                          <h3>Reservation for {reservation.attendees.length}</h3>
+                          <ul>
+                            {reservation.attendees.map((attendee)=>{
+                              return <li>{attendee}</li>
+                            })}
+                          </ul>
+                          </>
+                        })}
+                       
+                      </>
+                      :    <h3>
                         Date: October 28th
                         <br />
                         <br />
@@ -1862,21 +1888,23 @@ const ProtectedPage = () => {
                         <br />
                         <br />
                         Includes:
-                        <br />
                         <br />- Buffet lunch + 1 welcome cocktail.
-                        <br />
                         <br />- Transportation
-                        <br />
                         <br />- Entrance fees to tourist sites in the Historic Center of Lima “City of the Kings”.
                         <br />
                         <br />
                         Cost: USD 120.00
                         <br />
-                        <br />
                         *Lunch does not include alcoholic beverages.
-                      </h3>
-                      <div className="button-container">
-                        <button disabled>Coming Soon</button>
+                      </h3>}
+                      <div className="button-container" style={{marginTop:'1rem'}}>
+                      <button
+                            onClick={() => {
+                              setTour(true);
+                            }}
+                          >
+                            Book
+                          </button>
                       </div>
                     </div>
                   </div>

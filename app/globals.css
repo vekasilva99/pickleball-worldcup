@@ -111,6 +111,16 @@ justify-content: space-around;
   font-weight: 500;
 }
 
+.option-dashboard .content ul{
+  list-style:inside;
+  font-size: 0.8rem;
+  color: white;
+  font-weight: 500;
+  padding-inline-start: 1rem;
+  margin-bottom: 0.5rem;
+
+}
+
 .option-dashboard .content .button-container{
   width:100%;
   display: flex;
